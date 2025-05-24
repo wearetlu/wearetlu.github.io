@@ -4,7 +4,7 @@
  |_|  \   __\ |  | |  |  \  |_|
  |-|   |  |   |  | |  |  /  |-|
  | |   |__|   |__| |____/   | |
- |_|==AMiGA CODER ARCHIVE==|_|                                                                                                                         
+ |_|==AMiGA CODER ARCHIVE== |_|                                                                                                                         
 </pre>
 <h4>Resources include:</h4>
 A collection of translated, transcribed and edited Amiga ASM coding resources</br>
