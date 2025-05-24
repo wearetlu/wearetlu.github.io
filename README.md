@@ -14,7 +14,7 @@ A collection of translated, transcribed and edited Amiga ASM coding resources</b
 -edited sourcecode to work with ASMtwo and the tlu-CoderArcXX distros (hdf,adf) </br>
 -ondemand video links (YouTube) </br>
 -livestream links (Twitch) </br>
-<bold>To Do:</bold>
+<h4>To Do:</h4>
 -integrate vAmigaWeb for browsing, compile and run sourcecode in classic Amiga environment </br>
 -replace current lamer ascii art tweaked from webtool with custom (bitmap/vector/ascii)
 -more to come! <br>
