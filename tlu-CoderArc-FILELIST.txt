@@ -149,6 +149,65 @@ xxx,xxx files
 		24/05/2025, 19:37
 		/<
 	
+	HDF
+	8 items
+	431MB
+	27/2/2025, 13:42
+	
+		>/
+		ASMSkool.hdf
+		268.4 MB
+		9/2/2021, 01:28
+		
+		tlu-CoderArc01-100MB.hdf
+		104.9 MB
+		16/12/2024, 16:50
+		
+		tlu-CoderArc01.hdf
+		26.2 MB
+		10/12/2024, 20:43
+		
+		tlu-CoderArc02.hdf
+		6.3 MB
+		14/1/2024, 04:40
+		
+		tlu-CoderArc03-BKP.hdf
+		6.3 MB
+		13/1/2024, 22:09
+		
+		tlu-CoderArc03.hdf
+		6.3 MB
+		13/1/2024, 21:33
+		
+		tlu-DemoMakers01-BKP.hdf
+		6.3 MB
+		22/1/2024, 12:30
+		
+		tlu-DemoMakers01.hdf
+		6.3 MB
+		25/1/2024, 23:01
+		/<
+	
+	Magazines
+	2 items
+	1,094 files
+	1.43GB
+	27/2/2025, 13:42
+		
+		>/
+		AmigaNewsTech
+		33 items
+		911 files
+		1.22GB
+		27/2/2025, 13:42
+		
+		CUAmiga
+		1 item
+		182 files
+		204.6MB
+		27/2/2025, 13:42
+		/<
+	
 	SourceCodeVARIOUS
 	65 items
 	12,620 files
