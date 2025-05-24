@@ -1,5 +1,5 @@
 # The tlu-AmigaCoderArchive Project
-...
+<pre>
 
 ._.    __  .__           ._.
  | |  _/  |_|  |  __ __   | |
@@ -8,8 +8,8 @@
  | |   |__| |____/____/   | |
  |_|                      |_|                                                                                                                         
                                                                                                            
-...
-## Resources include:
+</pre>
+<h3> Resources include: </h3>
 A collection of tranlated, transcribed and edited Amiga ASM coding resources
 -source code
 -translated tutorials from pdf, html, scans and texts
