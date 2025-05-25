@@ -114,6 +114,319 @@ xxx,xxx files
 		508 files
 		17.1MB
 		27/2/2025, 13:41
+
+			>/
+			Decca-DM-Fonts-202404.lha
+			20 KB
+			13/7/2024, 01:46
+			
+			DemoManiac
+			16 items
+			253 files
+			4.1MB
+			27/2/2025, 13:42
+				
+				>/
+				DemoManiac
+				339 bytes
+				22/3/2018, 04:13
+				
+				DemoManiac.info
+				792 bytes
+				3/9/1992, 02:25
+				
+				DemoManiacDev
+				7 items
+				27/2/2025, 13:42
+
+					>/
+					DemoManiacDev
+					69 bytes
+					21/1/2024, 02:46
+					
+					DemoManiacDev.info
+					802 bytes
+					21/1/2024, 02:46
+					
+					devpac
+					11 items
+					270KB
+					27/2/2025, 13:42
+						
+						>/
+						Devpac
+						40 KB
+						2/9/1992, 23:06
+						
+						Devpac.info
+						831 bytes
+						7/1/1994, 01:23
+						
+						Devpac.prefs
+						513 bytes
+						2/1/1994, 11:20
+						
+						g.opts
+						513 bytes
+						14/10/2006, 22:50
+						
+						GenAm
+						41 KB
+						14/10/2006, 22:50
+						
+						GenAm.opts
+						65 bytes
+						24/9/1993, 04:41
+						
+						GenAm.opts.info
+						450 bytes
+						7/1/1994, 01:23
+						
+						genam3
+						64 KB
+						2/9/1992, 23:05
+						
+						genim3
+						64 KB
+						2/9/1992, 23:05
+						
+						MonAm
+						28 KB
+						14/10/2006, 22:50
+						
+						MonAm.prefs
+						84 bytes
+						31/12/1993, 04:02
+						</
+					
+					devpac.info
+					632 bytes
+					21/1/2024, 01:14
+					
+					readme.txt
+					437 bytes
+					21/1/2024, 02:54
+					
+					src
+					37 items
+					48 files
+					516KB
+					27/2/2025, 13:42
+						
+						>/
+						AnimPlay.asm
+						14 KB
+						21/1/2024, 01:45
+						
+						CircleWipe.S
+						10 KB
+						21/1/2024, 02:48
+						
+						cube_dat.asm
+						710 bytes
+						8/1/1994, 11:19
+						
+						data
+						1 item
+						27/2/2025, 13:42
+						
+						data.info
+						628 bytes
+						21/1/2024, 02:17
+						
+						Dot-TextRoutine5.S
+						14 KB
+						2/9/1992, 22:27
+						
+						ExpPrint.asm
+						11 KB
+						3/5/1994, 08:54
+						
+						fadein.asm
+						4 KB
+						7/1/1994,22:24
+						
+						FONT.asm
+						2 KB
+						27/2/1994, 00:59
+						
+						g.opts
+						513 bytes
+						14/10/2006, 22:50
+						
+						GenAm
+						41 KB
+						14/10/2006, 22:50
+						
+						GenAm.opts
+						65 bytes
+						24/9/1993, 04:41
+						
+						GenAm.opts.info
+						450 bytes
+						7/1/1994, 01:23
+						
+						genim3
+						64 KB
+						2/9/1992, 23:05
+						
+						GlenzVector.ASM
+						24 KB
+						14/5/1994, 06:02
+						
+						HorScroll.asm
+						9 KB
+						15/5/1994, 05:40
+						
+						Include
+						2 items
+						27/2/2025, 13:42
+						
+						Include.info
+						628 bytes
+						20/1/2024, 22:34
+						
+						LineWipe.asm
+						8 KB
+						6/5/1994, 01:37
+						
+						LineWipe.dm
+						8 KB
+						30/1/1993, 05:50
+						
+						NewShowGraphic.asm
+						4 KB
+						14/4/1994, 05:17
+						
+						PlaneWipe.dm
+						10 KB
+						15/5/1994, 05:09
+						
+						PlatesWipe.asm
+						10 KB
+						29/4/1994, 05:38
+						
+						Print.asm
+						3 KB
+						16/3/1994, 22:41
+						
+						ProRunnerV2.asm
+						43 KB
+						19/2/1994, 04:26
+						
+						SinusWipes.asm
+						12 KB
+						20/5/1994, 01:37
+						
+						SlimeTab
+						2 KB
+						30/1/1993, 05:37
+						
+						SlimeWipe.asm
+						8 KB
+						2/5/1994, 07:16
+						
+						SlimeWipe.dm
+						7 KB
+						30/1/1993, 05:38
+						
+						stars.asm
+						8 KB
+						21/1/2024, 02:38
+						
+						testeffect.asm
+						2 KB
+						21/1/2024, 01:48
+						
+						Textwriter.asm
+						7 KB
+						5/5/1994, 01:58
+						
+						Textwriter2.asm
+						6 KB
+						15/5/1994, 07:04
+						
+						TileWipe.asm
+						11 KB
+						20/5/1994, 01:46
+						
+						VerScroll.asm
+						7/11/1995, 23:01
+						9 KB
+						
+						verticalZoom.asm
+						8 KB
+						21/1/2024, 02:08
+						
+						ZoomLines.asm
+						10 KB
+						21/1/2024, 02:07
+						</
+					
+					src.info
+					628 bytes
+					21/1/2024, 01:14
+					>/
+				
+				DM
+				130 KB
+				3/11/1995, 06:36
+				
+				DM_Data
+				6 items
+				27/2/2025, 13:42
+				
+				DM_Effects
+				41 items
+				27/2/2025, 13:42
+				
+				DM_Replays
+				16 items
+				27/2/2025, 13:42
+				
+				DM_Scripts
+				2 items
+				27/2/2025, 13:42
+				
+				DOCS
+				5 items
+				27/2/2025, 13:42
+				
+				DOCS.info
+				900 bytes
+				23/3/2018, 09:02
+				
+				FILE_ID.diz
+				531 bytes
+				2/9/1992, 22:55
+				
+				KERN.DM
+				17 KB
+				3/11/1995, 06:48
+				</
+			
+			DemoManiac-BKP
+			16 items
+			249 files
+			3.9MB
+			27/2/2025, 13:41
+			
+			DemoManiacDev.lha
+			367 KB
+			21/1/2024, 02:12
+			
+			font-464x9x3.iff
+			584 bytes
+			16/7/2024, 01:44
+			
+			tlu-DemoManiac218-FULL-OLD.lha
+			4.3 MB
+			14/7/2024, 23:58
+			
+			tlu-DemoManiac218-FULL.lha
+			4.4 MB
+			16/7/2024, 12:43
+			</
 		
 		RSIDemomaker
 		43 items
