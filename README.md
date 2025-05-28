@@ -816,7 +816,7 @@ A collection of translated, transcribed and edited Amiga ASM coding resources<br
 -ondemand video links (YouTube) <br>
 -livestream links (Twitch) <br>
 <h4>To Do:</h4>
--use custom 2c tlu-DarkModeIconPack-v1 for frontend (current hires true colour icons <a href="https://os4depot.net/?function=modules/snapshot/display&fileid=10710#10710_2" target="_blank">AOS-IconsUpdate3</a> <br>
+-use custom 2c tlu-DarkModeIconPack-v1 for frontend (current hires true colour icons <a href="https://os4depot.net/?function=modules/snapshot/display&fileid=10710#10710_2" target="_blank">AOS-IconsUpdate3</a>) <br>
 -add modplayer(?) <br>
 -Amiga digital file browser (using steffest's <a href="https://github.com/steffest/ADF-reader-writer" target"_blank">ADF-reader-writer</a> <br>
 -integrate vAmigaWeb for browsing, compile and run sourcecode in classic Amiga environment <br>
