@@ -1,0 +1,41 @@
+Neuheiten:
+
+   -Neue InternLibrary Befehle zur Font-behandlung.
+   
+   -PutChar gibt geblittete Breite zurück (vielleicht geht die Routiene
+    jetzt schon mit Prop-fonts ?! Die Struktur wird jedenfalls richtig
+    gelesen)
+   
+   -Variablen unterstützung (Bisher noch kein Output-effekt vorhanden)
+    Wenn Änderung eines Parameters während des Ablaufes möglich ist -einfach
+    deznumV statt deznum schreiben...  
+
+   -LESS BUGS ! (wieder einige gekillt)
+  
+   -Password Protection (Durch bedingter Assemblierung im mom rausgefiltert)
+  
+   -F-Tasten unterstützung
+
+   -Erste Menupunkte (nicht damit rumspielen - einige haben noch NIL-zeiger...)
+
+   -Edit-Color requester fast fertig...
+
+   -SWITCH-Parameter - richtige Gadgetboxen hab ich nicht mehr hinbekommen
+    (angefangen hab ich 24:3:94 23:20:00) aber dieser Parameter wird später
+    endsprechend ausgebaut...
+
+   -Script-Commands im Prinzip eingebaut (bisher nur Sound-Fading...)
+
+   -6 Layers (achtung 4&5 haben manchmal noch Probleme) aber alle Strukturen
+    wurden erweitert und alle codes überarbeitet.
+
+   -Richtige Farbe-Null-Berechnung eingebaut (C0 wird vom untersten Layer
+    genommen). (bisher :immer Schwarz)
+
+   -EnvStruktur leicht verändert (wegen der 6 Layer hab ich irgenteinen bisher
+    unbenutzten Eintrag entweihen müssen...)
+
+   -Zum Debugging können nun patterns auch während der Blitter-wartezeit
+    unterbrochen werden... (mit BEIDEN Maustasten)
+
+   	

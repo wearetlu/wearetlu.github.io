@@ -1,0 +1,41 @@
+New features:
+
+   -New InternLibrary commands for font handling. 
+   
+   -PutChar returns blitted width (perhaps the routine 
+    now works with prop fonts?! The structure is 
+    read correctly anyway) 
+   
+   -Variable support (No output effect yet) 
+    If changing a parameter during the run is possible - simply 
+    write deznumV instead of deznum...
+
+   -LESS BUGS! (some killed again)
+  
+   -Password protection (filtered out at the moment by conditional assembly)
+  
+   -F-key support 
+
+   -First menu items (don't mess around with them - some still have NIL pointers...)
+
+   -Edit color requester almost finished...
+
+   -SWITCH parameter - I haven't managed to get the gadget boxes right 
+    (I started 24:3:94 23:20:00) but this parameter will be expanded 
+    later...
+
+   -Script commands basically built in (only sound fading so far...) 
+
+   -6 layers (note 4&5 still have problems sometimes) but all structures 
+    have been expanded and all codes revised.
+
+   -Correct color zero calculation built in (C0 is taken from the lowest 
+    layer). (previously: always black)
+
+   -Env structure slightly changed (because of the 6 layers I had to 
+    desecrate some previously unused entry...)
+
+   -For debugging purposes, patterns can now be interrupted during the 
+    blitter waiting time... (with BOTH mouse buttons) 
+
+   	
