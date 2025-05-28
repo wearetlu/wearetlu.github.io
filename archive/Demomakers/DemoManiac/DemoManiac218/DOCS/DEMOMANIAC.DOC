@@ -1,0 +1,1305 @@
+                              DEMOMANIA 1.29
+                          For FIREFLASH of OTT
+
+DEMOMANIAC - PAGE 1 - CODE:2981
+
+                            LIST OF CONTENTS
+
+1.    Introduction
+1.1.  The Main Features
+2.    Installation
+3.    The Basics
+4.    The First Steps in DemoManiac
+5.    The Construction Edotor
+5.1.  The Pattern List
+5.2.  The Various Types of Parameters
+5.3.  The Effects List
+5.4.  The Pattern Administration
+6.    The Script Editor
+6.1.  The Script Commands
+7.    The Memory Editor
+8.    The Design Editor
+9.    The Configuration Editor
+10.   The General Screen
+10.1. Script Control
+10.2. Effects Control
+10.3. Disk Control
+11.   The Menus
+12.   Limitations
+13.   Replayers
+14.   Internal ...
+15.   Your Own Effects
+16.   Bug Reports and Suggestions
+17.   Registration
+18.   Protection Codes
+
+                            COPY PROTECTION!
+
+This programme is copy protected. DemoManiac took two Years to develop
+and will also be supported in future by Black Legend and Complex
+Development - with hard work, time and money. Copying etc, is illegal;
+and unfair, not very nice, thoughtless and morally disgusting!
+
+(SO IS SELLING A PROGRAM THAT DOES NOT WORK FOR £25.99)
+
+This made it necessary to include a copy protection. When you are
+requested to enter a code on page x, please enter the number you find at
+the bottom of that page. Example: If you are asked for the code on page
+2, the number you have to enter will be: 5344. (Bottom of this page ...!)
+
+DEMOMANIAC - PAGE 2 - CODE:5344
+
+                         0. SOME WORDS IN ADVANCE
+
+     This is V1.29 of the famous DemoManiac - Supplied by vADIUM/aVT!
+
+This version is a bugfixed version of V1.28. We also added all examples
+and docs of V1.28 to release a full & complete version of this cool program.
+
+                          This package includes:
+
+                          - English & German Docs
+                          - Vector-Doc for DemoManiac
+                          - all Examples/Tutorials
+
+   
+                              1. INTRODUCTION
+
+Many intromakers, tilting and multimedia programmes exist for the Amiga,
+but only a very small minority is powerful enough for you to receive what
+you want as an end-result. In most cases your imagination is very limited
+by the programme. Naturally it isn't possible to let the users
+imagination run freely in all cases - the computers hardware also limits
+the possibilities - but it is still possible to give them much more
+possibilities than such programmes have previously.
+DemoManiac does this for you. DemoManiac lets you create impressive demos
+and presentations, not requiring any programming knowledge whatsoever!
+With it you are in a position to produce in a few short minutes what
+would take you months to program yourself - and that is not counting the
+years of programming experience necessary to do that. You can even
+produce complete presentations without touching the
+keyboard: totally mouse-driven.
+But even if you have experiences in Assembly programming and
+theoretically can makedemos without DemoManiac, using it will make things
+for you a lot simpler. You can use your own routines instead of the
+effect modules supplied with DemoManiac. As the programme is modular
+structured this is a simple task. In this case DemoManiac will
+become a great help in the design and the music / sound interaction of
+your demonstration.
+
+
+                         1.1. THE MAIN FEATURES
+
+Before we continue with a systematic approach explaining the build-up of
+the programme to you we will repeat the main features DemoManiac offers.
+
+Demos can be designed purely by using the mouse and without any
+programming knowledge whatsoever .
+The AGA-chipset (A1200 and A4000) is completely supported (and you can
+only really use DemoManiac to its full potential on AGA machines).
+But DemoManiac is also quite happy to run on A500 (68000, kickstart 1.3)
+if enough memory is available.
+Demos and presentations produced using DemoManiac can be passed on to
+friends and relatives without any problems and can even be used
+commercially (as long as a message is presented that DemoManiac was used
+to create the product).
+DemoManiac is built up in a modular way. This means that the collection
+of effect- modules and: replayers will be continuously enlarged (through
+updates from Black Legend). This way you are always at the forefront of
+technology when working with DemoManiac and working with it - and the
+products created by it - will never become boring or old-fashioned.
+DemoManiac includes a operating-system compatible editor that is very
+short in length because it has been completely programmed in Assembly ..
+Pieces of music created with all major music programmes can be used.
+
+
+DEMOMANIAC - PAGE 3 - CODE:0293
+
+Sound effects can be tied together with certain effects on screen (for
+that extra audio-visual experience).
+Demomaniac has a dynamic memory management, meaning that it only uses as
+much memory as is necessary.
+Newer and faster processors will speed up the effects, but not mess up
+your timing.
+DemoManiac doesn't tie you to one given screen-setup.
+Only the effect modules that are actually being used are in memory.
+
+There are of other possibilities and features with DemoManiac. But you
+are sure you will find them soon enough ...
+
+
+                             2. INSTALLATION
+
+The disk supplied includes DemoManiac and all the relevant data in packed
+form. So you can use these they have to first be unpacked. This happens
+automatically and to no extra complication for you when you start the
+disk. You will be presented with a menu giving you a choice between
+installation on disk and on harddisk.
+
+The whole installation process is very simple and is accompanied by any
+necessary information on screen. Therefore we will not need to go into
+any further detail in the manual.
+
+
+                              3. THE BASICS
+
+The basic unit or structure in DemoManiac are the 'EFFECT-MODULES' . Each
+of these offers you an effect which can be mutated through various
+parameters. There are both simple effects such as showing a picture on
+screen and very complex ones such as letting the spectatorflythrough a
+vectorworld.
+These effect-modules are now connected to so-called 'PATTERNS'. Within
+one pattern up to 6 effects can run simultaneously.
+
+Staying with our vector world example ... If you combine a fade-in effect
+(FADE) with the flight through the vector world (VECTORSCAPE) in one
+pattern, you will get a vector world that slowlyfades in. At the same
+time you could also present a text to the spectator as he is flying over
+the vector world. And you can fade the text in and out at the same time,
+too.
+
+To produce a complete presentation or demonstration you will first have
+to design the separate scenes ('PATTERNS') and then sort and present them
+correctly in a 'SCRIPT'.
+
+DEMOMANIAC - PAGE 4 - CODE:0021
+
+There are three levels when making a presentation: The lowest are the
+'EFFECT-MODULES', the next are the 'PATTERNS' and the highest level is
+the 'Script'.
+
+
+                    4. THE FIRST STEPS IN DEMOMANIAC
+
+
+To give you a glimpse of what is possible with DemoManiac, here a test
+run in form of a simple example . . .
+
+First start DemoManiac.
+
+
+Don't let all the gadgets irritate you. Enter the construct editor first
+by choosing it in the pulldown menu or clicking on the 'CONSTRUCTION'
+gadget at the bottom of the screen.
+Each pattern is designed in this editor.
+You will now see four blue windows. The top one holds all information for
+the pattern being edited at the moment and the lower three show all the
+possible effect-modules sorted by type and alphabet.
+Use the mouse to select 'LAYER 0' in the top window - just click on it
+and it is already selected. "What in the world is a LAYER?" you may be
+asking yourself right at this moment. Well, each PATTERN includes 6
+LAYERS and each of these LAYERS can be filled with an EFFECT-MODULE. Why
+the effects have to be placed in layers and not just anywhere will
+become apparent later on.
+To now allocate an effect to a layer you have to select one in the left-
+hand window below (MAIN EFFECTS). Please choose 'Stars' for this example;
+if you can't find stars on the list use the slider on the right to move
+the list up and down.
+After a short loading period the word 'Stirs' will be allocated to 'LAYER
+0' and further information will be presented below it in the top window.
+The 'Stars' effect-module has now been allocated to 'LAYER 0'. The new
+lines between 'LAYER 0' and 'LAYER 1' are the variable parameters the
+stars effect has to offer.
+Please choose one of the parameters now (maximum number of stars). Next
+to your pointer a new window will appear in which you can edit the
+parameters. The value at the moment is 400; but if you now use the slider
+to change the number of stars you can have up to 2000 or go as low as one
+single star. If the slider isn't accurate enough for you then you can
+enter the value using the keyboard (press <Return> to complete).
+Now that you have had a short play-around with the parameters press
+'RESET' to return to the standard value (400) and the 'OK to complete the
+editing of the parameters. Click on 'TEST PATTERN' to view the stars
+effect. After a short while you will already find yourself in deepest,
+darkest space ...
+
+Press the left mouse button to complete the test and return to the
+editor.
+
+DEMOMANIAC - PAGE 5 - CODE:5755
+
+Have a go at changing the parameters and effects and then view the
+results of your changes by clicking on 'TEST PATTERN'. This will give you
+a feel for DemoManiac. So you don't experience too many problems, here's
+a short explanation of the 'Stars' parameters:
+
+   Effect delay     :  We'll tell you what this one is for later on.
+   Start Starnumber :  The 'stars' effect gradually increases the number
+                       of stars an screen. This is the starting value.
+   Starnumber incr  :  How quickly should the number of stars rise.
+                       (0=not at all, 1=very slowly, 100=very fast)
+   Maximum number   :  Maximum number of stars on screen .
+
+
+An explanation of all parameters of the other effects can be found in the
+back of the handbook.
+
+Now that you have legend how to change parameters we can get a bit more
+complex - after all, DemoManiac can handle more than just one effect.
+
+So, let's scroll down the pattern list (top window) using the slider next
+to it so that the next layer (LAYER 1 ) becomes visible and click on it.
+
+We would like LAYER 1 to contain the effect-module 'DotText' . So we
+click on 'DotText' in the 'MAIN EFFECTS' menu.
+This effect offers somewhat more parameters that we will not be
+explaining fully in this chapter. But if you now full of enthusiasm click
+on 'Test Pattern' DemoManiac will come up with an error message saying
+you have to load a text for the DotText effect And viewing the parameters
+you will realise that the parameter ('Actual Textpage') is empty. So,
+this parameter is waiting for data file! These are not loaded from the
+pattern editor though, but from the MEMORY EDITOR.
+
+
+In the bottom gadget line-up you will be pleased to fine one marked
+MEMORY. Select it and you will find yourself on a new screen. Please
+choose 'BLOCK 0' (this is the only block on screen anyway at the moment).
+After this click on 'LOAD FILE' and choose a file with the ending .TXT
+using the file requester and load it ('OK'). A text file is now in memory
+that can be used at any time in your product. You have now loaded a11 the
+necessary data and can continue work on the pattern (click on
+CONSTRUCTION).
+Back in the CONSTRUCTION EDITOR you can now active the 'Actual Page'
+parameter and will be presented a list of all text files in memory . Now
+choose your file from this list (the list isn't too big at the moment
+anyway).
+
+As all parameters are 'loaded' we can give it a trial-run by pressing the
+'Test Pattern' button. It's starting to look good, isn't it?
+
+DEMOMANIAC - PAGE 6 - CODE:8428
+
+Now let's have a play-around with the parameters .. Why don't you give
+the following settings a try:
+
+
+      X-Angle increment gl   : 44
+      Y-Angle increment gl   : 77
+      X-Angle increment rel  : 0
+      Y -Angle increment rel : 0
+      Start X-Angle          : 000
+      Start Y-Angle          : 000
+      Speed                  : 2
+      Number of Letters      : 25
+
+or... X-Angle increment gl   : 000
+      X-Angle increment gl   : 000
+      X-Angle increment rel  : 3
+      Y-Angle increment rel  : 0
+      Start X-Angle          : 130
+      Start Y-Angle          : 090
+      Speed                  : 1
+      Number of Letters      : 25
+
+
+A bit of music and we could be as happy as a lark ...
+
+
+Actually there is just one programme on the Amiga that is used to make
+demo soundtracks - the ProTracker. But, there are loads of versions
+around, making it impossible to play all pieces of music with just one
+universal player. For this reason we have included a whole collection of
+players with DemoManiac. Before playing a song respectively module (the
+correct terminology) you have to select one of these players. (BEWARE:
+The wrong player combined with the wrong module may cause your computer
+to crash.)
+
+So, let's choose one. Click on 'PLAYER ., (top right) and choose
+'TrackerPacker' from the list. All the modules include with DemoManiac
+have been packed with this one. This is also the only player that is
+capable of playing modules PACKED.
+As we have now made our player decision we can choose a module to listen
+to. For this click on 'SONG:'. (All music can be packed with the
+PowerPacker.)
+And with the next test run we can see and hear what kind of a difference
+sound can make.
+
+We might as well mention another feature while we are at it. Click on
+'Design:' in the pattern list and choose the option 'NEWS SCREEN'.
+Another go at 'Test Pattern' will slowly give you a feeling what it is
+like to work with DemoManiac ...
+
+DEMOMANIAC - PAGE 7 - CODE:3812
+
+                       5. THE CONSTRUCTION EDITOR
+
+We will explain this editor first because it handles the lowest level of
+a DemoManiac presentation, the effect modules.
+You can enter the CONSTRUCTION EDITOR anytime by clicking on the
+CONSTRUCTlON button get the lower part of the screen or hitting the F6
+function key. You can also enter it via the pulldown menus.
+
+
+                          5.1. THE PATTERN LIST
+
+ln this editor patterns are developed and tested. Each pattern is managed
+through the pattern list that is in the top window. The list is built-up
+in following way:
+
+   Name       : {Pattern name}
+   Design     : {Name of the screen design used in this pattern}
+   Time       : {Time-length of the patterns}
+   Relations  : {Relations between the layers}
+
+   Layer 0    : {Name of the effect module in LAYER 0}
+                {its parameters}
+
+   Layer 1    : {Name of the effect module in LAYER 1}
+                {its Parameters}
+
+              And so on ...
+
+
+The pattern name is of no importance to DemoManiac itself. It is purely
+to help you in your administration of the various patterns and the
+putting together of a script.
+
+Design is the screen setup. Please find more information on this one in
+the chapter on the 'DESIGN EDITOR'.
+
+Time is represented - as indeed all times in DemoManiac are - in seconds
+and frames. One frame is the time it takes the electron beam to build up
+a screen on your monitor. If something happened even faster then you
+wouldn't even recognise it as the screen couldn't be prepared so quickly.
+A frame is therefore the smallest time scale that is relevant for
+DemoManiac. One frame is 0.02 seconds (1 /50 second) in length. Therefore
+you can only enter values between 0 and 49, as 50 frames would be one
+second. Times are represented in DemoManiac as:
+
+DEMOMANIAC - PAGE 8 - CODE:4514
+
+SSSS/FF
+
+The S stands for seconds (maximum of 9999) and F stands for frames
+(maximum 49). One minute would thus equal 0060/00 and one minute and half
+a second 0060/25.
+
+You can also programme the length of a pattern as 'INFINITE' . This is
+also the time preset. To set it you have to leave the time-requester by
+pressing the 'INFINITE' key. If you have already calculated a time for
+your pattern and only want to enter the infinite mode for a test, then
+that's no problem whatsoever - the number will stay in memory and will
+automatically be enter once you switch back from infinite mode.
+
+The next option, relations, describes the relations between the 6 layers
+in memory and the 'real' layers you will see on screen. Each effect runs
+on a transparency; on 'unused' parts you can see the effect underneath.
+To change the order of these transparencies without having to move the
+effect-modules around you can use these layer relations. This layer
+relations entry contains 6 numbers (known as the layer sequence). Each of
+these numbers represents a layer and its position represents the position
+in the pile of transparencies. The standard layer sequence 012345 means
+that Layer 0 is at the bottom and Layer 5 is the top transparency (and
+not covered by any other one). If you change the layer sequence to
+543210 then the situation is exactly the opposite without you having to
+change the position of the effect-modules themselves.
+'Weird' combinations are also possible such as 425301 . This would result
+in following order in the transparencies:
+
+
+   Layer 4 : at the bottom
+   Layer 2 : over Layer 4
+   Layer 5 : over Layer 2
+   Layer 3 : over Layer 5
+   Layer 0 : almost at the top
+   Layer 1 : at the top
+
+The layer sequence is not the only thing you can change in the layer
+relations. Additionally to the order you can also set the transparency
+for the layer itself. This is basically a switch whether the layer is
+'painted' with normal paint or see-through paint. Is this value for
+instance 1 - 3 - - , that means that just layers 1 and 3 are transparent.
+Using the requester that pops up when you enter the layer relations
+option is simple, once you have understood the principles of the layer
+sequence and transparency values. The top line (switches for the layer
+sequence) has 6 small gadgets that go up by one each time you click on
+them. This way you can enter any order you wish. The gadget below
+(switches for the transparency values) work like light switches - they
+
+are either ON or OFF. This way you can set the transparency for each
+individual layer.
+
+
+DEMOMANIAC - PAGE 9 - CODE:5314
+
+
+Now you know about all entries in the pattern list apart from LAYER
+entries. The layers contain the most important information for a pattern:
+the EFFECT MODULES.
+Each layer can hold one effect. Click on one of the lines that include
+the word 'LAYER x:' then you activate that layer. This way, you are
+telling DemoManiac in to which layer you would like the next effect
+loading (or which layer the next DeleteEffect is to affect).
+If you click on a line that contains a parameter for an effect you can
+then change these parameters .
+
+
+                  5.2. THE VARIOUS TYPES OF PARAMETERS
+
+There are various types of parameters:
+
+The standard are VALUE parameters that contain a decimal number. If you
+choose one of these a new window will be opened. The value of the
+parameter can be changed using the slider and the arrow or just enter the
+number on your keyboard. If you mess up the parameters value totally you
+can press the 'RESET key to get back to the standard values. Leave the
+window by pressing 'RETURN' after entering your value, press the 'OK' or
+'CANCEL' buttons or just click outside the window (same effect as
+choosing 'OK').
+
+Apart from the VALUE parameters, DemoManiac also includes VARIABLE
+parameters. Just like in a programming language you can insert variables
+instead of constant values. This allow you to change an effect while it's
+running by changing the value in a parameter. You can for instance define
+the position of a vector object as (x, y) instead of (160, 127). If
+another effect changes the variables it will automatically also change
+the position of said vector object. If you program the value of the
+variables to represent the current mouse position for instance, the user
+can move the vector object with the mouse.
+
+
+If all this sounds a bit too complicated, you can just ignore it. A VALUE
+parameter allowing variables differs from the "standard" parameter only
+by having another switch at the bottom of the window:
+
+
+'VARIABLE' : Click on this switch and a string gadget and a 'CHOOSE'
+button will appear instead of the slider. You can now choose the name of
+the variable to be connected to the effect. The name can be any character
+combination as long as it doesn't start with a space or is made up
+entirely of spaces. All names are stored in capital letters. Possible
+names are for example 'x' , 'Hallo' , '3d' , 'X Position' or #$%yQ!'
+Calling you variable '007 for example is also possible but will surely
+cause some problems as you may later not recognise it as being a variable
+and not a definite value of '007'. So please use names you will recognise
+again later on. If you have already been using variables in your
+programme you can find them and implement them here, too, by using the
+'CHOOSE' function. And if you decide a constant value is better after all
+then you can return to the VALUE requester by choosing the 'NUMBER'
+button.
+
+DEMOMANIAC - PAGE 10 - CODE:1954
+
+Above we have described parameters that accept either a constant  or
+variable value. Next we have parameters that ALWAYS require a variable -
+they don't read a value from the variable, but a write to it. These are
+called 'OUTPUT parameters. Some effect modules don't actually do anything
+you can see on screen (DUMMY-EFFECTS) as their only function is to change
+the variables and thus for example allow interactivity.
+
+As certain effects require more data than just numbers further types of
+parameter exist:
+
+
+If you click on the PICTURE parameter you will be present with a list of
+all pictures located in memory to choose from. These already have to have
+been loaded into memory via the Memory-Editor. This type of parameter is
+therefore known as 'MEMORY parameter. There are various of these for
+animations, fonts, samples, texts etc.
+
+Apart from these major parameters (VALUE, VARIABLE and MEMORY) there are
+various other ones that for instance handle the relationship between the
+layer and the effect. Others work like switches between two positions
+(On/Off or Top/Bottom etc.).
+
+An exact description of each individual effect and its parameters can be
+found when you choose info in the Construction-Editor. You will have to
+select the respective layer beforehand . When using an effect for the
+first time it is best to read the info file for a complete description of
+the effect's features.
+
+
+                          5.3. THE EFFECTS LIST
+
+All available effects are listen in the three window in the bottom part
+of the screen. The split into three window is purely for organisational
+purposes and doesn't have any internal significance to DemoManiac. The
+effects are sorted by type. The left window contains the main effects,
+the middle one contains transitional effects (fades, bumps etc.) and the
+right one the special effects. If you click on any of these effect it
+will be loaded into the current layer. Is an effect already in the
+respective layer they programme will double-check whether you really want
+to replace the old effect with the new one .
+
+
+
+                     5.4. THE PATTERN ADMINISTRATION
+
+In the top 1eft of the screen you will find information on how many
+patterns you have already designed and the number of the one you are
+working on at the moment. To view the effect lists of the other patterns
+you can use the NEXT and PREVIOUS buttons. If you press the NEXT button
+when no further pattern is there then a new pattern is opened for you to
+edit.
+A new pattern opened in such a way automatically copies the design and
+layer relations of its predecessor.
+
+DEMOMANIAC - PAGE 11 - CODE:4653
+
+The BEG and END buttons allow you to jump to the first respectively last
+pattern available. The GOTO button lets you choose the pattern to edit
+from a list (only if you have more than one pattern of course).
+
+The DELETE button deletes the active pattern and moves all following ones
+up by one. Of course this movement does NOT mess up any previously uses
+made of the pattern numbers (for example in the script editor) as all
+these matters are corrected automatically by DemoManiac. If you have only
+made one pattern you can delete it - all entries will be set to standard
+- but it will naturally not be removed from the list.
+The INSERT button pushes the present pattern and all following ones up by
+one position. This way you get a new and empty position that you can now
+begin to edit.
+
+'DELETE EFFECT' will delete the effect module in the chosen layer
+emptying the layer again. The execution of this command can be
+interrupted by pressing the left mouse button.
+
+'TEST PATTERN' tests the pattern being edited at the moment. The
+execution can be interrupted by pressing the left mouse button .
+
+Before we continue with the next editor we would like to point out that
+can either leave the parameter editing window by either pressing the 'OK'
+button or by just choosing the next parameter by mouse. This of course
+saves time as every click outside the window is regarded as an 'OK'. You
+could also jump directly to 'Test Pattern'.
+
+
+                          6. THE SCRIPT EDITOR
+
+After you have made all the patterns you want in the CONSTRUCTION EDITOR
+you can now start thinking about putting them together to a demo.
+The script editor is entered by choosing the SCRIPT gadget at the bottom
+of the screen.
+
+On the left-hand side of the script editor there's a long list the
+script. The script is partitioned in many entries, each of which can hold
+a PATTERN or a COMMAND. The number of entries you require can be set
+using the 'Script entries' (top right). The minimum number of script
+entries equals the number of patterns you have designed; otherwise you
+couldn't show all patterns you have designed and therefore would be
+wasting memory.
+Press NORMAL and the number of patterns will automatically be set to the
+number of patterns designed. Please do not exaggerate with the number of
+script entries; everything takes up memory and needs to be administrated
+and will slow DemoManiac down during editing.
+
+Just below the script entries you will the Active Pattern. This is the
+pattern number you have been working on last in the construction editor.
+This can be changed easily, either by the string gadget, the cursor keys
+or the CHOOSE function (has the same function as the GOTO button in the
+construction editor has).
+
+DEMOMANIAC - PAGE 12 - CODE:9874
+
+If you after changing the active pattern return to the construction
+editor, you will automatically be editing the pattern last addressed in
+the script editor. What the active pattern is needed for in the script
+editor will be explained later.
+
+Beneath the active pattern there are a further five gadgets that define
+what should happen when a script entry is selected. A blue arrow on the
+right next to the gadget show you which one is active at the moment. (You
+can select the active gadget resp. function by pressing it with the mouse
+pointer.)
+
+The functions are as follow:
+
+Choose Pattern : Every time you choose a script entry you will be able to
+                 choose the pattern to be inserted from a list.
+
+Choose Command : Choose a script command (to influence the course of the
+                 script run) and enter its parameters.
+
+Increase Pat :   If you have already designed all patterns in a logical
+                 order and want to spare yourself the hassle of having to
+                 enter them all into the script (first pattern 1, then 2,
+                 then 3, then 4 etc.),. then this function will help.
+                 Just click on a script entry and the active pattern will
+                 be stored in that position and one is automatically
+                 added to the number of the active pattern. This way you
+                 only have to click once on each of the script entries.
+
+
+Decrease Pat :   Works the same way as 'Increase Pat.' but one is
+                 deducted after each click.
+
+
+Edit Command :   Change the parameters of a script command.
+
+
+
+The INSERT button stays pressed after you have selected it to show you
+that you are now in the insert mode. Just click on a script entry and all
+following entries are pushed down by one. The resuming free space in the
+script can now be edited in the chosen mode (choose pattern, choose
+command etc.). That means that immediately after the insertion of a
+position a pattern or command is entered. After the insert function has
+been completed the insert gadget is deactivated again and the script list
+is updated. All commands that referred to a script position are also
+updated so they don't point to a wrong entry.
+
+DEMOMANIAC - PAGE 13 - CODE:5554
+
+The DELETE function works in a similar fashion. When in delete mode, you
+can delete entries in your script by clicking on them and all following
+entries will move up one position.
+
+
+You can deactivate the insert and delete functions by pressing the
+buttons a second time.
+
+The 'TEST SCRIPT' and 'TEST PATTERN' gadgets are at the very bottom and
+do exactly what their names imply:
+
+Test Pattern : Has exactly the same function as it does in the
+               construction editor with the difference that it refers to
+               the active pattern (the | last pattern edited).
+
+Test Script :  View the whole script. Press the right mouse button to
+               break off the script test and the left mouse button to
+               skip the active pattern.
+
+
+                        6.1. THE SCRIPT COMMANDS
+
+We have already mentioned the fact that script are not just a list of
+patterns but also can include COMMANDS.
+
+If you choose a script entry while in 'Choose Command' mode instead of
+being in the 'Choose Pattern' mode you will be presented a list of all
+possible script commands. Choose a command form this list and (if
+necessary) set its parameters. Script Commands basically exist to
+influence the running of the script, but are also capable of much more.
+Let's have a look ...
+
+
+FadeMusiclN : If the Player supports fades then this command will fade
+              the music in whilst the demo continues to run. At the very
+              beginning you will have to set the music 'Silent'.
+
+FadeMusicOUT : Fade-out.
+
+Silent :       Switches the music off. This is mainly necessary to enable
+               a pause between the beginning of the demo and the fade-in.
+
+Goto X :       Jump directly to script position X.
+
+Exit :         End the script.
+
+Loop X :       Repeats the following script entries X times.
+
+EndLoop :      Marks the end of the loop block (started with Loop X).
+
+DEMOMANIAC - PAGE 14 - CODE:2560
+
+Gosub X :      Jumps to script position X and returns once it finds a
+               'Return' command .
+
+Return :       Ends a subblock started with the 'Gosub' command.
+
+FreeBlock X :  This command only actually works in the executable demo as
+               it frees any memory possible during the demo. CAUTION:
+               This will of course only work if the data you are deleting
+               is NOT needed later on in the demo!
+
+Skip X=Y :     Jumps the next script position if the relation is correct.
+
+Nop XXXX :     This command doesn't actually have a function and is
+               solely there so you can insert notes and comments into the
+               script.
+
+Wait X :       Wait X seconds/frames.
+
+
+These script commands are possibly not very easy to understand, but they
+can open the doors to amazing possibilities once used correctly.
+
+The script commands are surely easily understandable for everyone. Here's
+a small example:
+
+
+0001 : Silent           ;Switch music off
+0002 : FadeMusiclN      ;Start fading the music in
+0003 : Small Info(0001) ;Start pattern
+0004 : FadeMusicOUT     ;Fade out music
+0005 : Wait1            ;Wait until complete
+
+So you don't have any problems fading music we suggest you use the
+DemoManiac-Player - TrackerPacker! . This player is also capable of
+fading CIA-timed songs with many effects.
+
+Let's continue with the other editors ...
+
+
+                          7. THE MEMORY EDITOR
+
+In a demo or presentation you will be needing loads of data apart from
+all the effects we have already discussed. This data has to be available
+in memory and have to be handled in such a way, that you can use the same
+data more than once without having to load it into memory again.
+
+DEMOMANIAC - PAGE 15 - CODE:8488
+
+This task is handled by the MEMORY EDITOR. Enter it by choosing the
+MEMORY gadget in the bottom gadget list.
+
+The Memory Editor looks a lot like the Script Editor. Again, there's a
+long list on the left and gadgets on the right. The list (Memory List)
+contains all data files that have to be in memory during the
+presentation. Each of these data files is given a MEMORY BLOCK number.
+
+When you enter the Memory Editor for the first time you will only find
+one block (0000).
+Once you have filled this slot with data though, another empty block will
+appear. This way you always have access to an empty position.
+
+When you choose a block entry it will just be highlighted and will not
+automatically open a window as most other options. This has it's reasons:
+It is very important that data is not deleted from memory unnecessarily
+as this would cut up the computer's memory into small chunks. Always
+choose the block you want to edit before you using the gadgets .
+
+Following gadgets and functions are included in the memory editor:
+
+LoadFile          : Load a file into the designated memory block.
+                    (This is necessary if you want to use the file with
+                    an effect.) When working with disks as opposed to a
+                    harddrive please always use the disk's name and not
+                    'DF0:' etc. in the file requester. This way
+                    DemoManiac will be able to find your data at any
+                    time.
+
+UnLoadFile        : Empties a block.
+
+Show Block        : you the contents of the active block.
+
+Sort Blocks TYPE  : Sorts memory blocks by data types. This does not
+                    affect all other lists.
+
+Sort Blocks ALPHA : Sorts memory blocks in alphabetical order.
+
+Sort Blocks SIZE  : Sorts memory blocks by size.
+
+Remove Unused     : Removes all blocks that aren't used by any pattern.
+
+Make Text         : Use this option to edit text for the active memory
+                    block.
+
+DEMOMANIAC - PAGE 16 - CODE:7403
+
+All data files in the memory editor are presented in the following way:
+
+Block {Block number} : {Name} (Type) {Size in Bytes}
+
+The block number is of lesser importance whereas the name and the type
+are important, criteria for the data management. Following data types
+exist:
+
+Textfile  : Standard ASCII file (you can edit yourself). A DemoManiac
+            textfile has following standard setup:
+
+            TEXT ThislsTheNameOfThisTextFile
+            This is the first line of my text file ...
+            and this the second ...
+            ... bla bla bla ...
+
+            The only thing you have to remember is that the first four
+            letters of the text file have to be 'TEXT' (in capital
+            letters) followed by a space. Everything typed after this
+            space before the first return is the name of the file. And
+            everything following this return is the actual text itself.
+
+Picture   : Pictures are standard IFF pictures as all Amiga paint
+            programmes generate. (1 2, 1 8 and 24 Bit pictures are not
+            supported.)
+
+
+Sample    : Sample is the term used for sound effects. They have to be
+            standard IFF format (IFF8SVX). They are used to connect
+            sound effects to actions on screen.
+
+
+Animation : These are standard animations (IFF-ANIM5) as generated by
+            DPAINT.
+
+
+Font      : Fonts are data files that can only be generated by the
+            DemoManiacfont converter. We regret you cannot use Amiga
+            system fonts as these (for technical reasons) are saved in a
+            different format. (A converter will be available shortly.)
+
+
+Object    : Vector objects.
+
+
+Scape     : Whole vector landscapes.
+
+DEMOMANIAC - PAGE 17 - CODE:1477
+
+Data      : If a file is described as 'Data' this means a specific data
+            type could not be recognised.
+
+Now you now how to load data into memory and how DemoManiac manages it.
+Try not to waste memory as you can never have too much of it when making
+a demo. Let's go on to the next editor ...
+
+
+                          8. THE DESIGN EDITOR
+
+The screen setup ('Design') is a very important part of a demo resp. a
+presentation. As much freedom as possible in making your own screen setup
+is important to let your imagination flow freely.
+
+The DESIGN EDITOR let's you do just this. You can enter it by clicking on
+the DESIGN gadget.
+
+The DESIGN EDITOR gives you following possibilities:
+
+You can limit the "action window' on the screen to any chosen area and
+present graphics in the empty parts of the screen above and below this
+window. Or you can have graphics on screen that are not linked to effects
+and areas ("over" or "under" the action) . The Amigas hardware sprites
+make this possible. You now can for instance lay a frame around the
+screen or create the feeling that you are sitting in a cockpit ... Apart
+from this graphical extras the design editor also allows you to have
+rainbows background colours, include mirrors etc.
+
+
+Once again the whole thing is managed by an easy to understand list that
+contains all effects, colours and settings. This are listed in order of
+their position on screen (from top to bottom). By clicking on one of
+these entries you can change the parameters.
+
+This design list is the large blue window in the design editor. Above you
+will find the name of the design you are editing momentarily. You can
+edit the name anytime by clicking on it. Also, there are two gadgets
+called 'CHOOSE' and 'NEW' there. When creating a new design, click on the
+'NEW' gadget and then enter a name so as to avoid complications.
+
+When creating a design one 'effect' is always there - the 'ActionWindow'.
+This is the area on screen where the effect modules are actually
+displayed. Outside this area the effect can not be seen.
+
+You edit a design by using the gadgets on the righthand side of the
+screen:
+
+Add Graphic : Show graphics on screen.
+
+DEMOMANIAC - PAGE 18 - CODE:6832
+
+Add Rainbow : Change the background screen colours into a rainbow.
+
+Add Mirror  : Add a mirror effect.
+
+Add Object  : Define the start position for a graphical object.
+
+Add Bar     : Add a colour bar to divide the screen.
+
+
+These five commands add effects to the screen design. When you choose one
+of these effects you will always first be asked where (on the screen) the
+effect has to start and where it finishes. Following your entry the
+effect is added to the design list on the left.
+
+Once an effect has been entered in the list you can activate it by
+clicking on it's name and edit it by clicking on the parameter you wish
+to change (as in the instruction editor).
+Please note that object and graphics effects require a picture to be
+loaded into the memory editor beforehand.
+
+So you can edit designs comfortably we have included further gadgets:
+
+Clear Design    : Clears the complete design list.
+
+Remove Effect   : Removes the active effect from the design list.
+
+
+Adjust Position : Allows you to change the position and size of the
+active effect visually. Use the mouse to change the position and press
+the right mouse button to change the size. Press the left mouse
+button to transfer the values (you have just set manually) into the
+design list.
+
+
+Test Design     : View the active design.
+
+Load Design     : Load a design from disk or harddisk.
+
+Save Design     : Save the active design to disk or harddisk.
+
+
+ When you take a look at your design with the 'Test Design' function you
+of course won't be able to see the mirrors as the ActionWindow is empty.
+This can bypassed if you set up a pattern in the construction editor
+already using the new pattern (and containing an effect in the Action
+Window).
+
+DEMOMANIAC - PAGE 19 - CODE:0715
+
+By pressing the Amiga+T (short cut for 'Test Pattern') you will be able
+to look at the pattern without leaving the design editor. This way you
+can easily have a look at the effect a mirror has on the overall look.
+
+                       9. THE CONFIGURATION EDiTOR
+
+The sole role of this editor is to establish some general settings for
+DemoManiac and for the completed demo presentation.
+
+'MINIMAL CONFIGURATION' lets you define the systems the demo should be
+able to run on and with how much / how little memory the demo shouldn't
+even start. (If you have to little memory the computer may only crash
+during the demo when it actually requires more than the available memory
+...)
+
+It is best to configure these settings before you start making a demo.
+This way effects that won't run on the chosen 'minimal configuration'
+will be rejected when you try to load them.
+The same counts for picutres with too many colours and music that is too
+long. Of course the demo will run without any problems on any systems
+higher than your configuration settings ..
+
+Also, you can set whether the copper lists should be precalculated or
+realtime-calculated.
+Even if you aren't quite sure what copper lists are, you should know the
+consequences this button brings with it:
+
+
+Copper lists are nothing else than a description of your design lists
+that the computer can understand and use (through the graphics co-
+processor COPPER). Usually these are calculated just before a pattem is
+executed; this of course causes a slight delay, but a precalculation will
+take memory. (The amount can vary substantially.) It is up to you to
+decide if you have enough memory and if so you can switch this function
+on.
+
+The next option is FreeUsedEffects and as you may guess is for handling
+consumption and freeing of memory. This function only has an effect in an
+executable demo! lt deletes all effects that aren't to be used again from
+memory during the running of the demo. This makes the running of demos -
+especially long ones - possible on systems that have substantially less
+memory than the system used to create the demo. The only disadvantage
+this option has is that after the demo has finished your computers memory
+is "messy" and without reseting the machine you will not be able to
+continue. But if your demo! resets anyway or runs endlessly you can use
+this function without commiting second thoughts.
+
+All the other parameters the configuration editor offers are
+selfexplanatory and are not detailed any closer here.
+
+DEMOMANIAC - PAGE 20 - CODE:0229
+
+This is (as you surely will have noticed) the first screen you see when
+using DemoManiac.
+From here you can control all general disk and organisational operations.
+
+This screen contains following:
+
+The info panel details your system's capacities. It details the maximum
+amount of memory your system offers, not the amount of free memory at the
+moment.
+
+
+                          10.1. SCRIPT CONTROL
+
+Here you can save the demo, consisting of effects, data and lists.
+
+You can save the demo without all data (graphics. music etc.), just with
+the paths and file names of the data, s that when you reload the script
+all can be found and included automatically. This saves loads of disk
+space, but can be a bother if you have to find the datas on loads of
+disks first or if you want to pass on the script to a friend. When
+loading the data you will also have to remember to include the FULL path.
+lf working with numerous disks you shouldn't load a file with
+'DF0:picture.iff, but with 'PlCTURES:picture. iff (if the respective disk
+is called Pictures). Thsi could otherwise cause problems trying to
+retrieve data from various disks for a script.
+
+In such cases it is much easier to save your work as a MODULE (do not
+confuse this with the effect modules). This will save the script and all
+the necesssary files together. Of course this saved file is somwhat
+larger, but you can be sure you won't be missing any important
+data.
+
+The most important possibility is to save a DemoManiac demo as an
+EXECUTABLE file onto a disk or hard disk. This is a stand-alone, from
+Workbench or Shell executable programme.
+A demo that has been saved as an executable can't be reloaded into
+DemoManiac and thus also not re-edited. You should always keep a copy of
+your script or module if you want to continue work on your demo at a
+later date.
+
+We tried to keep the executable files generated by DemoManiac as short
+(in Kb) as possible, but we do suggest you still crunch it with one of
+the standard crunchers such as PowerPacker, Imploder, Titanics Cruncher
+etc.
+
+Another form of saving an executable demo is saving as BootB lock. The
+demo is saved directly onto the sectors of a disk and set so that it will
+automatically start when the disk is inserted in the drive - without a
+startup-sequence or other files being necessary. The only disadvatage is
+that all data previously on the said disk will be deleted.
+
+
+                          10.2 EFFECTS CONTROL
+
+Apart from the script commands the general screen also contains
+possibilities to alter the effect list (lisr of all available effect
+modules). This becomes necessary when you want to include new effects
+into your system; these can either be ones you have programmed yourself
+or effects from future update or expansion disks. When adding new
+effects, all you have to do is copy them into your DM effects directory,
+press 'ADD EFFECT and they will automatically be added to your list of
+effects.
+
+'SHOW EFFECTS' lists all available effects.
+
+To delete an effect from the list use the function 'REMOVE EFFECT'. This
+function is doubly secured as it is terminal.
+
+All changes to the effect list have to be saved by selecting 'SAVE
+EFFECT-LIST'. This will save your changes on disk or hard disk
+respectively.
+
+
+                            10.3 DISK CONTROL
+
+These commands are included to save you the job of having to enter the
+Workbench or CLI for small file operations. 'CHECK FlLE' tries to
+recognise the type of file (text, graphics, effect module, script etc.)
+and 'SHOW FILE' will show the file.
+
+
+                              11. THE MENUS
+
+The menus are sorted the same way as the various editors. Each editor has
+its corresponding menu that includes all the functions you can reach
+using the gadgets, but also often contain further functions, too.
+
+A very important , one for instance is the 'Record Time' function in the
+Construction menu. lt allows you to change the length of a pattern by
+clicking on the mouse button at the chosen moment instead of having to
+enter the number in the TIME parameter manually. lt's very simple to use:
+Once you have selected the 'Record Time' function the pattern begins to
+run as usual. Let it run until you feel it should switch to the next
+pattern in the actual demo (for instance a rhythm change in the music)
+and then press the left mouse button. The time passed will automatically
+be entered in the TIME parameter.
+
+DEMOMANIAC - PAGE 22 - CODE:3328
+
+A similar possibility has been included for the whole script. The 'Record
+Times' function here starts the script and runs as it is supposed to.
+meaning times will be used as set (this is why it is only possible to
+lengthen the times). Press the left mouse button to shorten the playing
+time of a certain pattern and the new time will be saved. When you rerun
+the pattern from the beginning this new time setting will be used.
+
+All other functions in the menu should be easy to understand.
+
+
+                             12. LIMITATIONS
+
+DemoManiac tries to leave you as much freedom as possible when making
+demos, but naturally there are certain limitations and knowing what they
+are is very useful and important. The most important limitation is set by
+your computer system's memory - especially the graphics memory (called
+Chip Mem). The rule here is that you can almost never have enough. As a
+programmer you are often given the choice between memory consumption and
+speed and when developing DemoManiac we decide to produce the most
+flexible and also fastest demomaker on the market. So we decided to use
+an extra few bytes and instead have the highest possible speed. It will
+always require more memory to produce the demo than to actually watch it.
+
+
+The first limitation is memory, the second are bitplanes. DemoManiac uses
+the bitplane system of the Amiga hardware. This way each effect that is
+shown on the monitor gets its own bitplanes and can be presented without
+loss of speed. There is just one problem: The Amiga can only handle a
+maximum of 8 bitplanes and on an old (non-AGA) machine you can only
+present 5 bitplanes. This means you can't place as many effects over each
+other as you want even if you have empty layers. An effect with 2 colours
+uses one bitplane, an effect with 4 colours uses 2 bitplanes, 8 colours 3
+bitplanes and 16 colours 4. 32 colours use 5 bitplanes and 64 require 6.
+128 colour effects require 7 and 256 colour effects the full 8 bitplanes.
+This means a four coloured stars effect (2 planes) and a 8 coloured font
+(3 planes) already use up a standard Amigas 5 bitplanes.
+
+If we have now confused you, don't worry . You will notice what is meant
+when playing around with the demo maker .
+
+
+                              13. REPLAYERS
+
+The replayers we have included all have different characteristics we
+would like to list:
+
+NoisePackerV3    : Quite old.
+NoiseTrackerV2   : To be used with very old modules.
+
+DEMOMANIAC - PAGE 23 - CODE:3966
+
+SoundTrackerV2   : For old songs, doesn't support CIA-timing.
+SoundTrackerV2.6 : For old songs, doesn't support CIA-timing.
+StarTrekker4v    : Getting a bit long in the tooth ...
+
+ProTrackerV1-V3  : This are the original replayers.
+
+ProPackerV2      : Can play modules packed with the ProPacker.
+                   Warning: Unpacked sounds will cause this player to
+                   crash.
+
+ProPackerV2Fx    : At the moment the only replayer that allow you to play
+                   music and sound effects simultaneously ,
+
+ProRunnerV2      : A good replayer for ProTracker music. The module is
+                   automatically packed after loading and is kept and
+                   played packed. This replayer also allow music fading!
+
+TrackerPackerV3  : The standard DemoManiac player! It plays programmes
+                   packed with TrackerPacker, supports CIA-timing and
+                   music fading.
+
+NONE             : This isn't really a replayer as it can't play any
+                   modules. It can play sound effects as is basically for
+                   use in demos you just require sound effects, it's
+                   fine. It supports music fading and will thus fade any
+                   active sound effects.
+
+
+As you see there isn't really a replayer that has all the features you
+would wish for (playing packed songs, ProTracker compatible, CIA-timing,
+sound fading, sound effects and speed).
+
+
+
+                            14. INTERNAL ...
+
+DemoManiac's modular system works following way. Each drawer contains
+data of just the one type (for instance effects in the DM_effects
+drawer). This drawer also has to be assigned so that the data can found
+either on disk or hard disk.
+Example: You need to assign the DM_effects drawer that you have placed in
+the work:multimedia/demomaniac/ drive, then you have to include
+following:
+
+
+Assign DM_effects: work:multimedia/demomanic/dm_effects
+
+DEMOMANIAC - PAGE 24 - CODE:4034
+
+
+All these assigns will actually be done by the included batch datafile.
+DemoManiac just looks for 'DM_effects:xxx' which means it will accept any
+effect disk with the 'DM_effetcs' name. You this way can have numerous
+disks with the same name and can collect large amounts of effects even
+when you only have a one-disk system.
+
+A file called 'effects.1st' has to be in the main effects directory
+(requested when booting DemoManiac) that lists all the available files.
+This saves the computer having to scan the directory for files everytime
+you boot up.
+
+
+                          15. YOUR OWN EFFECTS
+
+It's possible to include your own assembler-coded effects. The developer
+documentation will be given to registered users on request.
+All effects programmed according to the developer documentation are
+automatically joint copyright of Black Legend UK Ltd. and the
+developer/programmer himself. This means the effects aren't PD.!
+
+Please send any effects you develop to Black Legend so we can include
+them on our expansion disks and give them a worldwide market!
+
+                     16. BUG REPORTS AND SUGGESTIONS
+
+If you find programme errors ew would be very greatful if you could
+inform us.
+
+WITH THE STATE OF THE PROGRAM THAT IS ON SALE AT THE MOMENT YOU WOULD
+NEED A LOT OF PAPER TO WRITE DOWN ALL OF THE BUGS
+
+DemoManiac is an on-going project and will be expanded (hopefully a
+working version first) and improved with update and expansion disk;
+if possible your suggestions will be used and included for these.
+
+                            17. REGISTRATION
+
+To make sure you are informed about update disks, extra effects and
+multimedia clipart (graphics, fonts and music ) you have to return the
+registration card as soon as possible. (Registration card not supplied.)
+
+Please describe the hardware you are using as detailed as possibble so we
+can also support the kind of extensions you have.
+
+We hope you enjoy DemoManiac, Signed ...
+
+          Black Legend Software and Complex Developments
+
+
+DEMOMANIAC - PAGE 25 - CODE:1290
+DEMOMANIAC - PAGE 26 - CODE:3394
+DEMOMANIAC - PAGE 27 - CODE:8381
+DEMOMANIAC - PAGE 28 - CODE:9810
+DEMOMANIAC - PAGE 29 - CODE:9400
+DEMOMANIAC - PAGE 30 - CODE:9258
+DEMOMANIAC - PAGE 31 - CODE:7464
+DEMOMANIAC - PAGE 32 - CODE:8836
+DEMOMANIAC - PAGE 33 - CODE:1844
+DEMOMANIAC - PAGE 34 - CODE:6304
+DEMOMANIAC - PAGE 35 - CODE:4683
+DEMOMANIAC - PAGE 36 - CODE:5136
+DEMOMANIAC - PAGE 37 - CODE:4794
+DEMOMANIAC - PAGE 38 - CODE:3328
+DEMOMANIAC - PAGE 39 - CODE:4765
+DEMOMANIAC - PAGE 40 - CODE:5456
+
+                          18. PROTECTION CODES
+
+DEMOMANIAC - PAGE  1 - CODE:2981
+DEMOMANIAC - PAGE  2 - CODE:5344
+DEMOMANIAC - PAGE  3 - CODE:0293
+DEMOMANIAC - PAGE  4 - CODE:0021
+DEMOMANIAC - PAGE  5 - CODE:5755
+DEMOMANIAC - PAGE  6 - CODE:8428
+DEMOMANIAC - PAGE  7 - CODE:3812
+DEMOMANIAC - PAGE  8 - CODE:4514
+DEMOMANIAC - PAGE  9 - CODE:5314
+DEMOMANIAC - PAGE 10 - CODE:1954
+DEMOMANIAC - PAGE 11 - CODE:4653
+DEMOMANIAC - PAGE 12 - CODE:9874
+DEMOMANIAC - PAGE 13 - CODE:5554
+DEMOMANIAC - PAGE 14 - CODE:2560
+DEMOMANIAC - PAGE 15 - CODE:8488
+DEMOMANIAC - PAGE 16 - CODE:7403
+DEMOMANIAC - PAGE 17 - CODE:1477
+DEMOMANIAC - PAGE 18 - CODE:6832
+DEMOMANIAC - PAGE 19 - CODE:0715
+DEMOMANIAC - PAGE 20 - CODE:0229
+DEMOMANIAC - PAGE 22 - CODE:3328
+DEMOMANIAC - PAGE 23 - CODE:3966
+DEMOMANIAC - PAGE 24 - CODE:4034
+DEMOMANIAC - PAGE 25 - CODE:1290
+DEMOMANIAC - PAGE 26 - CODE:3394
+DEMOMANIAC - PAGE 27 - CODE:8381
+DEMOMANIAC - PAGE 28 - CODE:9810
+DEMOMANIAC - PAGE 29 - CODE:9400
+DEMOMANIAC - PAGE 30 - CODE:9258
+DEMOMANIAC - PAGE 31 - CODE:7464
+DEMOMANIAC - PAGE 32 - CODE:8836
+DEMOMANIAC - PAGE 33 - CODE:1844
+DEMOMANIAC - PAGE 34 - CODE:6304
+DEMOMANIAC - PAGE 35 - CODE:4683
+DEMOMANIAC - PAGE 36 - CODE:5136
+DEMOMANIAC - PAGE 37 - CODE:4794
+DEMOMANIAC - PAGE 38 - CODE:3328
+DEMOMANIAC - PAGE 39 - CODE:4765
+DEMOMANIAC - PAGE 40 - CODE:5456
+
+
+                   Scanned and Edited by DIT 07-08-94
+                  Scanner supplied by FIREFLASH of OTT
+
+
+
+
+

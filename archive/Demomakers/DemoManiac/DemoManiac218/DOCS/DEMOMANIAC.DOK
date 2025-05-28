@@ -1,0 +1,1276 @@
+
+                         0. SOME WORDS IN ADVANCE
+
+     This is V1.29 of the famous DemoManiac - Supplied by vADIUM/aVT!
+
+This version is a bugfixed version of V1.28. We also added all examples
+and docs of V1.28 to release a full & complete version of this cool program.
+
+                          This package includes:
+
+                          - English & German Docs
+                          - Vector-Doc for DemoManiac
+                          - all Examples/Tutorials
+
+
+
+EINLEITUNG
+----------
+
+Es existieren auf dem Amiga bereits Unmemgen von Intromakern,Titeling- und
+Multimedia-programmen aber nur ein Bruchteil dieser Programme ist wirklich
+leistungsfähig genug um die eigenen Vorstellungen umsetzen zu können.
+In den allermeisten Fällen mußte man sich und seine Phantasie stark ein-
+schränken, um nicht den vom Programm vorgegebenen Rahmen zu sprengen.
+Zwar läßt es sich nicht vermeiden den Tatendrang des Users in bestimmten
+Dingen einzudämmen (schon aufgrund der nicht allmächtigen Hardware) aber es
+ist dennoch möglich einen weitaus größeren Freiraum zu lassen als es die
+meisten Pogramme heute tun.
+
+Diese neuen Freiräume können Sie jetzt mit unserem DemoManiac nutzen.
+Er gibt Ihnen die Möglichkeit, auch wenn Sie über keinerlei Programmier-
+kenntnisse verfügen, in kürzester Zeit Demos und Presentationen zu erstellen
+die voll den heutigen Leistungsansprüchen gerecht werden.
+Mit dem DemoManiac sind Sie in der Lage Demos in Minuten zu erstellen für
+die Sie, wenn Sie sie Programmieren würden (Jahrelange Programmierpraxis
+vorrausgesetzt), Monate benötigen würden.
+Ja, Sie können sogar (wenn sie wollen) eine vollständige Demo ganz ohne benu-
+tzung der Tastatur also NUR MIT DER MAUS erstellen.
+
+Aber auch wenn Sie bereits in Assembler Programmieren können und ihre Demos
+theoretisch auch ohne den DemoManiac erstellen könnten ist eine Benutzung
+des DemoManiac durchaus sinnvoll, da Sie in diesem Fall einfach anstelle
+der mitgelieferten Effekt-Module Ihre eigenen Effekte in den DemoManiac 
+einbinden (Dies ist aufgrund der Modularen Struktur ohne weiteres möglich).
+In diesem Fall wird Ihnen der DemoManiac eine große Hifle beim Design Ihrer
+Demo und bei der Anpassung an einen Sound sein.
+
+Bevor wir Ihnen nun Systematisch den Aufbau des DemoManiac näherbringen 
+möchte ich nocheinmal kurz auf alle wesentlichen Features eingehen...
+
+- Demos lassen sich vollständig mit der Maus und ohne Programmierkenntisse
+  erstellen. (Scrolltext editieren natürlich ausgenommen)
+
+- Das AGA-Chipset (A1200 & A4000) wird voll unterstützt (nur hier ist der
+  volle Leistungsumfang nutzbar).
+
+- Der DemoManiac gibt sich auch mit einem A500 (68000,Kick 1.3) zufrieden,
+  wenn genug Speicher zur Verfügung steht.
+
+- Mit dem DemoManiac erstellten Demos und Presentationen können Sie ohne 
+  Probleme an Freunde und Bekannte weitergeben oder diese sogar Kommerziell
+  nutzen (sofern ein Hinweis enthalten ist das Sie zur Erstellung den Demo-
+  Maniac benutzt haben).
+
+- Der DemoManiac ist vollständig Modular aufgebaut ! Das bedeutet,daß die
+  sammlung von Effekt-Modulen und Replayern sich ständig vergrößern wird 
+  (updates) und sie so immer auf der Höhe der Zeit bleiben und das Arbeiten
+  mit dem DemoManiac nie Langweilig wird.
+
+- Betriebssystem-konformer Editor (Extrem kurz weil in Assembler geschrieben) 
+ 
+- Musikstücke aller gängigen Musikprogramme können verwendet werden
+
+- Es können Sound-effekte mit bestimten Ereignissen gekoppelt werden
+
+- Der DemoManiac hat eine Dynamische Speicherverwaltung,daß heißt er belegt
+  immer nur soviel Arbeitsspeicher wie auch wirklich benötigt wird.
+
+- Neuere Prozessoren beschleunigen zwar die Effekte, bringen aber nicht das
+  Timing durcheinander.
+
+- Sie sind nicht an einen festen Bildaufbau gebunden.
+
+- Es stehen nur die Effekt-Module im Speicher die ihre Presentation benötigt
+
+
+Es gibt noch viele weitere Features, die Sie aber selbst noch früh genug
+entdecken werden...
+
+
+
+INSTALLATION
+------------
+
+Die ausgelieferte Diskette enthält den DemoManiac und die benötigten Daten
+in gepackter Form um sie gebrauchsfähig zu machen müssen Sie sie entpacken.
+
+Dies geschieht selbstverständlich vollautomatisch, indem sie die Diskette
+einfach Booten und abwarten bis vor ihnen ein Menu erscheint,indem Sie
+zwischen installation auf Diskette oder Festplatte wählen können.
+
+Die gesammte Installation läuft selbsterklärend ab wir verzichten deshalb 
+an dieser Stelle auf eine genauere Beschreibung.
+
+
+DIE GRUNDLAGE
+-------------
+
+Die Grundlage des DemoManiac sind die 'EFFEKT-MODULE' - jedes davon stellt 
+Ihnen einen Effekt zur Verfügung, den Sie durch verschiedene Parameter
+beeinflussen können.
+Dabei gibt es einfachere Effekte, die z.B. ein Bild einblenden und weitaus
+kompliziertere die es z.B. ermöglichen Betrachter durch eine Vector-Welt 
+fliegen zu lassen. 
+
+Diese Effekt-Module werden nun zu sogenannten 'PATTERNS' verknüpft. 
+Innerhalb eines Pattern können bis zu 6 Effekte gleichzeitig ablaufen.
+Um bei unserem Beispiel zu bleiben ....
+Wenn mann den Einblend (FADE)-Effekt mit dem VectorFlug (VECTORSCAPE) in 
+einem Pattern kombiniert so erhält man einen sich langsam einblendenen Flug
+durch die Vectorwelt. Zusätzlich könnte mann nun noch einen weiteren Effekt
+benutzten um über der Vectorwelt noch einen Text anzeigen zu lassen.
+Dieser könnte sich natürlich auch GLEICHZEITIG noch auf/ab-bauen.
+
+Um eine ganze Präsentation oder Demo zu erstellen entwerfen sie zunächst die
+einzelnen Szenen (PATTERNS) und erstellen dann daraus einen Ablaufplan (SCRIPT)
+Sie sehen also es gibt drei Ebenen bei der Erstellung ihres Demos :
+Die Unterste stellen die EFFEKT-MODULE, die nächst Höhere sind die PATTERN's
+und die höchste Ebene stellt das SCRIPT dar.
+
+DIE ERSTE PRAXIS
+----------------
+
+Um ihnen einen ersten Einblick in die Möglichkeiten des DemoManiac zu geben
+folgt nun eine kleine Praxisübung...
+
+Starten sie zunächst einmal den DemoManiac
+
+Lassen sie sich nicht durch die vielen Schalter irriteren und gehen sie
+in den CONSTRUCT-EDITOR, indem in der untersten Gadget-leiste 'CONSTRUCTION' 
+anwählen. In diesem Editor werden die einzelnen Patterns erstellt.
+
+Sie sehen nun vier blaue Fenster wovon das Obere die Daten für den aktuell
+bearbeiteten Pattern enthält, während die drei Unteren die möglichen Effekt-
+Module (nach Art und Alphabet geordnet) bereitstellen.
+
+Klicken sie nun mit der Maus auf die Zeile in der steht 'LAYER 0' - und
+schon haben sie /*ihn*/ diesen Layer ausgewählt.
+**Er ersheint daraufhin Farblich hervorgehoben.**
+Was ist denn nun ein LAYER ? werden Sie sich mit Recht fragen. Nun jeder PATTERN
+enthält sechs LAYER und jeder dieser LAYER kann eine EFFEKT-MODUL aufnehmen.
+Warum die Effekte in Layer einsortiert werden müssen und nicht einfach 
+irgentwohin geladen werden können werden wir später noch merken.
+
+Um nun dem ausgewähltem Layer einen Effekt zuzuweisen klicken sie als nächstes
+im unteren linken Fenster (MAIN EFFECTS) auf 'Stars' (wenn dieser Eintrag nicht
+sichtbar ist können sie die Liste mit dem Slider rechts daneben scrollen).
+
+Nach einer kurzen ladepause steht hinter dem Eintrag 'LAYER 0' das Wort
+'Stars' und daunter sind einige neue Einträge erschienen.
+Der Layer0 enthält nun das Effekt-Modul 'Stars'. Die eingerückten Zeilen 
+darunter stellen die Parameter des Stars-Effekts dar. 
+
+Klicken sie nun einen dieser Parameter an (Maximum number of Stars) so erscheint
+rechts neben ihrem Pointer ein neues Fenster,in dem sie diesen Parameter 
+verändern können. Der jetzige Wert ist 400 wenn sie nun aber den Slider verändern
+können sie die Anzahl der Sterne auf bis zu 2000 erhöhen oder bis auf 1 reduzieren
+Wenn ihnen der Slider zu ungenau ist dann können sie auch den angezeigten Wert mit
+der Tastatur direkt verändern (return=OK).
+
+Nachdem Sie nun ein wenig mit dem Parameter gespielt haben drücken sie nun
+RESET um ihn wieder auf den Normalwert zu bringen und danach OK um das Editieren
+dieses Parameters zu beenden.
+
+Drücken Sie nun auf 'TEST PATTERN' um sich den Stars-effekt mal anzusehen.
+Nach einer kurzen Pause schweben sie durch das Weltall...
+
+Drücken Sie die Linke Maustaste um den Test zu beenden und in den Editor
+zurückzukehren.
+
+Sie können nun etwas mit den Effekten spielen und dann jeweis die Veränderungen
+mit 'Test Pattern' erproben. Damit sie hierbei keine Probleme haben hier eine
+kurze erklärung der Parameter von 'Stars' :
+
+ Effect delay      - dieser Parameter ist im Moment noch unwichtig !
+ Start Starnumber  - Der Stars effekt fährt die anzahl der Sterne langsam
+		     hoch und dieser Wert ist der Startwert.
+ Starnumber incr.. - Wie schnell die Anzahl hochgezählt werden soll.
+		     (0=garnicht 1=ganz langsam 100=extrem schnell)
+ Maximum number    - Bis wohin soll maximal gezählt erden.
+
+Eine erklärung aller Parameter der anderen Effekte finden Sie im Anhang dieses
+Handbuches.
+
+
+Nachdem Sie nun herausgefunden haben wie man Parameter verändert wollen
+wir noch etwas tiefer einsteigen - schließlich kann der DemoManiac mehr als
+nur einen Effekt darzustellen.
+
+Also Scrollen wir die Pattern-liste (oberes Fester) mit dem daneben befindlichen
+Slider so das der nächste Layer sichtbar wird und klicken ihn auch sofort an
+(LAYER 1).
+
+Er soll das Effekt-Modul (DotText) erhalten. Also klicken Sie auf DotText im
+unterem rechten Fenster.
+
+Dieser Effekt bietet nun schon wesentlich mehr Parameter, die wir hier auch 
+nicht alle Erklären wollen.
+Wenn sie nun aber gleich voller neugier auf 'Test Pattern' klicken so meldet
+sich der DemoManiac mit einer Fehlermeldung zurück, die besagt Sie müssen
+einen Text laden für den DotText-effekt.
+
+Und tatsächlich hat der DotText-Effekt einen Parameter ('Actual Textpage')
+hinter dem keine Zahl steht wie dies bei allen anderen bisher der Fall war.
+Dieser Parameter erwatet also ein Daten-File ! Diese werden aber nicht im
+PatternEditor selbst sondern im MEMORY-EDITOR geladen.
+
+Sie klicken also in der untersten Leiste auf MEMORY.
+
+Hier wählen sie Block0 aus (ist der einzige dargestellte Block).
+** Indem Sie,wie auch im Construkt-editor, auf die endsprechende Zeile
+klicken **
+
+Und danach drücken Sie auf 'LOAD FILE', worauf ein FileRequester erscheint
+mit dem Sie sich ein File mit der Endung .TXT suchen und es laden (OK).
+Jetzt steht ein Textfile im Speicher, das sie jederzeit in der Demo verwenden
+können.
+
+Sie haben nun alle benötigten Daten geladen also können Sie getrost an der
+erstellung des Patterns weiterarbeiten (CONSTRUCTION anklicken).
+
+Wieder im CONSTRUCT-EDITOR angekommen können Sie nun den Parameter 'Actual Textpage'
+anwählen woraufhin ihnen eine Liste aller im Speicher stehenden Text-Files
+präsentiert wird. Aus dieser List wählen sie nun ihr File aus (die auswahl 
+ist ja noch nicht besonders groß).
+
+Da jetzt alle Parameter versorgt sind können Sie einen Testlauf mittels
+'Test Pattern' wagen.
+Das sieht doch schon sehr nett aus nicht ?
+
+Jetzt spielen wir noch ein wenig mit den Parametern ....
+Probieren Sie doch mal folgende einstellungen :
+ X-Angle increment gl. : 44
+ Y-Angle increment gl. : 77
+ X-Angle increment rel.: 0
+ Y-Angle increment rel.: 0
+ Start X-Angle         : 000
+ Start Y-Angle         : 000
+ Speed                 : 2
+ Number of Letters     : 25
+oder ...
+ X-Angle increment gl. : 000
+ X-Angle increment gl. : 000
+ X-Angle increment rel.: 3
+ Y-Angle increment rel.: 0
+ Start X-Angle         : 130
+ Start Y-Angle         : 090
+ Speed                 : 1
+ Number of Letters     : 25
+
+Jetzt fehlt nur noch ein Sound um glücklich zu sein ...
+Zwar gibt es auf dem Amiga eigentlich nur ein Programm das sich zum erstellen
+von Demo-Soundtracks durchgesetzt hat (ProTracker) aber davon gibt es so viele
+Versionen und Mutanten daß ein einziger Player unmöglich alle guten Sounds
+richtig abspielen kann.
+Aus diesem Grund wurde dem DemoManiac eine ganze Sammlung von Playern 
+mitgegeben aus der Sie bevor Sie einen Sound laden können einen auswählen
+müssen (VORSICHT: Der falsche Player mit dem falschen Sound kann einen 
+Absturz verursachen!).
+
+Also wählen wir einen - Klicken sie auf das Feld in dem 'PLAYER :' steht
+(oben rechts) und wählen sie den 'TrackerPacker' aus der Liste aus.
+Mit ihm wurden alle dem DemoManiac beiliegenden Musikstücke gepackt und
+nur er ist in der Lage sie GEPACKT abzuspielen. 
+
+Jetzt wo wir einen Player festgelegt haben können Sie einen Sound laden.
+Dies geschiet mittels eines Klicks auf das 'SONG :'-Feld.
+(Alle Sounds dürfen übrigens Powergepackt vorliegen)
+
+Und beim nächsten Test sehen/hören Sie wieviel ein Sound ausmacht.
+
+Um noch ein weiteres Feature kurz anzureißen klicken Sie nun einmal ganz oben
+in der Pattern-Liste auf 'DESIGN :' und wählen sie den 'NEWS SCREEN'
+ 
+Nocheinmal 'Test Pattern' und Sie bekommen langsam eine Vorstellung davon
+was es bedeutet mit dem DemoManiac zu Arbeiten....
+
+
+
+DER CONSTRUCTION EDITOR
+-----------------------
+
+Wir erklären diesen Editor zuerst weil er die unterste Ebene einer DemoManiac-
+Präsentation - Die Effekt-Module - behandelt.
+
+Sie können zu jeder Zeit in den CONSTRUCTION-EDITOR gelangen wenn sie auf
+das CONSTRUCTION-gadget am unteren Bildrand oder F6 drücken.
+
+			Die Pattern-Liste
+
+In diesem Editor werden die Patterns entwickelt und getestet.
+Jeder Pattern wird hierbei in einer Liste verwaltet (Pattern-List),die im
+oberen rechten Fenster angezeigt wird.
+Diese Liste hat folgenden Aufbau :
+
+ Name		: {Name des Patterns}
+ Design		: {Name des Designs für diesen Pattern}
+ Time		: {Zeit wielange der Pattern dauert}
+ Relations	: {Verhältnisse unter den Layern}
+
+ Layer 0	: {Name des auf Layer0 liegenden Effekt-Moduls}
+		  {Dessen Parameter}
+
+ Layer 1	: {Name des auf Layer1 liegenden Effekt-Moduls}
+		  {Dessen Parameter}
+
+	Und so weiter ....
+
+Der Pattern-Name ist für den DemoManiac völlig belanglos. Hilft ihnen aber
+bei der Verwaltung der Patterns und beim Erstellen eines Scripts (wenn sie
+sinnvolle Namen vergeben).
+
+Als Design wird der Bildaufbau bezeichnet nähres darüber im Kapitel 'DESIGN-EDITOR'
+
+Die Zeit (Time) wird wie alle Zeiten im DemoManiac in Sekunden und Frames
+angegeben. Wobei eine Frame die Zeit bezeichnet die der Elektronenstrahl
+benötigt um das Bild neu aufzubauen.
+Wenn etwas noch schneller wäre würden Sie es also nich bemerken,da das
+neue Bild noch nicht Dargestellt werden kann. Die Frame ist also die kleinste
+Zeiteinheit die für den DemoManiac relevant ist.
+Eine Frame sind 0.02 Sekunden (1/50). Sie können darum als Frames nur Werte
+zwischen 0 und 49 einstellen, da 50 Frames wieder einer Sekunde entsprechen.
+Eine solche Zeit wird im DemoManiac so angezeigt :
+
+ SSSS/FF
+
+Die S stehen für die Sekunden (maximal 9999) und die F stehen logischerweise
+für die Frames (maximal 49)
+Eine Minute währe also 0060/00 und eine Minute und eine halbe Sekunde 0060/25
+**Für einen Pattern können Sie als Zeit auch UNENDLICH (infinite) einstellen
+(was auch Voreinstellung ist). Um dies zu erreichen müssen Sie den Time-
+Requester mit dem 'INFINITE'-Schalter verlassen.
+Wenn Sie bereits eine Zeit für ihren Pattern ausgeklügelt haben und nur zu
+Testzwecken kurz in den Infinite-Modus schalten bleibt ihre vorher eingestellte
+Zeit erhalten und steht bei abschaltung des Infinite-modus wieder zur Verfügung
+**
+
+Der nächste Punkt, die Relations dient dazu eine Beziehung zwischen den 
+Layern im Speicher und den 'echten' die man später sehen kann herzustellen.
+Jeder Effekt läuft ja quasie auf einer Folie (man kann an nicht benutzten Stellen
+die darunter liegenden Effekte sehen) um nun die Reihenfolge dieser Folien
+zu verändern, ohne die Effekt-Module im Speicher von einem in den anderen
+Layer zu kopieren, dient der Layer-Relations eintrag.
+Er enthält eine Folge von 6 Zahlen (Layer Sequence genannt) wobei jede dieser
+Zahlen einen Layer representiert und ihre Position die Position innerhalb des
+Folienstapels verdeutlicht.
+Die voreingestellet Layer-Sequence von 012345 bedeutet also das
+Layer 0 als unterstes zu sehen sein wird und
+Layer 5 als oberste Folie von keinem Anderen überlaget wird.
+
+Würden man nun als Layer-Sequence 543210 einstellen währe es genau umgekehrt,
+ohne das die Effekt-Module ihre Plätze verändert hätten.
+
+Auch wirre kombinationen sind möglich, wie zum Beispiel 425301, was folgende
+'Folien reihenfolge' zur Folge hätte :
+
+Layer4 ganz unten
+Layer2 darüber
+Layer5 über Layer2
+Layer3 über Layer5
+Layer0 fast ganz oben
+Layer1 ganz oben
+
+Die Layer-Sequence ist aber nicht das einzige was man in den Layer-Relations
+einstellen kann. 
+Zusätzlich zur Reihenfolge kann man nämlich noch für jeden Layer eine Transparenz
+einschalten was zur folge hat das er alle darunter Liegenden Layer durchscheinen
+läßt (als ob er nicht mit deckender Farbe auf seine Folie gemalt worden währe).
+
+Steht in dem 'Transparent' Wert zum Beispiel -1-3-- so bedeutet dies das die
+Layer 1 und 3 Transparent sind.
+
+Den Requester zu bedienen,der auftaucht wenn man die Layer-Relations einstellt
+ist (wenn man das System der Layer-Sequence und Transparency-werte verstanden
+hat) ganz einfach.
+Die obere Reihe von Gadgets (zum einstellen der Layer-Sequence) enthält 6
+kleine Cycle-Gadgets, die bei jedem Klick um eins erhöht werden.
+Mit ihrer Hilfe kann jede beliebige Folge eingestellt werden.
+Die Gadgets in der unteren Reihe (zum einstellen der Transparency-Werte)
+funktionieren wie Lichtschalter - sie sind entweder AN oder AUS.
+Bei jedem Klick wechseln sie den Zustand und geben Ihnen damit die Möglichkeit
+für jeden Layer getrennt die Transparenz einzustellen.
+
+Die Layer-Relations werden in Zukunft noch wesentlich komplexer werden, aber
+schon dieser Umfang genügt um viele Interessante Effekte zu ermöglichen.
+
+Nun kennen Sie alle Einträge in der Pattern-Liste außer den LAYER einträgen.
+Die Layer enthalten die eigentlich für den Pattern interissanten Dinge :
+Die EFFEKT-MODULE. Jeder Layer kann dabei einen Effekt aufnehmen.
+
+Klickt man auf die Zeile,die das Wort 'LAYER x :' enthält so wählt man diesen
+Layer aus und macht damit klar wo der nächste Effekt eingetragen werden soll
+oder worauf das nächste DeleteEffekt sich beziehen soll.
+
+Klickt man dagegen auf eine Zeile,die einen Parameter enthält so kann man
+diesen Parameter daraufhin Verändern.
+
+**
+			   Die ParameterTypen
+
+Es gibt verschiedene Arten von Parametern :
+Die normalen WERT-Parameter deren inhalt durch eine unterschiedlich lange
+Dezimalzahl dargestellt wird. Wenn man einen solchen Parameter anwählt
+erscheint ein Fenster in dem Sie den Wert dieses Parameters mit Hilfe eines
+Schiebers,Zweier Pfeiltasten und eines Eingabefeldes verändern können.
+Und fall Sie einen Parameter einmal völlig verstellt haben können Sie ihn
+durch einen Druck auf 'Reset' in die Normaleinstellung zurückversetzten.
+Verlassen können Sie das Fenster durch drücken von RETURN im Eingabefeld,
+durch die 'OK' und 'CANCEL' Tasten oder durch einen Klick auserhalb des
+Fensters (was einem 'OK' geleichkommt).
+
+Neben den normalen WERT-Parametern gibt es auch noch solche die anstelle
+eines Konstanten Wertes auch Variablen zulassen. Ja Sie haben richtig gelesen
+Sie können tatsächlich im DemoManiac wie auch in einer Programmiersprache
+anstelle von festen Werten VARIABLEN einsetzen.
+Das ermöglicht es bestimmte Parameter eines Effekts während er läuft zu verändern.
+So könnte zum Beispiel die Position eines Vectorobjectes anstelle von
+160,127 auch durch Variablen erfolgen zum Beispiel so : x,y .
+Wenn nun ein anderer Effekt diese Variablen verändert so verändert sich auch
+die Position des Vectorobjectes und wenn diesen Variablen die aktuelle
+Mausposition zugewiesen wird so könnte der Anwender das Vectorobject mit
+seiner Maus bewegen.
+Falls ihnen das alles zu Kompliziert ist dann können Sie es ja einfach ignorieren.
+Denn ein WERT-Parameter der auch Variablen zuläßt unterscheidet sich von einem
+'normalen' nur durch einen weiteren Schalter am unteren Rand des Fensters :
+'VARIABLE' - wenn Sie diesen Schalter anklicken so erscheint anstelle des
+Schiebereglers ein Stringgadget sowie ein 'choose' Knopf. In dem Stringgadget
+können Sie nun den Namen der Variable eingeben die für diesen Parameter Werte
+liefern soll. Als Name werden hierbei beliebige Zeichenketten akzeptiert, mit
+der Ausnahme, daß sie nicht mit Leerzeichen beginnen dürfen (diese werden sonst
+herausgefiltert) und das sie nicht nur aus Leerzeichen bestehen dürfen.
+Groß und klein-schreibung ist bei Variablennamen übrigens egal - alle Zeichen
+werden nach der Eingabe in Großbuchstaben umgewandelt.
+Gültige Namen wären z.B. 'x','Hallo','3d','X position' oder '#$%yQ!' 
+Auch ein Name wie '007' wäre gültig ,könnte aber zu großer Verwirrung führen,
+da Sie ihn später unter Umständen für einen festen Wert halten könnten.
+Sie sollten also umbedingt als solche erkennbare Namen benutzen.
+Wenn Sie bereits eine oder mehrere Variablen verwendet haben können Sie auch
+über das 'choose'-gadget eine davon Auswählen. 
+Und für den Fall das Sie sich doch wieder für einen Konstanten Wert entscheiden
+können Sie jederzeit mit Hilfe des 'NUMBER'-Schalters wieder in den alten
+WERT-Requester wechseln.
+ 
+Neben den eben vorgestellten Parametern,die einen Wert oder eine Variable
+akzeptieren gibt es auch noch solche die IMMER eine Variable benötigen und
+zwar weil Sie keine Werte daraus lesen sondern neue Werte hinein schreiben.
+Einen solchen Parameter bezeichnet man auch als 'OUTPUT-PARAMETER'.
+So gibt es Effekt-Module die allein keine Sichtbare wirkung haben (DUMMY-EFFECTS)
+sie dienen lediglich dazu die Inhalte von Variablen zu verändern und damit zum
+Beispiel Interaktivität zu ermöglichen.
+Prinzipiell bedienen Sie einen solchen Parameter genau wie den Variablen-Requester
+der Input-Parameter nur das Sie hier eben nicht auch die Eingabe von konstanten
+Werten umschalten können.
+
+Da einige Effekte aber auch andere Daten benötigen als nur Zahlen existieren
+noch weitere Parameter-typen :
+z.B. Der BILD-Parameter: Diese Art von Parametern läßt bei aktivierung eine
+Liste aller im Speicher stehender Bilder auftauchen, aus der Sie sich dann
+eines aussuchen können. Dieser Parameter setzt also vorraus das Sie im Memory-
+Editor bereits einige Bilder (oder zumindest eins) geladen haben.
+Parameter die wie in diesem Fall bestimmte Daten die im Memory-Editor geladen
+wurden (z.B Bilder) benötigen nennen wir 'MEMORY-PARAMETER'.
+Von diesen Memory-Parametern gibt es natürlich noch einige mehr. Außer solchen
+für Bilder existieren noch welche für Animationen,Zeichensätze,Samples,Texte ect.
+
+Neben diesen Wesentlichen (WERT,VARIABLEN und MEMORY-Parametern) gibt es noch
+einige unwichtigere, die z.B. angabe einiger Layer,auf die sich der Effekt
+beziehen soll, verlangen oder solche die wie Schalter funktionieren und
+bei jedem Klick zwischen zwei Stati wechseln (An/Aus oder Oben/Unten...).
+
+{
+Eine genaue Beschreibung der einzelnen Effekte und ihrer Parameter finden
+Sie auf der DemoManiac Diskette als Textfile ('Effekte.txt') und falls Sie
+sich bei einem Parameter mal nicht ganz sicher sind - einfach Anklicken.
+}
+****
+Eine genaue Beschreibung der einzelnen Effekte und ihrer Parameter erhalten
+Sie wenn sie INFO im Construct-Menu auswählen (Shortcut : RAMIGA+I).
+Hierzu müssen Sie vorher natürlich den endsprechenden Layer angewählt haben.
+Wenn Sie einen Effekt zum ersten Mal benutzen sollten Sie immer zunächst
+seinen Info-Text abrufen damit Sie alle Stärken und Schwächen des speziellen
+Effekt-Moduls kennen.
+****
+
+
+**
+			    Die Effekt-Liste
+
+Die zur Verfügung stehenden Effekte sind in den drei unteren Fenstern aufgelistet.
+Die Unterteilung in drei Fenster dient lediglich der Orientierung und hat keine
+bedeutung für den DemoManiac.
+Die Effekte sind übrigens je nach Typ in einses der drei Fenster eingeordnet.
+So enthält das Erste (ganz links) die eigentlichen Effekte, währen das Mittlere
+nur die Übergang-effekte und das ganz Rechte nur die Spezial-effekte beinhaltet.
+
+Wenn sie auf irgenteinen Effekt klicken so wird er in den momentan ausgewählten
+Layer geladen. Befindet sich in diesem Layer schon ein Effekt so erschein eine
+Sicherheitsabfrege ob sie den Alten effekt wirklich durch den Neuen ersetzen 
+wollen.
+
+			 Die Pattern-Verwaltung
+
+Ganz oben links können sie sehen wieviele Patterns sie bereits erstellt haben
+und welchen davon sie gerade bearbeiten.
+Mit den Knöpfen NEXT und PREVIOUS können sie jeweils den Nächsten und den
+Vorhergehenden Pattern anwählen, wodurch sofort dessen Effektliste dargestellt
+wird.
+Wenn sie jedoch NEXT drücken obwohl kein weiterer Pattern vorliegt so wird ein
+neuer Pattern bereitgestellt und ihnen zum Editieren vorgelegt.
+Ein so neuerstellter Pattern übernimmt automatisch das Design und die Layer-
+Relations von seinem Vorgänger **als Voreinstellung**.
+
+Die Tasten Beg und End erlauben ihnen zum Ersten (begin) und Letzten (end)
+Pattern zu wechseln.
+
+Der GOTO-knopf läßt sie den zu bearbeiteten Pattern aus einer Liste auswählen
+(vorausgesetzt sie haben mehr als einen Pattern erstellt).
+
+Die DELETE Taste löscht den aktuellen Pattern und läßt alle nachfolgenden um
+eine Position aufrücken. Dieses Aufrücken beeinträchtigt natürlich nicht
+bereits gemachte Angaben bezüglich der Pattern Nummber (z.b im Script-Editor)
+denn auch diese werden entsprechend Korrigiert.
+Wenn Sie nur einen Pattern erstellt haben können sie diesen zwar Löschen (alle
+einträge auf Standard zurückstellen) aber er wird nicht aus der Liste 
+entfernt.
+
+Die INSERT Taste läßt alle Patterns nach dem Aktuellen und den Aktuellen selbst
+um eine Position aufrücken,so daß eine neue Position frei wird,die Sie
+daraufhin Editieren können.
+
+'DELETE EFFECT' löscht den im ausgewählten Layer enthaltenen Effekt, so daß
+der Layer wieder frei ist.
+
+'TEST PATTERN' testet den Aktuellen Pattern. Die ausführung kann mit der
+linken Maustaste abgebrochen werden.
+
+**Bevor wir mit der Besprechung des nächsten Editors weitermachen möchte ich
+noch auf eine Besonderheit bei der Arbeit mit DemoManiac-Windows hinweisen :
+Wenn Sie nämlich gerade einen Parameter bearbeiten können Sie das entsprechende
+Window zwar durch 'OK' verlassen und den nächsten Parameter zum bearbeiten
+auswählen - aber es ist einfacher und schneller direkt! auf die nächste
+Parameterzeile zu Klicken (sofern man noch weitere Parameter verändern will)
+weil jeder Klick auserhalb des Windows automatisch als ein klick auf 'OK'
+aufgefaßt wird.
+Sie können also auch ohne erst 'OK' zu drücken gleich 'Test Pattern' anwählen
+und erhalten das gleiche Ergebnis als hätten Sie erst auf 'OK' und dann auf
+'Test Pattern' geklickt.**
+
+
+
+DER SCRIPT EDITOR
+-----------------
+
+Nachdem Sie im CONSTRUCT-EDITOR alle benötigten Patterns erstellt haben
+können Sie sie hier zu einer Demo kombinieren.
+
+Der Scripteditor wird über das SCRIPT-gadget am unteren Bildrand aufgerufen.
+
+Der Script-Editor enthält eine Große Liste (links) - Das Script .
+Das Script gliedert sich in viele Einträge (Entries) von denen jeder einen
+PATTERN oder ein COMMAND aufnehmen kann.
+
+Wie viele Einträge man benötigt kann man oben rechts unter 'Script entries'
+einstellen. Das Minimum sind hierbei eigentlich so viele Script-Einträge
+wie man Patterns editiert hat, da bei weniger Einträgen ja nich alles
+gezeigt werden könnte.
+Aus diesem Grund kann die Anzahl der Script-Einträge auf die Anzahl der 
+Patterns gesetzt werden, indem man NORMAL drückt.
+Übertreiben Sie bitte nicht bei der Anzahl der Script-Entries (*(alles kostet
+Speicher und Verwaltungsarbeit=Verzögerungen beim Editieren)*)
+
+Gleich unter Script-Entries steht der Aktuelle Pattern (Active Pattern) dieser
+entspricht dem zuletzt im Construct-Editor verarbeitetem Pattern. Auch 
+dieser läßt sich Frei einstellen durch das String-gadget,die Pfeiltasten
+und die CHOOSE-funktion (welche der GOTO-taste im Construct-editor entspricht).
+Wenn man nach verstellen dieses Active-Pattern Wertes wieder in den CONSTRUCT-
+Editor wechselt editiert man automatisch auch den Pattern, der im Scripteditor
+zuletzt angesprochen wurde.
+Wozu hier (im Scripteditor) ein Aktueller Pattern benötigt wird werden Sie 
+später noch sehen.
+
+Unter dem Active-Pattern folgt nun eine Liste von fünf Gadgets, die genauer
+spezifizeren was passieren soll wenn ein Script-Eintrag von ihnen angeklickt
+wird. Dies hätte man zwar auch nach jedem Klick abfragen können, so spart es
+aber Zeit.
+Welches dieser Gadgets aktiv ist sehen Sie an dem blauen Pfeil rechts daneben
+(Aktivieren können Sie eines dieser Gadgets indem Sie einfach darauf klicken).
+
+Die Wirkung der einzelnen Modi ist folgende :
+
+ Choose Pattern - Läßt Sie jedesmal wenn sie einen Script Eintrag anwählen
+		  aus einer Liste wählen welcher Pattern in diesen Eintrag
+		  geschrieben werden soll.
+ 		  (Dieser Modus ist voreingestellt)
+
+ Choose Command - Läßt Sie ein Script-Command (Befehl zur beeinflussung des
+    		  Script-ablaufes) auswählen und im Anschluss daran dessen
+		  Parameter einstellen.
+		
+ Increase Pat.  - Wenn Sie schon die Patterns in Logischer Reihenfolge 
+		  abgelegt haben und sich die Arbeit sparen wollen nun
+		  für jeden Eintrag im Script von neuem zu Definieren,
+		  daß erst 1 dann 2 dann 3 dann 4.... kommt so hilft
+		  ihnen diese Funktion Zeit zu sparen.
+		  Indem bei einem Klick auf einen Script-Eintrag einfach
+		  der Aktive-Pattern dort Abgelegt wird und dieser danach
+		  um eins erhöht wird.
+		  Sie brauchen so nur alle Einträge in der richtigen Reihen-
+		  folge anzuklicken.
+
+ Decrease Pat.  - Wie 'Increase Pat.' nur wird eins abgezogen nach jedem
+	 	  Klick.
+
+ Edit Command   - Läßt Sie die Parameter eines Script-Commands verändern.
+
+
+Die Taste INSERT rastet bei Betätigung ein und zeigt damit das Sie im
+Insert-Mode sind. Dieser Modus sorgt dafür das beim Nächsten Klick auf einen
+Script-Eintrag dieser und alle Nachfolgenden um einen Platz nach unten
+verschoben werden. Der dadurch freigewordene wird gleich im anschluß daran
+mit dem eingestellten Modus (Choose Pattern,Choose Command ect.) bearbeitet.
+Das bedeutet unmittelbar nach dem Insert wird ihm ein Pattern/Command zu-
+gewiesen.
+Nach dem Insert-vorgang wird das Insert-gadget wieder Deaktiviert und die
+Script-Liste überarbeitet,damit nicht alle Commands die sich auf Script-
+Einträge beziehen nun auf den falsche Einträge verweisen.
+
+Die DELETE Taste funktioniert ganz ähnlich wie Insert. Auch sie rastet ein
+und zeigt damit den Delete-Mode an. In diesem Modus Können Sie einträge
+aus ihrem Script löschen (durch anklicken) und alle Nachfolgenden um
+eine Position aufrücken lassen.
+
+Deaktiviert werden der Insert und der Delete Modus durch nochmaliges Drücken
+des entsprechenden Gadgets.
+
+
+Die ganz unten liegenden Gadgets 'TEST SCRIPT' und 'TEST PATTERN' tun ganau
+das was ihre Namen auch erwarten lassen :
+Test Pattern - Hat genau die selbe Wirkung die es im Construct editor hatte,
+	       nur das es sich nun auf den Active-Pattern bezieht (zuletzt
+	       bearbeiteter Pattern).
+
+Test Script  - Läßt Sie das gesamte Script begutachten.
+	     **Ein Druck auf die rechte Maustaste unterbricht die ausführung
+	       des Scripts und ein Druck auf die linke Maustaste überspringt
+	       den Aktiven Pattern.**
+	       
+
+		           Die Script Commands
+
+Weiter oben wurde schon angedeutet, daß ein Script nicht nur aus einer
+Aneinanderreihung von Patterns besteht sondern auch COMMANDS also Befehle
+enthalten kann. 
+Wenn Sie im 'Choose Command'- statt im 'Choose Pattern'-Modus einen Script-
+Eintrag auswählen erscheint eine Liste aller verfügbaren Script-Commands.
+Aus dieser Liste wählen sie den entsprechenden Befehl aus und stellen (sofern
+notwendig) seine Parameter ein.
+Script Commands sind im allgemeinen dazu gedacht den Ablauf des Scripts zu
+beeinflussen. Sie sind aber auch zu anderen Dingen in der Lage aber sehen
+wir Sie uns zunächst einmal an :
+
+	FadeMusicIN	- Wenn möglich (wenn es der Player unterstützt) wird
+			  Die Music (während das Demo weiterläuft) sanft
+			  eingeblendet.
+			  Ganz zu anfang sollte sie dazu mit 'Silent' abge-
+			  schaltet werden.
+				
+	FadeMusicOUT	- Blendet die Music wieder aus.
+
+	Silent		- Schaltet die Music stumm. Ist notwendig um eine Pause
+			  zwischen Start der Demo und Einfaden zu ermöglichen.
+
+	Goto	X	- Springt direkt an Scriptposition X
+	
+	Exit		- Beendet das Script vorzeitig
+
+	Loop	X	- Wiederhohlt die nachfolgenden Scripteinträge X mal
+
+	EndLoop		- Markiert das Ende des Loop-blocks
+
+	Gosub	X	- Springt zu Scriptposition X und kehrt hinter das
+			  Gosub zurück beim auffinden eines 'Return' Befehls.
+
+	Return		- Beendet mit Gosub aufgerufenen Block
+
+	FreeBlock X	- Dieser Befehl hat nur im späteren ausführbaren
+			  Demo eine Funktion. Er gibt im Speicher stehende
+			  Daten während der Demo frei.
+			  ACHTUNG : Dies funktioniert nur wenn die Daten
+			  nach dem Freigeben NICHT mehr benötigt werden!
+		          FreeBlock ermöglicht es auf diese Weise mit dem
+			  Speicher etwas rationeller umzugehen.
+
+	Skip	X=Y	- Überspringt die nächste Anweisung wenn die 
+			  angegebene Bedinung nicht wahr ist.
+		
+	Nop 	xxxx	- Dieser Befehl hat keine Funktion. Er dient lediglich
+			  dazu Kommentarzeilen in das Script einzubauen.
+
+	Wait	X	- Wartet X sekunden**/frames**
+
+
+
+Diese Script-Befehle sind vielleicht nicht gleich für den Laien verständlich
+aber wenn man sie ersteinmal richtig Anzuwenden weiß dann können sie enorme
+Möglichkeiten eröffnen.
+
+Zumindest die Script-Befehle die zur Sound-steuerung eingebaut wurden können
+aber wohl von jedem verwendet werden. Falls sie noch nicht ganz klar sind
+hier ein kleines Beispiel:
+
+ 0001 : Silent			;Music Stumm schalten
+ 0002 : FadeMusicIN  		;Music einblendung starten
+ 0003 : Small Info (0001)	;Pattern starten
+ 0004 : FadeMusicOUT		;danach Music ausblenden
+ 0005 : Wait 1			;warten bis fertig
+
+Um Music ohne Probleme Faden zu können sollten Sie den DemoManiac-player
+verwenden : den TrackerPacker !.
+Er ist in der Lage auch CIA-getimte Songs mit vielen Effekten nahtlos zu
+faden.
+
+In die Materie der Scriptbefehle werden wir später noch einmal etwas tiefer
+einsteigen. Aber nun weiter in der Besprechung aller Editoren ...
+
+
+
+DER MEMORY EDITOR
+-----------------
+
+In einer Demo oder Präsentation benötigt man neben vielen Effekten auch viele
+Daten. Diese Daten müssen natürlich irgentwo im Speicher stehen und sie 
+müssen so verwaltet werden, daß sie mehrmals innerhalb des Demos verwendet
+werden können ohne das sie mehrmals geladen werden müssen.
+Die Aufgabe dieser Speicherverwaltung übernimmt der MEMORY-EDITOR.
+
+Sie erreichen ihn (wie kaum anders zu erwarten) über das MEMORY gadget in der
+unteren Editor-Gadget-Leiste.
+
+Der Memory-Editor sieht dem Script-editor sehr ähnlich, auch hier haben wir
+links eine große Liste und rechts einige Gadgets um diese zu Steueren und
+mit Daten zu füllen.
+Die Liste (Memory-Liste) enthält alle Daten-Files die während der Demo im 
+Speicher stehen müssen. Jedem dieser Files wird dabei ein MEMORY-BLOCK
+zugewiesen.
+
+Wenn Sie den Memory-Editor zum ersten Mal betreten gibt es dort nur einen
+Block (0000). Wenn Sie diesen jedoch mit einer Datei gefüllt haben erscheint
+sofort ein weiterer Block, so daß Sie immer einen leeren Block haben um die
+Liste weiter ausbauen zu können.
+
+Wenn sie einen der Block-Einträge anklicken (auswählen) so wird er jediglich
+Farblich hinterlegt und es öffnet sich nicht sofort (wie in den anderen
+Editoren) ein Fenster. Weil im Memory-Editor großer Wert darauf gelegt wurde,
+daß Daten nicht unnötig überschrieben oder aus dem Speicher entfernt werden.
+(Dies würe zu einer starken Speicher-fragmentierung führen).
+
+Sie wählen also immer zuerst den Block aus den Sie bearbeiten wollen bevor
+Sie ihn mit einem der Gadgets verändern.
+An gadgets gibt es in diesem Editor folgende :
+
+ Load File		- Läd eine Datei in einen Memory-Block (notwendig
+			  wenn man sie in einem Effekt verwenden will)
+			 **Achten Sie bitte darauf wenn Sie mit Disketten
+			  arebeiten diese immer mit ihrem Namen im Filerequester
+			  anzusprechen und nicht mit 'DF0:' ect.
+			  Dies ist notwendig damit der DemoManiac ihre Daten
+			  später auch wiederfinden kann.
+			  (Näheres im bei der erklärung der SCRIPTS im General-
+			  Editor)**
+
+ UnLoad File		- Leert den angewählten Block wieder.
+
+ Show Block		- Zeigt den Inhalt des aktiven Blocks an.
+
+ Sort Blocks TYP	- Sortiert die Speicherblöcke nach Datentypen.
+			  In allen andern Listen führt der Wechsel der Blöcke
+			  zu keinerlei veränderung.
+
+ Sort Blocks ALPHA	- Sortiert die Speicherblöcke nach Alphabet 
+
+ Sort Blocks SIZE	- Sortiert die Sepicherblöcke nach ihrer Größe
+
+ Remove Unused		- Leert alle Blöcke die in keinem Pattern benötigt
+			  werden.
+
+ Make Text		- Läßt Sie einen Text editieren und läd diesen in
+			  den aktiven Memory-block
+
+
+Im Memory-Editor werden alle Daten in folgender Form angezeigt :
+
+Block {Blocknummer} : {Name} (typ) {größe in bytes}
+
+Die Blocknummer ist hierbei vorerst noch völlig unwichtig aber der Name und
+vorallem der Typ sind wichtige Kriterien, mit denen die Daten Verwaltet werden. 
+An typen gibt es zur Zeit folgende :
+
+ Textfile 	- Normales ASCII-File,daß Sie auch selbst erstellen können.
+	          Ein DemoManiac Textfile hat folgenden Aufbau :
+
+		  TEXT IchBinEinName
+		  Dies ist die erste Zeile
+		  und dies die Zweite bla bla bla...
+
+		  Wichtig ist hierbei nur, daß die ersten vier Buchstaben
+		  'TEXT' lauten (groß geschrieben!) und danach ein Leer-
+		  zeichen folgt. Alles nach diesem Leerzeichen bis zum
+		  ersten Return wird als Name gewertet.
+		  Und alles nach dem ersten Return ist der eigentliche Text.
+
+ Picture	- Pictures (Bilder) sind ganz gewönliche IFF-Graphiken, wie
+		  sie alle Amiga-graphikprogramme liefern.
+		  (Nicht unterstützt werden hierbei 12,18 und 24bit Bilder.)
+
+ Sample		- Samples sind kleine Sound effekte, die ebenfalls im IFF-
+		  Format vorliegen müssen (IFF-8SVX). Sie werden benötigt
+		  wenn Ereignisse durch Sound-Effekte untermalt werden sollen.
+
+ Animation	- Wie der Name schon sagt handelt es sich hierbei um Anima-
+		  tionen. Auch hier wird der Standart (IFF-ANIM5) unterstützt,
+		  wie ihn auch DPAINT erzeugt.
+
+ Font		- Fonts (Zeichensätze) sind Datenfiles, die Sie nur mit dem
+		  DemoManiac Font-converter erstellen können. 
+		  Hier können keine Amiga-Systemfonts geladen werden, da
+ 		  hier aus technischen Gründen ein eigenes Zeichensatz-format
+		  eingesetzt wurde. 
+		  (Es wird jedoch bald einen entsprechenden Konverter geben)
+
+ VectorObject	- Bezeichnet VectorObjecte
+
+ Scape		- Meint ganze VectorLandschaften
+
+ Data		- Diese Bezeichnung bedeutet, daß kein eindeutiger Typ
+		  festgestellt werden konnte und das File darum allgemein als
+		  Daten-File behandelt wird.
+		
+Sie wissen jetzt wie Sie Daten in den Speicher bekommen (mit dem Sie im übrigens
+gut Hausieren müssen,da man vor allem bei der Erstellung einer Demo davon nie
+genug haben kann.) und wie sie dort vom DemoManiac verwaltet werden.
+Also weiter zum nächsten Editor...
+
+
+
+
+DER DESIGN EDITOR
+-----------------
+
+Der Bildaufbau (Design) ist ein sehr wesentliches Merkmal einer Demo und möglichst
+weitreichende Freiheit beim Erstellen eines eigenen Bildaufbaus sind notwendig
+um der eigenen Kreativität alle Chanchen zu geben sich zu entfalten.
+
+Um nun ein individuelles Design zu entwickeln dient der DESIGN-EDITOR.
+Auch er ist über die permanent vorhandene Gadgetleiste am unteren Bildrand
+erreichbar (DESIGN anwählen).
+
+Mit dem Design-Editor haben Sie prinzipiell folgende Möglichkeiten :
+Sie können den Action-Bereich (Bereich in dem sich die Patterns abspielen)
+auf einen Bruchteil des Bildschirms beschränken und in den darüber und
+darunter freiwerdenden Bereichen Graphiken anzeigen.
+Außerdem können Sie beliebige (Bereichsunabhänige und Effektunabhänige)
+Graphiken über oder unter den BildSchirm legen. Dies wird durch die Hardware-
+sprites des Amiga ermöglicht und eröffnet ihnen Möglichkeiten wie z.B. :
+Einen Graphikrahmen um ihre Demo zu legen oder dem Betrachter das Gefühl
+zu geben er säße in einem Cockpit....
+Neben diesem (sehr wichtigen) Graphischen 'drumherum' kann der Design-Editor
+ihren Bildschirm auch noch mit Farbverläufen hinterlegen und Spiegel an 
+bestimmten Stellen im Bildaufbau einfügen.
+
+Doch wie entwickelt man nun ein eigenes Design ? 			
+Auch das Design wird über eine Liste verwaltet, in der alle Effekte,Farben 
+und Einstellungen nach ihrer Position auf dem Bildschirm geordnet eingetragen
+werden. Diese Liste verhält sich ganz ähnlich wie die Pattern-Liste, denn
+auch sie enthält einzellne Effekte (Farbverlauf,Graphik...),wenn auch nicht
+so Komplexe wie die Pattern-Liste, und auch sie ermöglicht durch Anklicken
+das Ändern der Parameter.
+
+Diese Design-Liste finden Sie unübersehbar als großes blaues Fenster im
+Design-Editor. Darüber wird angezeigt welches Design Sie gerade bearbeiten.
+Gleich hinter dem Name (den Sie übrigens jederzeit durch Anklicken editieren
+können) sehen Sie zwei Gadgets mit den Beschriftungen 'CHOOSE' und 'NEW'.
+ 
+'CHOOSE' ermöglicht es das Design auszuwählen, das man editieren möchte und
+ein Druck auf 'NEW' legt ein neues Design in der Liste an.
+Um ein neues Design zu erstellen müssen Sie also zunächst auf 'NEW' drücken
+und am besten gleich danach einen neuen Namen für ihr Werk eingeben.
+
+Wenn Sie ein Design erstellen werden Sie bemerken, daß es immer einen 'Effekt'
+enthält nämlich 'ActionWindow'. Dieser symbolisiert den Bereich des Bildschirms
+in dem die Effekt-Module,die sie im Pattrn-Editor eingestellt haben aktiv sind.
+Außerhalb dieses Bereiches ist nichts von den Effekt-Modulen zu sehen.
+
+
+Das editieren des Designs aber erfolgt durch die Gadgets am rechten Rand :
+ 
+ Add Graphic	-	Zeigt eine Graphik an.
+
+ Add Rainbow	-	Hinterlegt einen Bereich mit einem Farbverlauf.
+
+ Add Mirror	-	Installiert einen Spiegel.
+
+ Add Object	-	Legt die Startposition für ein Graphischen Object
+			fest.
+
+ Add Bar	-	Fügt eine Farbige Trennlinie ein.
+
+Diese fünf Befehle fügen Effekte in das Design ein. Wenn Sie einen dieser
+Schalter betätigen werden Sie zunächst nach Start- und End- Zeile für den
+Effekt gefragt und dieser Daraufhin in die Design-Liste eingefügt.
+
+Wenn Sie ersteinmal einen Effekt in der Liste haben können Sie ihn durch
+Anklicken seines Namens aktivieren und durch anklicken seiner Parameter
+diese verändern (wie im Pattern-editor).
+Auf diese Weise können Sie alle benötigten Effekte in ihr Design aufnehmen
+und einstellen.
+
+****
+Beachten Sie bitte das der OBJECT und der GRAPHIC Effekt ein Bild benötigen.
+Dieses muß zuvor im MEMORY-EDITOR geladen worden sein.
+****
+
+
+Aber zum komfortablen Editieren gehört natürlich noch einiges mehr - und
+das bieten die weiteren Gadgets :
+
+ Clear Design		-  Löscht die gesammte Design Liste
+
+ Remove Effect	 	-  Entfernd Aktiven Effekt aus der Design-Liste
+
+ Adjust position	-  Ermöglicht Ihnen die Position und die Größe des
+			   Aktiven Effekts mit direkter visueller Kontrolle
+			   vorzunehmen.
+			   Die Maus verändert hierbei die Position und bei
+			   gedrückter rechter Maustaste auch die Größe.
+			   Nach einem Druck auf die linke Maustaste werden
+			   die so manuell eingestellten Werte in die Design-
+			   Liste übernommen.
+ 
+ Test Design		-  Läßt Sie ihr aktives Design bewundern.
+
+ Load Design		-  Läd ein Design von Diskette/Festplatte
+
+ Save Design		-  Speicher ihr Design auf Diskette/Festplatte
+
+
+Wenn Sie ihr Design mittels 'Test Design' testen können sie an den Spiegeln
+natürlich keine Wirkung sehen (das ActionWindow ist ja Leer).
+Diesen Umstand können Sie jedoch umgehen wenn Sie einen Pattern im Construct
+-editor erstellen, der bereits das neue Design benutzt und einen Effekt
+enthält. Diesen Pattern können Sie nun jederzeit (also auch aus dem Design-
+Editor heraus) durch drücken von RAMIGA+T (shortcut für Test Pattern)
+anzeigen.
+Nach jeder veränderung an ihrem Design können Sie so schnell überprüfen wie
+die Wirkung zusammen mit einem Effekt ist.
+
+{{
+
+Da Sie wenn Sie ihr Design mittels 'Test Design' testen an den Spiegeln
+natürlich keine Wirkung sehen (das ActionWindow ist ja Leer). können Sie
+während der 'Test Design' funktion mit der rechten Maustaste einen Test-
+Effekt das ActionWindow bearbeiten lassen.
+
+}}
+
+
+DER CONFIGURATION EDITOR
+------------------------
+
+Dieser Editor ist nur dazu da einige Rahmenbedinungen für den DemoManiac
+und (weitaus wichtiger) für die fertige Demo zu setzten.
+
+In diesem Editor können Sie neben den DemoManiac internen Konfiguraionen
+unter 'MINIMAL CONFIGURATION' einstellen bis zu welchem Rechner ihre Demo
+abwärtskompatibel bleiben soll und ab wieviel/wiewenig Speicher ihre Demo
+gar nicht erst Starten soll (zuwenig Speicher wird sonst möglicherweise
+erst mitten in der Demo bemerkt...).
+
+Diese einstellungen sollten Sie schon ganz zu Anfang vornehmen, da so
+Effekte die nicht auf ihrer geforderten Minimal konfiguration laufen gleich
+beim Laden abgelehnt werden. Das Gleiche gilt für zu Farbenreiche Bilder 
+oder zu lange Sounds.
+Von der eingestellten Minimalkonfiguration an ist ihre erstellte Demo jedoch
+voll aufwärtskompatibel.
+
+Außer dem 'kleinsten möglichen Rechner' können Sie hier im Configuration-Editor
+noch einstellen ob die Copper-Listen in Echtzeit erstellt werden sollen oder
+vorberechnet werden. Auch wenn Sie nicht wissen was Copper-Listen sind (was nicht
+weiter tragisch ist) sollen Sie die Auswirkungen dieses Schalters kennen :
+
+Copper-Listen sind eine für die Amiga-Hardware verständliche version ihrer
+Design-Listen (für den GraphikCoprocessor COPPER), die im Normalfall immer
+kurz bevor ein Pattern abgespielt wird berechnet werden.
+Dies führt natürlich zu einer kleinen Verzögerung des Scriptablaufes aber
+eine Vorberechnung dieser Listen schluckt eben auch wieder Speicher (Die Menge
+ist hier sehr unterschiedlich). Also müssen Sie selbst entscheiden ob Sie
+genug Speicher haben. Wenn ja schalten Sie diese Option ruhig ein.
+
+Auch den Speicherhaushalt betrifft die nächste Option : FreeUsedEffects
+Diese Option hat nur im ausführbaren File eine Wirkung! Sie Löscht Effekte
+die nicht mehr Benötigt werden während der Demo aus dem Speicher.
+Dies ermöglicht (besonders bei Langen Demos) es die eigene Präsentation
+auch auf Rechnern mit wesentlich weniger Speicher (als zu erstellung 
+benötigt wurde) laufen zu lassen.
+Diese Option hat leider auch einen Nachteil : Sie hinterläßt nachdem das
+Demo beendet wurde einen ziemlich verwüsteten Speicher der zwar niemandem
+schadet, es aber in unglücklichen Fällen fast unmöglich macht nach dem
+anschauen der Demo noch sinnvoll mit dem Rechner zu abeiten.
+Bei Demos die sowieso in einem Reset enden oder Endlos laufen kann diese
+Option aber bedenkenlos eingesetzt werden.
+
+Alle Anderen Parameter im Configuration-Editor sind selbsterklärend und
+werden deshalb hier nicht näher erläutert.
+
+
+
+DER GENERAL-SCREEN
+------------------
+
+Dieser Screen ist das erste was Sie vom DemoManiac sehen den er erscheint
+gleich nach dem Start. 
+Von hier aus können Sie alle Allgemeinen Disketten und Verwaltungs-operationen
+steuern.
+
+Dieser Screen enthält folgende Elemente :
+
+Die InfoLeiste - Sie informiert Sie über die Kapazitäten die ihr System
+		 Maximal erbringen kann. Der Angegebene Speicher ist also
+		 nicht der Freie sondern der maximal verfügbare Speicher.
+
+Scriptcontrol  - 
+
+**In diesem Fall ist mit Script nicht nur der Ablaufplan gemeint, den Sie im
+Script-Editor erstellt haben , denn nur diesen allein zu Speichern wäre
+ja ziemlich Sinnlos (ohne Daten&Patterns...), sondern die ganze Demo die
+Sie aus Effekten,Daten und Listen zusammengebaut haben.
+Mit den Ihnen unter Scriptcontrol gegebenen Schaltern können Sie ihre gesamte
+Demo in kurzform abspeichern und wieder laden.
+In Kurzform bedeutet in diesem Fall, daß nicht alle Daten (wie z.B Graphiken
+oder Sounds) mit abgespeichert werden. Da all diese Daten jedoch dringend
+benötigt werden geht der DemoManiac einen anderen Weg : Es werden nur die
+Pfad und File-Namen der Daten abgespeichert und beim wiedereinladen des
+Scripts werden anhand dieser Informationen einfach die Daten erneut geladen.
+**
+
+(*Hier können Sie Scripts Laden und Speichern. Ein Script bezeichnet hierbei
+nur die Pattern-Listen,Die Script-Liste alle verwendeten Design-Listen und
+die benutzten (im Memory-Editor geladenen) Daten-Files.
+Es enthält also NICHT die verwendeten Effekt-Module und den Replayer.
+Dies bedeutet natürlich das alle Dateien beim wiedereinladen des Scripts
+ebenfalls eingeladen werden müssen Von Diesen werden nur deren Pfad-Namen
+so daß sie beim wieder einladen des Scripts von Diskette oder Festplatte nach
+gelden werden müssen.*)
+
+Dies geht natürlich automatisch und spart auch enorm Platz (Die Scripts sind 
+so wesentlich kleiner), ist aber unpraktisch wenn Sie die Effekt-Module
+wärend der Erstellungsphase mühsam von mehreren Disketten zusammengesucht
+haben und diese nun alle wiederfinden müssen oder wenn Sie das Script an
+einen Freund weitergeben möchten der nicht alle Effekt-Module besitzt, die
+das Script benötigt.
+**Auch sollten Sie schon beim Laden ihrer Daten im Memory-Editor bedenken
+daß, damit diese später wiedergefunden werden können ,Sie immer den VOLLEN
+Pfadnamen einstellen müssen. Also wenn Sie mit mehreren Disketten arbeiten
+nicht nur 'DF0:bild.iff' sonderen 'BILDER:bild.iff' weil Sie sonst höchst-
+warscheinlich große Probleme bekommen wenn Sie ihr Script wieder Laden wollen
+und nicht mehr wissen wo sich die Daten denn nun im einzelnen befinden**
+
+Für diese Fälle besteht die Möglichkeit die erstellte Arbeit als MODULE
+zu Speichern (nicht zu verwechseln mit einem Effekt-Modul) ,was bedeutet
+das ALLE benötigten Daten mitgespeichert werden.
+Dadurch entsteht zwar ein wesentlich größeres File aber man kann es an einen
+Freund weitergeben und sicher sein das ihm später keine Datei fehlen wird.
+
+Aber die wohl wichtigste Möglichkeit die mit dem DemoManiac erstellte Demo
+auf Diskette/Festplatte zu bringen ist das Speichern als EXECUTABLE - das
+heißt als eigenständiges von der Shell oder Workbench aus startbares Demo.
+Ein so gespeichertes File läßt sich aber NICHT mehr in den DemoManiac 
+einladen und deshalb auch nicht weiterbearbeiten.
+Sie sollten also immer ihr Script oder Module aufbewahren wenn Sie später
+noch etwas an ihrer Demo feilen wollen.
+
+Wir waren zwar bemüht die vom DemoManiac erstellten ausführbaren Files
+möglichst kurz zu halten Sie sollten die Executables aber dennoch mit einem
+der gängigen Cruncher (PowerPacker,Imploder[decruncht sehr schnell],Titanics
+Cruncher[gut bei knappem Speicher]) nachbearbeiten um ein Optimales Ergebnis
+ihrer Arbeit in den Händen bzw. auf der Diskette zu halten.
+
+Eine andere Form des Executable-speicherns ist das Speichern als BootBlock.
+Hier wird das Demo direkt auf die Sektoren einer Diskette geschrieben und
+so eingebunden,daß es automatisch startet wenn man die Diskette einlegt.
+Auch ohne Startup-sequence oder andere Files. 
+Eine So auf Diskette verankerte Demo läßt sich von einer 'in handarbeit'
+erstellten kaum noch unterscheiden.
+Der Nachteil hierbei ist aber das vorher auf der Diskette vorhandene Daten
+überschrieben werden.
+
+
+			     Effects Control
+
+Neben dem Script-befehlen enthält der General-Screen auch noch einige Schalter
+um die Effekt-Liste (Liste aller verfügbaren Effekt-module) zu verändern.
+Dies ist zum Beispiel notwendig wenn Sie neue Effekt-Module in ihr System ein-
+binden wollen. Sei es Selbstgeschriebene oder durch ein Update erhaltene.
+Wenn Sie also neue Effekt-Module einbinden wollen brauchen Sie diese nur
+in ihr DM_effects Directory zu kopieren und
+'ADD EFFECT' zu drücken und die neuen Module werden in die Effekt-Liste 
+aufgenommen.
+
+Eine Liste aller verfügbaren Effekt-Module erhalten Sie wenn Sie auf 
+'SHOW EFFECTS' drücken. Hier sind übrigens nicht nur die möglichen Effekte 
+aufgelistet sondern auch die die Sie schon in ihrer Demo verwenden.
+
+Um eine Effekt-Modul aus der Liste zu entfernen gibt es die Funktion 
+'REMOVE EFFECT'. Diese Funktion ist zweifach gesichert,da sie absolut
+entgültig ist.
+
+Alle veränderungen an der Effekt-Liste müssen aber zur Sicherheit noch 
+mittels 'SAVE EFFECT-LIST' bestätigt werden, damit auch die Liste auf 
+Diskette/Festplatte aktualisiert wird.
+
+			    Disk Control
+
+Die hier eingebauten Befehle sollen ihnen nur die mühe ersparen bei kleinen
+File-operationen gleich ins CLI oder auf die WorkBench wechseln zu müssen.
+Wobei 'CHECK FILE' den Typ eines Files zu ermitteln versucht (Text,Graphik,
+EffektModul,Script.....) und 'SHOW FILE' versucht ein File anzuzeigen.
+
+
+**
+DIE MENUS
+-----------
+
+Die Menus wurden genauso gegliedert wie auch die verschiedenen Editoren.
+Zu jedem Editor existiert ein Menu, welches einerseits die auch über
+Gadgets erreichbaren Funktionen enthält aber meist noch einige weitere.
+
+Sehr wichtig ist zum Beispiel die 'Record Time' Funktion im Construct-Menu,
+die es ermöglicht die Ablaufzeit eines Pattern nicht nur durch 'manuelles'
+verändern des TIME-parameters sondern ganz Intuitiv durch einen Mausklick
+festzulegen.
+Diese einfachere Art des Zeit-einstellens funktioniert ganz einfach :
+Nachdem Sie 'Record Time' aus dem Menu ausgewählt (shortcut: AMIGA+R) haben
+beginnt der Pattern ganz normal abzulaufen, als ob Sie 'Test Pattern' angewählt
+hätten. Sie lassen den Pattern nun einfach solange laufen wie er im späteren
+Demo auch aktiv sein soll (z.B bis zu einer markanten Stelle im Song) und
+drücken dann die linke Maustaste. Die bis dahin verstrichene Zeit wird nun
+automatisch in den TIME-Parameter des endsprechenden Patterns eingetragen.
+
+Eine ähnliche Möglichkeit haben Sie auch für das gesamte Script :
+Im Script-Menu finden Sie den Menupunkt 'Record Times' (shortcut: AMIGA+SHIFT+R)
+der eigentlich genauso funktioniert wie eben beschriebene Funktion im
+Construction-Menu. Nachdem Sie sie aktiviert haben wird das Script gestarted
+(wie bei 'Test Script') un läuft ganz normal ab, d.h. bereits eingestellte
+Zeiten werden berücksichtigt (das ist auch der Grund warum Sie mit dieser
+Funktion die zeiten im Script nur verkürzen können...) wenn Sie nun aber
+einen Pattern vorzeitig mittels der linken Maustaste abbrechen so wird dies
+im endsprechenden Pattern vermerkt und er wird bei späteren Tests an der
+selben Stelle stoppen.
+
+*#
+Eine weitere sehr nützliche Funktion,die nur über Menus (oder Shortcut) zu
+erreichen ist,ist 'INFO' (Im Construction-Menu) sie gibt ihnen zu dem
+Effekt-Modul das sich im momentan aktiven Layer befindet einen kleinen
+Hilfstext aus.
+#*
+
+Alle anderen Funktionen im Menu solleten eigentlich Selbsterklärend sein.
+
+
+
+GRENZEN
+-------
+
+Der DemoManiac läßt ihnen so viele Freiheiten wie möglich sind wenn man mit
+läßigen Mausklicken durchs (Demo)-Leben kommen will aber ihm sind natürlich
+auch Grenzen gesetzt und die zu kennen kann sehr wichtig sein.
+Einerseits ist da der Speicher und ins besondere der Graphik-Speicher, von
+dem man ja bekanntlich nie genug bekommen kann.
+Als Programmierer hat man jedoch oft die Möglichkeit zwischen Speicher und
+Geschwindigkeit zu wählen und wir hatten uns nun einmal beim DemoManiac das
+Ziel gesetzt nicht nur den Flexibelsten sondern auch den Schnellsten Demo-
+Maker auf dem Markt zu entwickeln und aus diesem Grund haben wir uns für
+einige Bytes mehr und für absolute Geschwindigkeit entschieden.
+Man benötigt deshalb in der Regel zum Erstellen einer Demo mehr Speicher
+als später zum Betrachten derselben nötig ist.
+
+Neben der einen Grenze Speicher gibt es noch eine weitere : die Bitplanes.
+Der DemoManiac arbeitet nicht wie viele andere Programme so das Objekte
+die sich über eine Graphik bewegen jedesmal in diese hinengezeichnet und
+später wieder daraus entfernt werden sondern er nutzt das Bitplane-System
+der Amiga-Hardware. Das bedeutet das jedes Effekt-Modul das etwas auf dem
+Bildschirm darstellen möchte eigene Bitplanes bekommt es kann dann völlig
+ruckfrei und bei sehr geringer Auslastung bewegt werden.
+Diese Ausnutzung der Amiga-Hardware hat aber ein Problem : Es sind maximal
+8 Bitplanes auf einem Amiga darstellbar und auf einem alten (nicht AGA)
+Rechner sind es sogar nur 5 Bitplanes die Effektiv genutz werden können.
+Das bedeutet das Sie nicht beliebig viele Effekte übereinander legen können
+auch wenn Sie genügend Layer haben.
+Ein 2-Farbiger Effekt benötigt 1ne Bitplane.
+Ein 4-Farbiger schon 2 Bitplanes.
+8 Farben verschlingen 3 Bitplanes und 16 deren 4.
+32 Farben verbrauchen schon 5 Bitplanes und 64 Farben dementsprechend 6.
+127 Farbige Effekte füllen 7 Bitplanes und ein 256 Farbiger Effekt muß
+ganz allein bleiben weil er alle 8 Bitplanes benötigt.
+Anhand dieser Daten können Sie sich nun leicht ausrechnen das bei einem
+4 Farbigen SternenHimmel (2planes) und einem 8 Farbigen Font davor (3planes)
+bereits 5 Bitplanes benötigt werden.
+Es werden also 5 Bitplanes verwendet obwohl (ohne Transparenz) nur 12 Farben
+(4planes) sichtbar sind.
+Aber als Ausgleich dafür erhalten Sie die maximale Geschwindigkeit und was
+hätten Sie auch davon gehabt wenn Sie 10KB (1plane) mehr Speicher hätten
+aber dafür der Vector bis an die Schmerzgrenze geruckelt hätte ?
+Wir meinen jedenfalls : Nichts !
+
+Falls Sie nun verwirrt sind weil Sie nicht wissen was Bitplanes sind dann
+merken Sie sich einfach das man nicht beliebig viel übereinander Stapeln
+kann und benutzen Sie wenn Sie Probleme bekommen sollten einfach weniger oder
+zumindest weniger Vielfarbige Effekte gleichzeitig.
+
+
+**
+
+
+
+INTERN
+------
+
+Das Modulare System des DemoManiac funktioniert folgendermaßen :
+In einer Schublade (z.b der DM_effects für die Effect-module) befinden sich
+nur Dateien eines typs. Auf die Schublade muß ferner ein Assign gleichen
+Namens existieren,damit die Daten auch auf einer Festplatten und in jedem
+Laufwerk gefunden werden.
+Also wenn sich die DM_effects schublade bei ihnen in work:multimedia/demomaniac/ 
+befindet müsste das Assign lauten :
+Assign DM_effects: work:multimedia/demomaniac/dm_effects
+
+Aber all diese Assigns werden eigentlich von der mitgelieferten Batch-datei
+korrekt ausgeführt.
+Der DemoManiac selbst greift aber nur über 'DM_effects:xxx' auf die Daten
+zu, was bedeutet das auch eine Effekt Diskette akzeptiert würde wenn die
+den Namen 'DM_effects' trägt.
+Wenn Sie nun mehrere dieser Disketten (gleicher Name) erstellen können Sie
+auch mit nur einem 1Laufwerk-System und ohne Festplatte sehr große
+Effekt-sammlungen anlegen. Sie müssen nur den Überblick bewahren was auf
+welcher Diskette ist.
+
+In dem haupt Effekt-directory (das beim booten des DemoManiac verlangte)
+muß ein File mit namen 'effects.lst' liegen in dem alle verfügbaren Files
+verzeichnet sind. Dies ist deswegen notwendig,weil so nicht jedesmal das
+ganze Directory gescannt werden muß um zu wissen welche Effekte vorliegen.
+
+
+**
+
+EIGENE EFFEKTE
+---------------
+
+Falls Sie selbst Assembler gut genug Programmieren können um sich ihre eigenen
+Effekte zu Schreiben und diese gern auch im DemoMaker verwenden wollen so
+müssen Sie sich noch etwas gedulden denn wir sind uns noch ganz einig ob
+wir die entsprechenden Entwicklerunterlagen an dritte weitergeben wollen.
+Falls ja werden alle registrierten User die Gelegenheit bekommen das notwendige
+Material zu bestellen.
+Aber bis dahin werden Sie mit unseren Effekten wohl auf jeden fall genug zu tun
+haben.
+
