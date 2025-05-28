@@ -806,20 +806,24 @@ xxx,xxx files
 </pre>
 </details>
 
+
 <h4>Resources include:</h4>
-A collection of translated, transcribed and edited Amiga ASM coding resources</br>
--source code </br>
--translated tutorials from pdf, html, scans and texts </br>
--translated sourcecode from the archive, aminet, web and git repos </br>
--edited sourcecode to work with ASMtwo and the tlu-CoderArcXX distros (hdf,adf) </br>
--ondemand video links (YouTube) </br>
--livestream links (Twitch) </br>
+A collection of translated, transcribed and edited Amiga ASM coding resources<br>
+-source code <br>
+-translated tutorials from pdf, html, scans and texts <br>
+-translated sourcecode from the archive, aminet, web and git repos <br>
+-edited sourcecode to work with ASMtwo and the tlu-CoderArcXX distros (hdf,adf) <br>
+-ondemand video links (YouTube) <br>
+-livestream links (Twitch) <br>
 <h4>To Do:</h4>
--integrate vAmigaWeb for browsing, compile and run sourcecode in classic Amiga environment </br>
--replace current lamer ascii art tweaked from webtool with custom (bitmap/vector/ascii)
--more to come!
-<br>
-<br>
+-use custom 2c tlu-DarkModeIconPack-v1 for frontend (current hires true colour icons <a href="https://os4depot.net/?function=modules/snapshot/display&fileid=10710#10710_2" target="_blank">AOS-IconsUpdate3</a>
+-add modplayer(?)
+-Amiga digital file browser (using steffest's <a href="https://github.com/steffest/ADF-reader-writer" target"_blank">ADF-reader-writer</a>
+-integrate vAmigaWeb for browsing, compile and run sourcecode in classic Amiga environment <br>
+-replace current ~~lamer~~ ascii art tweaked from webtool with custom (bitmap/vector/ascii)
+-more to come! <br>
+<h4>Latest Frontend</h4>
 <a href="https://wearetlu.github.io/tlu-AmigaCoderArchive/" target="_blank">
-VIEW TLU-AMIGACODERARCHIVE WEBSITE
+=== | t l u | Amiga Coder Archive ===
 </a>
+<hr>
