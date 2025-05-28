@@ -1,0 +1,2001 @@
+
+                         0. SOME WORDS IN ADVANCE
+
+     This is V1.29 of the famous DemoManiac - Supplied by vADIUM/aVT!
+
+This version is a bugfixed version of V1.28. We also added all examples
+and docs of V1.28 to release a full & complete version of this cool program.
+
+                          This package includes:
+
+                          - English & German Docs
+                          - Vector-Doc for DemoManiac
+                          - all Examples/Tutorials
+
+  	                      ~~~ Vector 100%  ~~~
+
+
+Immer schneller,immer echter und immer complexer (yeah!). Das ist der trend bei
+Vectorgraphic. Hatte man vor ein paar Jahren (ja,ja damals) die Leute noch
+mit Linevector beeindrucken können so muß es heute Shading,Texturekarting,Shadows
+und son neumodischen Zeugs sein.
+Aber lassen wir den Einleitungs-quatsch! Mein Rechner traced gerade so vor sich 
+hin (ja,ja auch ich bin der Sucht verfallen) und ich kann nicht schlafen also
+schreib ich euch (ja euch alle da draußen mein ich ! ) mal wieder(?) nen 
+Wörkschop ! Diesmal möchte ich mein gesammeltes Wissen über RICHTIGEN VECTOR
+an den mann/den coder bringen (soviel isses zwar nich,aber immerhin).
+Also zunächst einmal : Umdenken! für Alle die noch immer den Blitter für Vector
+nutzen. Ja richtig ich will euch heute in den erlesenen (hüstel) Kreis der
+Processor-vector-könner erheben (sülz) damit wir von nun an gemeinsam auf
+die runterblicken können die noch keinen Durchblick haben ....
+
+Die 1. DIMENSION
+----------------
+
+Ist Langweilig (geht ja gut los...) weil sie nur Punkte enthält und daher
+auch noch von (hoffentlich) jedem beherrscht wird ! Wer schreibt die schnellste
+Punkt-setz-routiene ??
+
+Die 2. DIMENSION
+----------------
+
+Ist schon viel besser! da wir hier den ALLER,ALLER WICHTIGSTEN Baustein des
+Processorvectors finden : DIE LINIE (tatatataaa)
+
+Damit können wir folgendes anstellen:
+		- sehr schneller inkonvexer (überscheidender) Vector
+		- pencil vector
+		- gouraud shading
+		- texturemapping
+		- wolfenstein
+		
+
+Also einige nette Sachen ! Und das alles schneller als mit dem Blitter obwohl
+der im linienzeichnen (einfarbig,ohne unterbrechungen) 2mal schneller ist
+als die BESTE Processorroutiene auf einem 68020 mit 14mhz...
+
+
+
+DIE LINIE
+---------
+
+Also, fangen wir bei 0 an : Wir wollen eine Linie zeichnen von X1/Y1 nach 
+X2/Y2 also nehmen wir die aus der guten(?) alten(!) Schule bekannte Formel:
+
+	Y=m*x+b
+
+Und merken das wir damit noch keine Linie hinkriegen! Also nehmen wir die
+schon viel weniger geliebte 'Zeipunkteform' und stellen diese um :
+(so hat meine ERSTE linienroutiene,in Basic, funktioniert)
+
+   y-y1     x2-x1      
+  ------ = -------                  | *(x-x1)
+   x-x1     y2-y1
+
+            x2-x1
+   y-y1  = ------- * (x-x1)         | +y1
+            y2-y1 
+
+            x2-x1
+      y  = ------- * (x-x1) +y1       
+            y2-y1 
+
+Und schon haben wir ne tolle Formel um ganz prima Linien zu zeichnen ! 
+Juhu! Aber leider ist sie nicht besonders schnell (fließkomma multiplikation
+bei jedem punkt ect...) und sie ist leider auch nicht besonders genau (weil
+fließkommazahlen beschränkt (je nach Sprache) ) so daß die Linien meistens
+am Ziel vorbeischießen oder 'zerreißen' und und und
+Also kurz und gut dieser Ansatz war völlige ZEITVERSCHWENDUNG !
+
+Nun wir würden uns wohl noch alle in dieser Linien-Steinzeit befinden
+(selbst ich! obwohl ich noch andere tolle ideen hatte...wurzel ect...)
+wenn nicht... Ja wenn nicht der geniale Herr Bresenham gekommen wäre !
+(ober gekommen ist war zwar relativ egal hauptsache er hat nachgedacht)
+
+BRESENHAM- dieses Zauberwort hat jeder(?) Coder schon mal gehört und weiß das
+ist irgentwas schnelles,geniales und kurzes was keiner versteht und jeder 
+benutzt....
+Doch was ist das eigentlich DER BRESENHAM-ALGORITHMUS ? und wie funktioniert
+er ? und wie kam der Typ auf son genialen Kram ? und was sollen diese blöden
+fragen ?
+
+Nun ich will versuchen es dir,lieber Leser, (da du mich bis jetzt ertragen hast)
+zu erklären....
+
+
+
+Nun, der gute Bresenham hat,scharfsinnig wie Mathematiker nunmal sind, 
+erkannt was bei den konventionellen Linien-algorithmen so viel Zeit kostet :
+Die komplette Nueberechnung der Koordinaten für jeden Punkt !
+und die anschließende Umrechnung der Fließkommakoordinaten in 'richtige' !
+
+Was ? Das hättest du ihm auch sagen können ? Tja soweit ist alles noch ganz
+Banal (MERKE : WICHTIGE FRAGE - WAS BRAUCHT HIER SOVIEL ZEIT !) .
+Also phantasierte unser Bresie ... es wäre doch echt geil wenn man aus einer
+Bildschirmkoordinate gleich die nächste berechnen könnte.
+(MERKE: GEDANKEN FREIEN LAUF LASSEN UM ANDERE LÖSUNGSWEGE ZU FINDEN - VIELE
+SCHWACHSINNIGE ABER VIELLEICHT IST JA DER EINE GUTE DABEI..)
+
+Aber auch der kluge Bresie kam mit klugen Gedanken nicht weiter! Also tat er
+das was man immer tun sollte wenn ein Problem zu groß ist/scheit : Er 
+zerteilte es in Teilprobleme und lößte erstmal eines davon !
+
+Er sagte sich also : gesetzt den Fall (ja ja so denken Mathematiker...) die
+Linie die ich zeichnen soll liegt garantiert im ERSTEN OKTANTEN dann...
+HA!! erwischt ! Es weiß wieder keiner wo der 1.Oktant sein soll ! 
+Also noch mal für alle :
+				 \ 3|2 /
+				4 \ | / 1 	(beispiel : okt2 :  45°- 90°)
+				---------       (           okt5 : 180°-225°)
+				5 / | \ 8
+				 / 6|7 \
+
+Sagen wir also jemand zeichnet eine Linie im ersten Oktanten (keine ganz
+einfache also nicht genau 0° und nicht genau 45°) aber irgenteine nette
+Linie halt.
+
+			_-¯    <-Das ist sie !
+
+Dan wird er/sie/es wohl zunächst den Startpunkt setzen. Von da aus gibt es 
+nun 2 möglichkeiten wohin der nächste Punkt muß :
+
+	1. Direkt rechts neben den 1.Punkt
+	2. Rechts und oberhalb des 1.Punktes 
+
+Alles Andere geht im 1.Okt nicht ! - Bitte nachvollziehen !
+Hätte die Linie nun die Steigung 1 (45°) dann wäre es für jeden Punkt der
+Fall 2.
+Hätte sie die Steigung 0 (0°) dann wäre es immer fall 1 (waagerecht).
+Sonst wechseln sich die beiden fälle endsprechend der Steigung immer ab.
+
+Aber wie trifft man nun die Entscheidung welche der beiden Möglichkeiten
+verwendet werden soll ? 
+Bresenham verwendet hier einen FehlerTerm ! Mit dem er entscheiden kann welcher
+der beiden Punkte denn nun näher an der 'echten' Linie liegt.
+Der fehlerterm ist also quasi der Abstand von der 'echten' zu 'bildschirm'-linie
+Mathematisch gesehen ist der Fehlerterm der Nachkommateil den man bei den
+'alten'-Algorithmen von den Koordinaten abgetrennt hat um aus Fließkomma-
+koordinaten Bildschirm-koordinaten zu machen. (klar ?)
+Ein kleines Beispiel:
+   mit dem y=(x2-x1)/(y2-..... Algorithmus kam für Y z.B : 5.783 raus !
+   Also schnitten wir 0,783 ab und setzten den Punkt an Y=5.
+   Der Fehlerwert für diesen Fall wäre also 0,783 ! Der Punkt war 0,8 falsch!
+
+Na ja..Bresenham berechnet diesen Nachkommateil also ,sogesehen, von den
+Koordinaten getrennt. Die genaue Fehlerterm-formel kenne ich auch nicht aber
+so tief müssen wir ja auch nicht einsteigen um es zu verstehen.
+Er geht nun immer einen Schritt nach rechts und zählt dabei mit wie falsch
+seine Linie wird. Bei Steigung 0 würde sie nie falsch werden aber bei jeder
+anderen Steigung würde die Linie mit jedem Punkt 'falscher' werden.
+Wenn sie nun 'zu falsch' ist mach er einfach noch einen Schritt nach oben
+und zieht wieder etwas vom fehler-counter ab,weil die Linie ja nun etwas
+richtiger geworden ist...
+
+Bresenhams Prinzip in Kurzform:
+
+	-Inialisieren eines Fehlerwertzählers
+	-Punkt setzten
+	-einen Wert auf den Fehlercounter addierten 
+	-Wenn Fehler nun zu groß geworden dann...
+           -schritt in die andere Richtung 
+           -und etwas vom Fehlerwert abziehen (linie wieder besser)
+        -Sonst wieder punkt setzten...
+
+
+Warum man den Fehlercounter mit M inialisieren muß und immer M addieren muß
+und warum der 'schwellwert' genau 0,5 ist das hängt damit zusammen wie
+der Fehlerterm eigentlich aussah (steigung...maximal 1.....) aber wie gesagt 
+so tief will/kann ich hier nicht einsteigen.
+
+Also das alles in einem Listing:
+
+	dx=x2-x1
+	dy=y2-y1
+	
+	m=dy/dx
+	fehler=m
+
+	while	x1<x2
+	  plot	x1,y2
+	  if fehler>0,5 then
+	     fehler=fehler-1					     
+	     y1=y1+1			'wenn über schwellwert dann UPRIGHT
+	  end if
+	  fehler=fehler+m
+	  x1=x1+1			'sonst nur RIGHT
+	wend
+
+Das soll er also sein ? Der tolle Bresenham-algorithmus ? 
+Mit Fließkomma-addition und -division ? Na Toll ! Aber Bresenham hat an
+diesem Punkt nicht aufgegeben und resigniert ! sondern er hat das wofür wir
+(wir Coder) ihn Heute alle Bewundern (den Einfall hatte er bestimmt aufm Klo!)
+getan :
+
+Er multiplizerte alle vorkommenden Terme mit 2*DX und zwar nicht aus Frust und
+um die Routiene noch langsamer zu machen ! Nein weil... aber sehen wir selbst
+
+
+  		     dy                    dy*2*dx
+	aus	M = ----	wird nun  ---------  und daraus  M = 2*DY 
+		     dx			   dx*1 
+
+	-Zack- Keine Fließkommazahlen mehr ! Wenn das nicht genial war ? !
+
+Aber er tat noch mehr : Den Startwert für den Fehlerterm änderte er von
+
+f=m also f=2*dy in f=m-dx also
+
+f=2*dy-dx 	(er hat ihn also um DX verändert!)
+
+Warum ? Nun weil dann der Schwellwert sich von 0,5 auf 0 !!! Ändert ! 
+Zwar muß nun auch nicht mehr 1 abgezogen werden wenn der Schwellwert 
+überschritten wurde (fehler=fehler-1) sondern nun muß 2*dx abgezogen werden !
+aber auch das ist logisch : vorher : -1     (0,5*2 = 1)
+			    nun    : -2*dx  (um dx verändert*2 = 2*dx)
+
+Um etwas mehr Klarheit (ja noch mehr!) zu schaffen hier ein neues Listing :
+
+	dx=x2-x1
+	dy=y2-y1
+	
+	ddx=dx*2
+	ddy=dy*2
+
+	fehler=ddy-dx
+
+	for I=0 to dx
+	  plot x1,y1
+          if fehler>0 then
+             fehler=fehler-ddx
+             y1=y1+1
+          end
+          fehler=fehler+ddy
+          x1=x1+1
+        next i
+
+Das sieht doch schon viel besser aus ! Wir benutzten nur noch INTEGER-werte
+und Verglichen mit 0 !
+Aber die Lösung ist noch immer für ein Mathematisches-koordinatenkreuz und auch
+hier nur für den 1. Oktanten !
+Wie die Sache für die Oktanten 1,4,5,8 aussieht kann man sich denken
+(Spiegelung and x und/oder y achse)
+Hier muß lediglich für y1=y1+1 <=> y1=y1-1 und/oder für x1=x1+1 <=> x1=x1-1
+eingesetzt werden.
+Für die Übrigen Oktanten 2,3,6,7 müssen dagegen lediglich X und Y vertauscht 
+werden. (sowie deren deltas ect.)
+
+Hier nun ein 'fertiger' BRESENHAM-LINIEN-ALGORITHMUS für alle Oktanten und
+für das Computer-koordinaten-system:
+
+
+	px=1
+	py=1
+	dx=x2-x1
+	dy=y2-y1
+
+	if dx<0 then dx=-dx:px=-1   	'spiegelung an x
+	if dy<0 then dy=-dy:py=-1	'spiegelung an y
+	
+	ddx=dx*2
+	ddy=dy*2
+
+	if dx>dy then			'oktant 1/4/5/8
+	  fehler=ddy-dx
+          for i=0 to dx
+            plot x1,y1
+            if fehler>0 then
+               y1=y1+py
+               fehler=fehler-ddx
+            end
+            fehler=fehler+ddy
+            x1=x1+px
+          next i
+          exit
+ 	else				'oktant 2/3/6/7
+	  fehler=ddx-dy
+	  for i=0 to dy
+	    plot x1,y1
+	    if fehler>0 then
+	       x1=x1+px
+	       fehler=fehler-ddy
+            end
+            fehler=fehler+ddx
+            y1=y1+py
+          next i
+	end
+
+
+Diese Routiene kann man ja mal in Assembler umsetzten !
+
+Wie du dann sicher bemerkst braucht der Kram jetzt schon ne ganze Menge 
+Register genaugenommen (bei meinem ersten try) alle ! und das ist SCHLECHT!
+Aber auch hiergegen ist ein Kraut gewachsen ! Und damit ich nicht warten
+muß bis du selber drauf kommst sag ich's lieber gleich :
+
+Errinern wir uns nochmal welche 8 Möglichkeiten es für eine Linie gibt
+(oktanten) :
+                          3 2
+			4     1
+ 			   +
+			5     8
+			  6 7
+
+
+Nun könnte man meinen das eine Linie die von + nach 3 geht (also im 3.okt
+liegt) doch genauso aussieht wie eine die von + nach 7 geht (also im 7.okt
+liegt) und das ist auch richtig denn um eine Linie vom 3. in den 7. oktanten
+zu bringen genügt es die Start und die End-koordinaten zu vertauschen.
+(dasselbe gilt für 4/8 5/1 ect...)
+
+Man könnte sich also entweder die oktanten 5/6/7/8 oder die oktanten
+3/4/5/6 sparen wenn man die Linie gegebenenfalls 'umdreht' und damit spart
+man entweder PY oder PX je nachdem in welchem Fall (X oder Y spiegelung)
+ein 'umdrehen' der Linie stattfinden soll.
+Um immer Linien in den Oktanten 2/1/8/7 (immer steigende x-koordinaten)
+zu erhalten müßte man also lediglich schreiben:
+
+	cmp.w	d0,d2		;x1 und x2 vergleichen
+	bge.s	.ok		;x2 >= x1 ? ja dann
+	exg	d0,d2		;x1 und x2 vertauschen
+	exg	d1,d3		;y1 und y2 vertauschen
+.ok:
+
+Warum gerade dieser Fall sehr nützlich sein kann erkläre ich dir später.
+Aber selber denken schadet ja nicht -also warum könnte es beim punktesetzten
+gut sein wenn man immer nur ein bit nach rechts gehen muß (und evl nach oben).
+
+Nun aber erstmal zu einer anderen Optimierungsmöglichkeit (viele gibt es 
+nicht mehr): noch einmal eine kurze übersicht in Basic :
+	.
+	.
+	Plot...
+	If fehler=0 ....   -A
+	  y+...
+          fehler-...
+        end...
+	fehler+....	   -B
+	x+...
+	.
+	.
+Der Vergliche (A),in Assembler ein TST, kann entfallen wenn ... na kommste 
+drauf ?..... wenn man die Routiene so umstellt :
+
+	Plot...
+	fehler+....	   -B
+	if fehler=0 ....   -A
+	  y+....
+	  fehler-...
+	.
+	.
+	.
+
+Richtig ! einfach die fehleraddition(B) schon etwas früher machen ! Das 
+schadet nicht da die Addition ja sowieso ausgefürt werden müßte....
+Denn nun steht in Assembler inetwa dies ....
+
+	ADD.W	Dx,Dy
+	TST.W	Dy
+	BLE.s	.....	;<=0 ?
+
+Da aber : MERKEN : Nach einem Schreibzugriff auf ein Datenregister sind die
+		   Flags so gesetzt als hätte man danach ein CMP.x #0,Dy
+		   gemacht.!!
+Also ist das TST in diesem Fall überflüssig und es bleibt nur noch folgendes
+übrig :
+	ADD.W	Dx,Dy
+	BLE.s	....	;<=0 ?
+
+Und schon haben wir einen Befehl gespart ! Was meinst du ? Nicht viel ?
+Einerseits hast du Recht ein TST braucht gerade soviel Zeit wie ein NOP,nämlich
+4 Zyklen aber das sind bei einer Linie über einen Loresschirm :
+(eine rasterzeile hat 228 zyklen)
+
+	(320*4)/228 = 5.6 RASTERZEILEN !!		
+
+Also bringt uns dieses lächerliche TST schon bei 45 langen Linien EINE FRAME !!!!
+MERKE: DIE WICHTIGKEIT EINES BEFEHLS STEIGT LINEAR MIT ANZAHL DER DURCHLÄUFE
+Darum sind auch Plotroutienen die vorher noch alle Register retten beim
+Linienzeichnen ABSOLUT TÖTLICH !
+
+Aber ich vermute das war euch auch schon klar...
+
+Die BRESENHAM-ROUTIENE die uns jetzt zur Verfügung steht ist schon sehr gut
+und kann nur noch auf einen Spezialfall hin optimiert werden also gut 
+aufbewahren! denn anstelle von Punktesetzten werden noch viele andere nette
+Dinge treten.....
+
+Trotzdem möchte ich hier noch einmal kurz zeigen wie man denn nun am SCHNELLSTEN
+einfache Processorlinien ziehen kann.
+Die 68000 user müssen hier wesentlich mehr arbeiten als die '68020 oder höher'-
+Coder.Es kann aber auch für solche (68020'er) interissant sein:
+
+Also zunächst eine normale 68000 Punktsetzroutiene
+
+					;d0/d1 - position
+					;A4    - mulutab
+					;A6    - screenpointer
+
+	move.w	d0,d2			;xpos retten
+	lsr.w	#3,d2			;xhardpos (x/8)
+	add.w	d1,d1			;für mulutab
+	add.w	(a4,d1.w),d2		;(x/8)+(y*40)=offset
+	not.b	d0
+	bset	d0,(a6,d2.w)		;set the dot !
+
+Eine schnellere Möglichkeit einen beliebigen Punkt zu setzten gibt es auf einem
+A500 nicht ?! Mir ist jedenfalls keine bekannt ! Der Nachteil ist nur hier
+werden 3 Register verunstaltet und die wollen alle gerettet sein....
+Außerdem sind das noch viel zu viele Befehle die bei jedem Punkt ausgeführt
+werden müssen ! (siehe TST-rechnung)
+
+Also wenn wir den weiter oben gezeigten Trick einsetzten um immer nur das
+bit rechts neben dem letzten setzten zu müssen (nur oktanten 2/1/8/7) also
+bei jedem punkt x+1 dann gibt das doch schon viele neue ideen ....
+Man könnte z.B eine Liste anlegen die alle bits enthält und bei jedem Punkt
+Das nächste Muster aus der Liste holen und es dann in die Plane odern :
+or.b (a0)+ oder sowas..
+Aber noch schneller und noch cleverer geht es mit dem folgenden Trick :
+(Der is übrigens nich von mir ! aber trotzdem prima!)
+
+Nehmen wir an wir würden den Punkt wie folgt setzten können :
+
+	BSET	d0,(a6)
+
+Und d0 würde auf 7 stehen also im aktuellen byte ganz links (8tes bit) dann
+bräuchten wir jetzt nur ein
+
+	SUBQ	#1,d0
+
+Um einen Pixel nach rechts zu kommen (7tes bit) ! Prima ! Aber leider klappt 
+das nur bis D0 auf 0 steht (1tes bit) danach käme D0=-1 und das wäre MIST ! 
+Aber in diesem Fall müsste man nur D0 wieder auf 7 setzten und ein byte nach 
+rechts gehen, was mit einem :
+
+	MOVEQ	#7,d0
+	ADDQ.L	#1,a6
+
+In kürzester Zeit getan wäre ! Und ob D0 negativ geworden ist läßt sich ja auch
+ganz einfach feststellen (BMI.s x) also eigentlich müsste das doch möglich
+sein ....
+
+Also machen wir eine erste skizze in Assembler ! Sagen wir wir haben das
+startbit ermittelt und in D4 abgelegt sowie das startbyte in A0
+Außerdem haben wir :	  ¯¯				     ¯¯
+			
+Fehler	-D0
+ddx	-D1
+ddy	-D2
+i	-D5 (counter für länge der linie)
+
+
+Dann könnten wir (für den ersten oktanten) schreiben :
+
+	bra.s	.loop
+.loop1:					;Schleife mit sprung ins nächste byte
+	moveq	#7,d4			
+	addq.l	#1,a0
+.loop:					;Normale schleife
+	bset	d4,(a0)			;punkt setzen
+	add.w	d1,d0			;fehler=fehler+ddx
+	ble.s	.NoUP			;fehler<=0 ? ja dann
+	sub.w	d2,d0			;fehler=fehler-ddy
+	lea	-40(a0),a0		;eine Zeile rauf
+.NoUP:
+	subq.w	#1,d4			;ein bit nach rechts
+	
+So erstmal bis hier denn nun folgt ein auf den ersten Blick nur schwer zu
+schluckender Schritt ! Aber ich zeig ihn euch erstmal .. bitte nicht sofort
+verzweifeln....
+
+	dbmi	d5,.loop		;normal
+	dbpl	d5,.loop1		;wenn negative-flag gesetzt
+	rts
+	
+Ja ja,da staunt der jenige der von DBcc bisher nur Dbra kannte ! aber was
+tut diese wahnwitzige Befehlskombination ? 
+
+Nun der DBMI befehl testet 2 Sachen gleichzeitig : ob ein überlauf ins 
+nächste Byte stattgefunden hat (d4 negativ) und ob die linie schon zuende
+ist (d5=$ffff) !
+Falls also der [subq.w #1,d4] das N-bit gesetzt hat (negative) wird der
+DBMI befehl übergangen ! Aber es wird auch nicht eins von D5 abgezogen wie
+es normalerweise beim DBcc durchlauf geschieht.
+Darum hätten wir ein Problem wenn gleichzeitig ein Überlauf und das Linien-ende
+eintreten würden.
+Aber verfolgen wir den oben angesprochenen Fall weiter :
+
+Das N-bit ist also gesetzt und D5 ist noch nicht 0
+Der DBMI-befehl wird also übersprungen ! das DBPL jedoch würde nur übersprungen
+wenn das N-bit nicht gesetzt ist - es wird also ausgeführt ! 
+und prüft daraufhin ob D5 schon 0 ist ! ist es nicht wird es um 1 decremiert
+und es wird nach loop1 gesprungen , wo das nächste byte angesteuert wird und
+dann geht es (ohen sprung!) in die normale Loop über.
+
+Alle anderen fälle kannste dir selber erklären ! (solltest du auch!) Aber
+es funktioniert immer !
+Genial was ? Schneller kann man wirklich keine Linien auf einem 68000 ziehen!
+Oder doch ? Wer weiß vielleicht kommt ja ein neuer Bresenham und zeigt uns
+wie blöd wir doch alle waren.....
+
+
+
+
+
+Hallo der Nächste schöne Tag ist vorbei und ich dachte mir, da ich zum coden
+schon zu Müde bin schreib ich meinen WerkSchop weiter also denn....
+(1:06 Uhr - hab gerade Al.Mundy auf VOX gesehen )
+
+
+
+
+Also gut jetzt nocheinmal in den Bresenham endspurt ! Ich werde dir jetzt eine
+mit allen mir bekannten Tricks Optimierte Bresenham-routiene vorstellen.
+Diesmal sogar in Assembler, so richtig zu ausschneiden und freuen.
+Aber vorher will ich dir noch einen Letzten Trick offenbaren :
+
+Mit Hilfe einer weiteren kleinen Umstellung der Terme (hab kein Bock die 
+jetzt auch noch bis ins letzte zu erklären) kann man sich noch ein paar
+Befehle sparen.
+Also hier zum Verstehen nocheinmal in Basic für den ersten Oktanten :
+
+	dx=x2-x1
+	dy=y2-y1
+	
+	e=-dx/2
+	for i=0 to dx
+	  plot x1,y1
+	  e=e+dy
+	  if e>0 then
+   	    e=e-dx
+	    y=y+1
+	  end
+	  x=x+1
+	next
+
+Wie das Kennerauge sofor sieht müssen die Deltas (dx & dy) nun nicht mehr
+mit zwei multipliziert werden ! Dafür ist die Berechnung von e nun etwas
+anders aber wen störts....
+Aber nu in assembler :
+
+	
+***************************************************************************
+LINE:					;bresenhamgrundstock d0/d1-d2/d3
+	
+	cmp.w	d1,d3			;y1<y2 ?
+	bge.s	.ok
+	exg	d0,d2			;immer y1<y2 ! nicht ideal zum punkte
+	exg	d1,d3			;setzten aber für andere dinge....
+.ok:
+	
+	;a0 hier aus d1 berechnen 	;je nach anwendung verschieden.....
+
+	moveq	#1,d7			;px (richtung für x)
+
+	sub.w	d1,d3			;dy=y2-y1   	[d3=dy]
+	sub.w	d0,d2			;dx=x2-x1   	[d2=dx]
+	bpl.s	.ok2			;dx positiv ?
+	neg.w	d2			;|dx|
+	moveq	#-1,d7			;px (richtung für x)
+.ok2:
+	move.w	d2,d4
+	lsr.w	#1,d4			;e=dx/2
+	neg.w	d4			;e=-dx/2	[d4=e]
+
+	cmp.w	d2,d3			;dx>dy ?
+	bgt.s	.okt2
+	move.w	d2,d1			;i=dx		[d1=i]
+
+.loop1:
+	;Do something; xpos=d0 ypos=a0	;plot or calc or ......
+	
+	add.w	d3,d4			;e=e+dy
+	ble.s	.2
+	addq.l	#....,a0		;y=y+1
+	sub.w	d2,d4			;e=e-dx
+.2:	add.w	d7,d0			;x=x+1 oder x=x-1 je nach d7
+	dbra	d1,.loop1
+	rts
+.okt2:
+	move.w	d3,d1			;i=dy		[d1=i]
+.loop2:
+	;Do something; xpos=d0 ypos=a0	;plot or calc or ......
+
+	addq.l	#....,a0		;y=y+1
+	add.w	d2,d4			;e=e+dx
+	ble.s	.3
+	sub.w	d3,d4			;e=e-dy
+	add.w	d7,d0			;x=x+1 oder x=x-1 je nach d7
+.3:	dbra	d1,.loop2
+	rts
+**************************************************************************
+
+
+So da hast du eine nach bestem Wissen optimierte Bresenham-linien-berechnungs-
+routiene ! Auf ihr werde ich im ganzen weitern Verlauf aufbauen ! Also 
+versteh sie oder lass es bleiben ich hab jedenfalls mein Bestes gegeben 
+(das war nich viel,ich weiß) dir die Entstehung und die vielen(?) kleinen
+Tricks beim Bresenham näher zu bringen.
+
+
+
+Die 3. DIMENSION
+----------------
+
+
+Ja jetzt wirds spannend (knister) ein klein weing hast du ja schon erfahren
+über 'die Welt des richtigen Vectors' aber jetzt gehts richtig ab !
+Es gibt so viel zu sagen über -3D- das ich,damit dieser Workshop nicht (noch)
+endlos(er) wird,einiges vorraussetzten bzw. anderen Workshops überlassen
+muß :
+	- DU bekommst keinen Haarausfall vor Schreck wenn du das Wort
+	  Vector hörts !
+	- DU kannst 3punkte in weniger als 3frames um alle 3achsen rotieren
+	  (wie matrix-rotation funktionert siehe HowToCode7.0)
+	- DU köntest dir eventuell vorstellen das es möglich wäre anstelle
+	  von wilden blitt-orgien auch mal den Processor zu bemühen.
+	  (Blitter   : dumm & schnell)
+	  (Processor : clever & nur schnell mit dem richtigen Prinzip)
+
+Alles in Butter ? (HA ! Das bringt mich auf eine Idee - Alles in Vector ? 
+wäre doch 'n prima Wahlspruch für uns Vectorfans?????)
+
+				
+				PENCIL-VECTOR
+			    ---------------------
+
+Nun ..... höre gut zu mein Sohn ...... der Hohepriester wird dich nun .....
+in die Geheimnisse des .... (gong,lichtblitz) PENCIL's (rauch) einweihen....
+Nun (warum fange ich eigentlich immer mit 'nun' an ? das ist doch kein Stil
+also nochmal) :
+Also Pencil hat zwei große Vorteile : Er ist Aufwendig und Langsam .
+Ha alle gelacht ? Na,ja dann eben nicht ! Jetzt aber im Ärnst :
+
+Pencil ist relativ einfach zu Coden und sieht ganz nett aus. Außerdem ist er
+noch nicht so 'abgedroschen' wie der gute alte blaue BlitterCube .
+Aber wie funktioniert Pencil eigentlich ?
+
+Pencil beruht auf dem folgendem Prinzip : 
+
+	-Man baut jede Fläche für sich zeilenweise auf .
+	-Jede Zeile wird dabei mit einem Frabverlauf von hell nach dunkel
+	 (oder andersrum) gefüllt abhänig von ihrer länge.
+
+Dadurch ergibt sich das in der ganzen Fläche später ein Verlauf zu sehen ist.
+Da sich die Zeilenlängen andauernd ändern ergibt sich ein schönes Muster :
+-pencil vector,eben- ,das einen sogar an eine Beistiftzeichnung errinern
+kann (na ja! sagt da der Kust-LK-schüler).
+
+Nun zur Umsetztung : Also die Farbverläufe werden natürlich abgelegt ! Für
+jede mögliche Breite einen (0-319) das geht in einenm kleinen IFF-picture 
+von 320x320 pixel größe.
+Diese müssen dann nur an die richtige Position geblittet werden und schwubs
+steht da ein wunderprächtiger Pencilvector...
+
+Dabei stoßen wir auf ein sehr bewegendes Problem : Wir müssen für jede Zeile
+einer Fläche ihre Breite und die X-position des ersten pixels kennen um
+den entsprechenden Verlauf an die richtige Stelle blitten zu können !
+
+Oder nochmal anders gesagt:
+Für jede Zeile einer Fläche werden eine X-start und eine X-end koordinate
+benötigt.
+
+Dies ist das erste Problem des Processor-Vectors ! Wenn es dir gelingen sollte
+es zu lösen dann hast du den Rest schon in der Tasche !
+Also viel glück ich hau mir/mich jetzt ne runde aufs Ohr. (1:54 uhr)
+
+
+
+............................ DENK PAUSE ...................................
+
+
+
+
+Hallo und weiter gehts (9:11:93 23:59) mit dem ULTIMATIVEN WORKSHOP !
+Meine 100 Bilder Animation ist inzwischen übrigens fertig...
+RAYTRACING RULES!
+
+Ich hoffe du hast dir mittlerweile Gedanken gemacht über das erste und 
+vielleicht wichtigste Problem bei Processorvector!
+Aber ich will trotzdem versuchen alles zu erklären..
+Also zunächst betrachten wir nur 1ne fläche und der Einfachheit halber
+ein Dreieck (MERKE:PROBLEM VEREINFACHEN/TEILEN) wir benötigen nun für jede
+Zeile der Fläche 2 Informationen (Xstart und Xstop).
+
+Damit wir diese Verwalten können benötigen wir zunächst einen Speicherblock
+der für jede Zeile 2 words parat hält(also 256*4 bytes).
+Der Grundgedanke ist nun ganz einfach : Um an die Xstart/stop Werte zu 
+kommen benutzen wir einen einfachen Linien-algorithmus,nur anstelle von 
+Punktsetzten speichern wir für jede Zeile den aktuellen X-wert.
+Bei nur einer Linie von 0/0 nach 6/6 würde dann dies in unserem Buffer
+stehen (wenn wir immer als XStart speichern).
+
+BUFFER:	0,0		;Zeile 1	 *
+	1,0		;Zeile 2	  *
+	2,0		;Zeile 3           * 
+	3,0		;Zeile 4            *	<-Die Linie !
+	4,0		;Zeile 5             *
+	5,0		;Zeile 6              *
+	6,0		;zeile 7               *
+
+In jeder Zeile hatte sich die Xposition also um eins erhöht.
+Soweit ist das alles kein Prob. aber die Schwierigkeit liegt nun darin
+festzustellen ob es sich bei den Xkoordinaten um Xstart oder Xstop-werte
+handelt! 
+Eine Möglichkeit diese Entscheidung zu Treffe ist nun z.b diese :
+Wenn der Xstart-wert einer Zeile schon beschrieben wurde dann ist ein
+weiterer Wert in dieser Zeile als Xstop zu werten,da nur 2 punkte in einer 
+Zeile pro Fläche möglich sind (dreieck/viereck und regelm. vieleck).
+
+Dieses Verfahren setzt aber vorraus,daß die Tabelle inialisiert wurde
+z.B mit -1 und das bei jedem Punkt eine Überprüfung durchgeführt werden
+kann. Dies ist zwar Technisch kein Problem aber RasterZeit.....
+Trotzdem basierten meine ersten Pencilroutienen auf diesem Prinzip.
+
+Eine andere Möglichkeit die entscheidung Xstart/Xstop zu Treffen ist diese
+[die ich von Arne B. habe (echt genial!) ] : 
+Er hat festgestellt,daß immer eine ganze Linie entweder nur Xstart oder
+nur Xstop-werte liefert und so der Vergleich bei jedem Punkt entfallen kann.
+Aber was noch viel genialer ist : Er fand heraus,daß wenn man die Linien
+in zwei Gruppen einteilt,nämlich in (A) von unten nach oben verlaufende und
+(B) von oben nach unten verlaufende man bei einem Wechsel von A nach B (oder
+B nach A) einfach auch zwischen Xstart und Xstop wechseln muß.
+Also nochmal langsam :
+	-Die erste Linie ist immer Xstart 
+	 Ihr 'Typ' (A oder B) wird gerettet und die Spalte (Xstart/Xstop)
+  	 in der sie vermerkt wurde (hier immer Xstart) ebenfalls.
+
+	-Ist die nächste Linie vom selben Typ so wird sie in der selben
+	 spalte (Xstart/Xstop) vermerkt.
+
+	-Ist sie jedoch vom jeweils anderen Typ so wird auch die jeweils
+	 andere Spalte benutzt.
+
+Mit Hilfe dieses Prinzips erhält man eine komplette Liste von Xstart/Xstop-
+werten für beliebige convexe (2punkte pro Zeile) Flächen.
+Man muß nun lediglich noch daran denken die Minimale und Maximale Y-position
+der Fläche mitzuspeichern um später nicht den ganzen Buffer abarbeiten zu
+müssen.
+Bedenkt man dies so braucht man den Buffer auch nicht wieder zu Clearen ect.
+
+
+So das solle erstmal reichen für Heute ich bin nu echt zu müde...0:34
+
+
+Ha ! viele Wochen sind vergangen und ich binn wieder ausgeschlafen.
+Da Du jetzt das Prinzip des Pencilvectors kennst (Buffer,Xstart,Xstop...)
+kennst können wir langsam weitermachen...
+
+			
+		            PROCESSOR VECTOR
+			-----------------------
+
+Processor Vector unterscheidet sich von 'veraltetem' Blittervector nur dadurch,
+daß die Flächen mit dem ... ja mit dem Processor gezeichnet werden.
+Aber warum mit dem processor ? wo der Blitter doch so geniale Funktionen für
+Vector bereitstellt ? 
+Tja auf einem A500 mit 68000 (für den der Blitter ja eigentlich entwickelt
+wurde) ist Blittervector auch noch immer das Beste und schnellste (der beste
+Blittervector-Coder ist unbestritten TaiPan/Complex).
+Aber wenn man Inconvexe (überschneidene Flächen) Objekte macht , und das 
+sollte man immer da sie wesentlich schöner sind, wird der Blitter auf
+einmal entsätzlich langsam (in buffer zeichnen , diesen kopieren und löschen...).
+Wenn man nun noch einen schnellen 32bit Processor (ab 68020) besitzt, was
+in allen noch verkaufen Amigas der fall ist, und wolmöglich noch echten
+32bit FAST-ram dann ist der Processor um einen Faktor schneller als der gute
+alte Blitter.
+
+Beim Blitter-vector hatte man immer zunächst die Umrandungs-Linien gezeichnet
+un diese dann gefüllt. Dies funktioniert natürlich auch mit dem Processor
+ist aber ENTSÄTZLICH langsam.
+Aber wenn man weiß wie Pencil funktioniert kann man schnell daruf kommen wie
+man Flächen auch Zeichnen kann (ohne punkte und füllen).
+
+Man berechnet zuerst wieder eine Tabelle mit Xstart und Xstop werten für
+jede Zeile der Fläche und anstelle diese Linien dann untereinander zu
+blitten (wie beim Pencil) MOVEt man sie mit dem Processor in den Speicher.
+Dies hat den gewaltigen Vorteil das man keinen Buffer benötigt, weil ja
+die darunter Liegenden Flächen automatisch überschrieben werden außerdem
+wird nun jeder Punkt einer Fläche nun nur EINMAL gezeichnet - mit dem 
+Blitter wurden die Randpunkte ZWEIMAL gezeichnet (einmal beim Linienziehen
+und einmal beim Füllen).
+
+
+Die wichtigste Routiene beim Processorvector ist also die die eine Zeile
+von Xstart bis Xstop mit einer Farbe ausfüllt.
+Hier macht es sich wieder schmerzlich bemerkbar das der Amiga noch keinen
+ChunkyPixel-mode hat (1byte=1pixel) weil in unserem Planarem-System (1bit=
+1pixel) mit den normalen Assembler befehlen das Arbeiten enorm verlangsamt
+wird.(wir müssen für 256farben 8mal auf den Speicher zugreifen - die
+Chunky Leute nur 1mal !!!)
+
+
+Obwohl sich Processorvector eigentlich nicht so richtig auf einem 68000
+lohnt überlegen wir uns doch zunächst einmal wie die FillLine routiene 
+hier aussehen müsste.
+
+Die Aufgabenstellung ist klar : Eine waagerechte Linie (----) Zeichnen
+                                von Pixel A bis Pixel B
+
+Man könnte hierzu natürlich eine Schleife durchlaufen, die alle einzelnen
+Punkte plottet. Aber wenn man bedenkt das die FillLine routiene schon bei 
+einem einfachen Würfen bis zu 600 mal durchlaufen wird sollte man doch
+nach einer etwas schnelleren Lösung suchen...
+
+such...such...such...
+
+Also wenn die Linie immer an durch 16 teilbaren Positionen beginnen würde
+und immer eine durch 16 teilbare Länge hätte so könne man sie mit
+
+ move.w   #-1,(a0)+
+
+in den Speicher kopieren. Um etwas konkreter werden zu können gehen wir
+zunächst von einem Beispiel aus : von pixel 0 an eine 64 Pixel lange linie.
+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+
+Und nun etwas schwerer : von 0 eine 73 Pixel lange Linie (73=64+9).
+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+ move.w   #-1,(a0)+
+ or.w	  #%1111111110000000,(a0)+
+
+Was haben wir gemacht ? Nun ganz einfach die 64 pixel ließen sich blitz 
+schnell zeichnen un die überschüssigen 9 Pixel wurden einfach noch hinten
+drangehängt.
+Dies mußte mit OR geschehen da ein Move die letzten 7 bit hinter der Zeile
+gelöscht hätte (7 nullbits am ende) was aber nicht erwünscht war.
+
+Und nun richtig kompliziert : von 12 eine 73 pixel lange Linie.
+
+ or.w	#%00000000000011111,(a0)+
+ move.w	#-1,(a0)+
+ move.w	#-1,(a0)+
+ move.w	#-1,(a0)+
+ move.w	#-1,(a0)+
+ or.w	#%11110000000000000,(a0)+
+
+Das Kennerauge hat natürlich sofort erkannt das wir nun auch am Anfang 
+einige Bits 'von hand' gesetzt haben um auf von 12 auf die nächste durch
+16 teilbare Position zu kommen.
+Die nächste durch 16 teilbare Position nach 12 ist ---- ja bravo ! 16 !.
+also müssen die ersten 4 bits (von 12 bis 16) mittels or gesetzt werden.
+Danach können wir aber wieder mit Mega-speed (16pixel pro befehl) weiter-
+machen. Bis wir 69 Pixel haben (5+4*16) weil nun ein weiteres Word schon 
+zuviel des guten wäre (wir wollen ja nur 73pix) also setzten wir den
+Rest (73-69=4) wieder 'von Hand'.
+
+Aus diesen Beispielen hast du (hoffentlich) folgendes Prinizip erkannt :
+Für Linien die länger als 16 pixel sind ....
+
+Zuerst setzt man die Bits die notwendig sind um auf eine durch 16 teilbare
+Position zu kommen (ein OR.W) dann schreibt man munter 16ner Blöcke (Move.w)
+bis (länge-anfangspixel)/16 Pixel gesetzt wurden und schließlich klebt
+man hinten noch einige bits (wenn jetzt noch welche fehlen) dran (ein OR.w).
+Die beiden OR-schritte können hierbei natürlich manchmal wegfallen - dann
+nämlich wenn die Linie schon auf einer 16ner Position liegt oder sowieso
+eine durch 16 teilbare Länge hat.
+
+Mit diesem Prinzip hat man eine 16bit-LineFill Routiene. 16bit deshalb weil
+man in jedem Fall ein Word schreibt (das schnellste auf einem 68000).
+Würde man die oben beschriebene Methode des Plots-in-der-schleife benutzen
+hätte man eine 1bit-Linefill routien (klingt doch schon viel langsamer !?).
+
+Auf einem 68020 wird man eine 32bit Routiene benutzen (es ist ja nicht umsonst 
+ein 32bit Processor) also eine die nur mit Longwords arbeitet aber dies auf
+einem 68000 zu versuchen ist zwecklos,da ein Longword hier genau doppelt
+so langsam in den Speicher geschrieben wird wie zwei words - das ganze bringt
+also (aufm 68000) keinen Vorteil.
+
+Doch bevor es an die Praxis geht müssen wir noch etwas weiter denken denn
+unser Prinzip hat bis jetzt noch eine Einschränkung : Es können nur Linien
+die länger als 16pixel sind verarbeitet werden.
+
+Um auch kleinere Linien zuzulassen gibt es nun prinizipell zwei möglichkeiten :
+
+1. Man schreibt eine Extra routiene die auf kleine Linien spezialisiert ist.
+   In diesem Fall muß man aber bei jeder Linie überprüfen ob sie klein oder
+   groß (<16 ? >16 ?) ist.
+
+2. Man verändert den Algorithmus etwas (Ich zeig dir gleich wie) um auch
+   kleiner Linien bis hin zu einzelnen Punkten zuzulassen.
+   In diesem Fall wird aber bei kleinen Linien etwas zuviel gearbeitet.
+
+Die 2te Möglichkeit besteht darin, daß man immer einen 16ner Block mehr moved
+als eigentlich nötig (easy, da DBRA sowieso immer einen durchlauf zuviel
+macht) und dann die Zuviel gezeichneten Pixel mittels AND wieder löscht.
+Um also zwei Pixel an Position 7 zu Zeichen :
+
+ or.w	#%0000001111111111,(a0)+	;nächste 16ner position
+					;keine 16ner blöcke (negative anzahl)
+ and.w  #%0000001100000000,-2(a0)	;end korrektur.
+
+Diese Methode benötigt aber eine Kompliziertere Berechnung und außerdem müßte
+man nachdem man gelöscht hat den alten inhalt wieder einkopieren...
+Das Ganze ist zwar verbreitet aber es ist Langsamer und Komplizierter als
+wenn man eine eigene Rotiene für mini Linien (<16) schreibt.
+
+Also zur ersten Möglichkeit zurück ...
+Eine Routiene für maximal 16 pixel lange Linien könnte so aussehen :
+
+ d0 - first pix
+ d1 - length
+
+ShortLine:
+	moveq	#-1,d2		;Alle bits setzen
+	lsr.l	d1,d2		;'length' bits löschen (ganz links werden nullbits eingeschoben)
+	not.l	d2		;nur noch 'length' bits gesetzt
+	move.w	d0,d1		;retten
+	and.w	#$f,d0		
+	lsr.l	d0,d2		;an richtige Position shiften.
+
+	lsr.w	#4,d1		;Ziel offset berechnen
+	add.w	d1,d1	
+
+	or.l	d2,(a6,d1.w)	;Linie zeichnen
+	rts
+
+Diese Routiene berechnet das benötigte Bitmuster am Anfang indem sie zuerst
+alle bits setzt (moveq	#-1)
+
+ %1111111111111111 1111111111111111
+
+Dann das ganze um 'länge' nach rechts verschiebt (z.B um 6) :
+
+ %0000001111111111 1111111111111111
+
+Dadurch entstehen 'länge'-nullbits,welche nun durch ein not.l invertiert
+werden:
+
+ %1111110000000000 0000000000000000
+
+Schwubs schon haben wir ein Longword in dem 'länge'-bits am anfang gesetzt
+sind. Dieses wird nun nur noch für die richtige Position zurechgeshiftet
+(z.b für pos 13):
+
+ %0000000000000111 1110000000000000
+
+Und das sich ergebene Muster kann nun prima ge OR't werden...
+
+Diese Lösung ist vielleicht nicht die schnelste aber sie ist schneller als
+eine Routiene bei der Alle Breiten an Allen Positionen (1KB an precalc-daten)
+bereits vorberechnet sind und nur noch ausgelesen werden müssen!
+Warum ? Nun weil zu mauslesen komplizierte 'speicher-befehle' benötigt werden
+z.B : move.w (a0,d1.w),(a1,d2.w) und ähnliches...
+Außerdem müssen Offsets berechnet werden oder aus Tabellen gelesen werden,so
+daß das Ganze in einer wilden Moverei ausartet.
+Während unsere Lösung nur mit 'kleinen' Befehlen arbeitet sie ist sozusagen
+leicher zu verdauen,flinker,optimierter,kürzer und schwerer zu schreiben...
+Aber genau dieser Stil, nämlich der mit vielen kleinen ADD's,NOT's,LSx's
+die alle nur mit Datenregistern operieren ist der Stil der Zukunft !
+
+Eine damit programmierte Routiene wird auf einem 68020 4mal schneller als
+auf einem 68000,währen eine tabellen-Move-orgie nur 1.8mal schneller wird.
+(Alle angaben sind wie immer ohne Gegenwehr.)
+Und für die Träumer die sich schon an RISC's coden sehen ist der Vorteil
+noch gewaltiger denn dort gibt es bekanntlich keinen Move mehr...
+(Um einen wert von a nach b im Speicher zu kopieren werden min 2befehle
+benötigt und bei move.w (a0)+,4(a1,d3.w*4) sind es 9 Befehle!!!)
+
+
+Um dir noch einmal das nötige Rüstzeug für den richtigen Weg zu geben - 
+hier einige kurze Tips zu Bitfriemel-befehlen :
+
+ OR    - gleich schnell wie Add. Verändert nur in Quelle gesetzte bits.
+	 Alles was in quelle gesetzt ist nachher auch im Ziel gesetzt.
+
+ AND   - Läßt nur die Bits im Ziel stehen für die in der Quelle 1 steht.
+	 Ein and.w #15,dx bewirkt das dx immer zwischen 0 und 15 liegt.
+	 es ermöglicht ein wundervolles clipping!! (-2 => 13) MERKEN !!!
+	 (dieser Trick geht nur mit 1,3,7,15,31,63,127,255....)
+
+ EOR   - invertiert die Bits die in der Quelle gesetzt sind.
+         ein Eor.w #15,dx wirkt wie ein x=15-x ! MERKEN !!!
+
+ NOT   - invertiert alle bits im Ziel! Nicht verwechseln mit NEG !!!!!
+
+ NEG   - wirkt wie 1-(x+1) - Negiert also das ziel ! Verändert NICHT nur
+         das höchste bit,obwohl nur das als Sign-bit gilt!
+
+ LSx   - Kennt wohl jeder. schiebt IMMER nullbits nach.
+	 Das Bit was zuletzt links oder rechts rausgeschoben wurde landet
+	 im X-Flag.
+
+ ASx   - Schiebt bei Negativen Zahlen unter umständen auch 1bits nach
+	 Vorzeichenrichtig shiften. (langsamer als die LSx befehle)
+	 Auch ASx läd rausgeschobene Bits ins X-Flag.
+
+ ADD   - Keine Angst ich halte dich nicht für so bescheuert das du ADD
+	 nicht kapiert hast aber ich wolte doch noch kurz erwähnt haben
+	 das bei einem Überlauf ($ffffffff+$1=0) das X-Flag gesetzt wird!!
+
+ ADDX  - Führt eine ganz normale Addition aus UND addiert danach noch
+ 	 1 wenn das X-flag gesetzt war (dies wird dabei gelöscht).
+
+ EXT.L - Erweitert ein Register auf Longword. Wenn das untere word positiv
+ 	 ist wird das obere word gelöscht! ist es dagegen negativ so wird
+	 das obere word mit $ffff gefüllt. Manchmal kann man diesen Befehl
+	 trickreich einsetzten um das obere Word zu löschen ohen zu Swappen.
+
+ EXT.w - Wie Ext.l nur das alles ne Nummer kleiner abläuft :
+	 Ist das untere Byte positiv wird das obere byte gelöscht und sonst
+	 mit $ff gefüllt. Das Hiword wird bei diesem Befehl nicht beachtet.
+	 Um also ein Byte auf Longword zu Extenden ist folgendes notwendig:
+		ext.w	d0
+		ext.l	d0
+	 Auf dem >=68020 Processoren gibt es für diese Kombination den befehl
+		extb.l  d0
+
+
+Wenn man nur Datenregister benutzt ist jeder diese Befehle gleich schnell.
+Und benötigt genau 1word im Speicher.
+Wenn möglich sollten also immer zwei davon hintereinander stehen bevor der
+nächste 'komplexe' Befehl kommt,damit dieser an einer Longword-addresse
+steht (nur bei 680x0 x>1).
+
+
+Noch ein kleiner Trick am Rande : Will man den Rest einer ganzzahldivision
+durch eine zweierpotenz X erhalten so kann man schreiben :
+	DIVU	#x,d0
+	CLR.W	d0
+	SWAP	d0
+Es geht aber viel schneller mit :
+	AND.W	#x-1,d0
+
+Im Moment denkst du vielleicht noch wan baruch ich so'n sch... aber ich
+hab nur die befehle und Tricks erklärt die ich später noch dringent brauche...
+
+Also gut ! Bevor wir das Kapitel PROCESSOR-VECTOR abschließen werden wir
+uns noch eine Richtige 16bitFillLine Routiene basteln,die nach strich und
+faden für 68000 optimiert ist (die 68020 version sollst du selbst machen!!!).
+
+
+
+OPTIMIEREN DURCH LONGWORD GRENZEN,CACHING und SCHLEIFEN 
+-------------------------------------------------------
+
+
+Um eine Optimierte Routiene zu schreiben hier etwas darüber wie bestimmte
+Processoren ihren Code am liebsten haben...
+
+68000:	Möglichst viel Vorberechnen (solange der Bitfriemelweg nicht schneller
+	ist). Pipelineing der Copros benutzen (blitter,proc,blitter,proc...).
+	Möglichst wenig und kurz springen! Keine Dbra-schleifen bei Zeitkritischen
+	routienen - lieber den Code x-mal hintereinander Kopieren...
+	Für viele Einzellfälle eigene Routienen von Programm aus erzeugen 
+	oder Modifizieren (selbstmodifikation)...
+	Aber das alles ist schnee von gestern,kalter kaffee,kalter schnee,
+        kaffe von gestern ...
+        
+
+68010:  Einzige verbesserung : 3word-schleifen wie z.B :
+	.loop:	move.w	(a0)+,(a1)+
+		dbra	d0,.loop
+	Werden erkannt und stark beschleunigt ! Sonst ist alles beim alten
+	geblieben. (abgesehen von MMU-unterstützung des 010)...
+	Wer sich freiwillig einen 68010 einbauen läßt gehört bestraft !
+
+
+68020:  Geniale neuerungen ! Echte 32 Bit !!! Das heißt Longwords werden nicht
+	langsamer behandelt als words! Sehr nützliche Befehle um mit Tabellen
+	zu arbeiten (a0,d0.w*2) kostet KEINE Zeit mehr als (a0,d0.w)!
+	Neue Befehle um mit Bits zu friemeln (BitFields).
+	Verbesserte Architektur (ist bei gleicher Taktfrequenz schneller).
+	WaitState-handling : Wenn vor einem Schreibzugriff auf das Chip-Mem
+	wartezyklen eingelegt werden müssen so wird hier schon der nächste
+	Befehl abgearbeitet sofern er nich auf das ergebnis des letzten
+	angewiesen ist.
+	Befehle die an LongwordAddressen (durch 4 teilbar) liegen werden
+	DOPPELT(!) so schnell ausgeführt.
+	Instruction-Cache (reicht um auch kompliziertere Schleifen stark zu
+	beschleunigen)
+	FPU-unterstützung. eine FPU kann direkt angesprochen werden (auf einem
+	68000 war eine emulation zwischengeschaltet).
+
+	Auf diesem Processor sollten Dbraschleifen verwendet werden.
+	Auf den Blitter größtenteils verzichtet werden.
+	Auf cache-optimierung geachtet werden. 
+	Das Fastmem kan bedenkenlos benutzt werden,wohingegen das Chipmem
+	nur mit der Kneifzange angefasst werden sollte.
+	Füll den 256er Chache ! (Ist ja nicht besonders schwer..)
+
+	
+
+68030:	Nur hardware optimierungen. Jetzt auch Daten-Cache ! sowie größerer
+	Instruction-Cache.
+	Eigentlich eine 'schönere' (schnellere) Version des 68020.
+	Ein 50mhz 68030 mit 50mhz 68882 ist auf dem Amiga immernoch das
+	schnellste was es gibt. (wenn das Gerücht um 80mhz 68040 nicht
+	stimmt)
+
+	Das Fastmem ist hier manchmal langsamer,was aber durch den Daten
+	Cache aufgefangen werden sollte ?!
+	Viele 'kleine' Befehle bei wenigen Speicherzugriffen lautet hier
+	das Motto
+
+
+68040:	Hammerharte Architektur! Das Caching-system wurde stark erweitert
+	und verbessert(?) aber es setzt eine genaue Kentniss der vielen
+	Cache-Modi vorraus wenn man hier erfolgreich Coden will...
+	Es wurde direkt eine FPU integriert, die noch schneller ist als
+	die 68882. 
+	Der 68040 is genial für Raytracing! benötigt aber ein sehr genaues
+	studium der Processor-Architektur und eine gute Kenntnins der
+	Speicherbausteile (Burst?,WaitStates?,Zugriffszeit?...).
+
+	Der 68040 ist beim ansprechen des CHIPrams nur geringfügig schneller
+	als ich beim eintippen der Zahl in einen Taschenrechner...
+	Da auch das Fastmem meist nicht als 72ns RAM ausgeliefert wird
+	kann man hier nur sagen : Finger weg vom RAM und nutzt den Cache !
+
+
+PS:	NO RISC NO FUN !
+
+
+Du mußt dich also entscheiden für welchen Processor du Programmierst...
+Obwohl die eigentliche Entscheidung nur zwichen
+68000,68010  und  68020,68030,68030  fällt.
+Wir wollen hier aber nochmal den guten(?) alten(!) 68000 bedienen .....
+
+
+ALSO LOS :
+
+Die Routiene soll eine horizontale Linie zeichnen von PixelA nach PixelB.
+Also kriegen wir zwei X-Positionen Übergeben sowie ein Register das uns
+auf den Anfang der richtigen Zeile Zeigt...
+
+Fillline:				;d0-pos1   d1-pos2
+					;a6-linestart (ypos)
+	cmp.w	d0,d1
+	bge.s	.ok
+	exg	d0,d1
+.ok:	sub.w	d0,d1			;d0-start d1-length
+
+Das war noch ganz easy, aus den Koordinaten erstmal Start und Länge machen.
+
+	cmp.w	#16,d1
+	ble	ShortLine
+
+Hier springen wir gleich raus wenns sich um eine 'kleine' Linie handelt.
+Jetzt müssen wir das word ermittlen in dem unsere Linie anfängt ..
+
+	move.w	d0,d2			;save start
+	lsr.w	#4,d0			;start/16 (welches word)
+	add.w	d0,d0			;start*2  (wieder in bytes umrechnen)
+	lea	(a6,d0.w),a0		;START ADR
+
+Die nächste Frage die uns Quält ist : bei welchen Pixel innerhalb dieses 
+Words fängt unsere Linie denn nun genau an ? also ...
+
+	and.w	#$f,d2			;rest von Start/16
+	
+Wenn nun das ergebnis beispielsweise 6 wäre so wüßten wir das wir ,um bis
+zur nächsten Wordgrenze zu füllen, %000000111111111 odern müßten.
+(NACHVOLLZIEHEN !)
+Wäre das Ergebnis 15 so käme %0000000000000001 ins aktuelle word und bei
+0 wäre es dann gleich %1111111111111111..
+Werte unter 0 und über 15 sind nach dem AND #$F natürlich nicht mehr möglich.
+eine Möglichkeit das Muster zu erzeugen wäre :
+	moveq	#-1,dx
+	lsr.w	d2,dx		
+eine Andere Möglichkeit wäre das Auslesen aus einer Tabelle :
+	add.w	d2,d2
+	move.w	.bits(pc,d2.w),d0	;Die Tabelle darf nicht weit weg
+					 liegen (in code integrieren)!
+Die Tabelle würde in diesem Fall so aussehen :
+.Bits:	dc.w	%1111111111111111  	
+	dc.w	%0111111111111111  
+	dc.w	%0011111111111111  
+	dc.w	%0001111111111111  
+	dc.w	%0000111111111111  
+	dc.w	%0000011111111111
+	dc.w	%0000001111111111
+	dc.w	%0000000111111111
+	dc.w	%0000000011111111
+	dc.w	%0000000001111111
+	dc.w	%0000000000111111
+	dc.w	%0000000000011111
+	dc.w	%0000000000001111
+	dc.w	%0000000000000111
+	dc.w	%0000000000000011
+	dc.w	%0000000000000001
+Fast jeder arbeitet mit einer solchen SHIFT-TABELLE aber ich weiß nicht ob
+die BIT-Friemel-lösung nicht schneller ist ?! Da dies aber ein 68000 ist
+ist die Vorberechnung vermutlich schneller.
+
+Wir haben also den Richtigen Pattern um auf die nächste Word-Position zu
+kommen in D0 !	Also worauf warten wir noch ? rein damit ...
+
+	or.w	d0,(a0)+		;Write Begin bytes
+
+Jetzt ist aber die Frage : Wieviele Bits habe ich denn damit schon gesetzt?
+denn dieser Wert muß nun ja von der Länge abgezogen werden !
+Nun die Formel für dies wäre ja ganz einfach : 16 - PosInWord = PixDone !
+Aber wie kriegen wird das raus....
+
+..Ja richtig wir wenden einen Trick der Bit-Friemler an : EOR.W #$f,D2
+(wenn du das nicht verstehst dann hast du etwas weiter oben nicht richtig
+aufgepasst!) Probiers im Notfall auf einem Zettel aus : Wenn du bei einer
+Zahl zwischen 0 und 15 die unteren 4 Bit ($f=%1111) invertierst so erhälst
+du y=15-x... toll was ...
+
+Die Sache hat nur einen Haken : (ich gehe davon aus das wir den weg mit Tabelle
+benutzen) wir haben PosInWord vorhin mit 2multipliziert um den Offset auf die
+Tabelle zu erhalten. Noch ein Grund auf die Tabelle zu verzichten ?? aber
+für Optimierungen bis du zuständig...
+Also da ein Retten des Registers vorher und zurückholen nachher 2 Befehle
+benötigt ist wohl das wieder durch zwei teilen am schnellsten...
+
+	lsr.w	#1,d2
+	eor.w	#$f,d2			;how many bits done ?
+
+Diese Zahl ziehen wir jetzt von der Länge ab...
+
+	sub.w	d2,d1
+	beq	.done
+
+und verschwinden gleich wenn das schon alles war (länge=0). Wenn nicht so
+müssen wir nun berechnen wie viele Words wir füllen können bevor das ende
+der Linie erreicht ist (restlänge/16).
+
+	move.w	d1,d2			;copy length
+	lsr.w	#4,d2			;how many words can we fill ?
+	beq	.rest
+	moveq	#-1,d3			;fill pattern
+
+Wenn schon ein ganzes word zuviel ist (restlänge/16=0) dann springen wir
+gleich in den Teil der die letzten bits 'von Hand' dranklebt.
+Wenn nicht kommt nun der TURBO-FILL Teil der Routiene ! Das beschreiben des
+Musters könnte übrigens auch außerhalb der Routiene geschehen um noch einige
+Cyclen zu spaaren...
+Doch bevor es weitergeht kommt noch ein Trick :
+
+Normalerweise würde nun eine DBRA-Schleife folgen die die Words in den 
+Speicher presst. Das bedeutet aber das nach jedem Move einmal der Dbra-
+Befehl ausgeführt werden muß ! Auf einem 68020 ist dies nicht weiter 
+Tragisch da schon beim zweiten Durchlauf Move&Dbra im Cahce stehen und
+auch ein 68010 könnte (bei 1er plane) die Schleife erkennen aber ein
+68000 wird einfach nur langsamer ...
+
+Deshalb greifen wir hier zu einem besonderem Trick :
+(gefunden in Trexx-Warrior) 
+Wir überlegen uns das die Schleife maximal 20 mal durchlaufen werden kann
+(320/16=20) und legen demendsprechend folgenden Code ab :
+	
+.fill:	move.w	d3,(a0)+		;20ig mal...
+	move.w	d3,(a0)+
+	move.w	d3,(a0)+
+	move.w	d3,(a0)+
+	move.w	d3,(a0)+
+	.
+	.
+	.
+Und wenn wir nun 20ig moves benötigen springen wir einfach zu .fill !
+Wenn wir aber nur 19 moves benötigen springen wir nach .fill+2 !
+bei 18 moves nach .fill+4 uns so weiter....  
+Soweit so gut, um den Offset zu berechnen wäre aber nun ein y=20-x fällig
+und das geht NICHT mit eor.w #20,dx ! (20 ist keine 2erpotenz-1)
+Man könnte einfach 31 Moves anlegen und dann den Offset über EOR.W #31,dx 
+berechnen ! aber platzsparender ist es das den Karren vor den Ochsen zu
+spannen oder das Pferd von hinten aufzuzäumen ...
+Was ich sagen will ist das Label '.fill:' Einfach hinter das letzte Move
+zu setzten weill dann : bei 0 moves zu .fill gejumpt werden kann.
+			bei 1 move zu .fill-2
+			bei 15 moves zu .fill-(15*2)...
+Der Offset Läßt sich also einfach durch y=-x*2 berechnen...
+
+	add.w	d2,d2
+	neg.w	d2
+	jmp	.fill(pc,d2.w)		;instead of dbra !
+
+3 Befehle Am Anfang anstelle von einem Dbra nach jedem Move ...
+Diese Technik kann auch einem 68020 unter Umständen zu noch mehr Speed
+verhelfen da 20 Moves noch locker in den Cache passen ! Aber bei 8Planes
+wäre ein Dbra dann auf jeden Fall schneller...
+
+Mit diesem Turbo-Fill (Bei JEDEM Befehl 16pixel !!!) haben wir die SCHNELLSTE
+MÖGLICHE 16BitFill-loop die es gibt ! da wirklich bei jedem befehl 16bit
+gefüllt werden...
+Nach dieser Turbo-schleife kommt nun noch etwas berechnung um die rest-bits
+zu setzten :
+
+.rest:
+	and.w	#$f,d1			;rest bits...
+	beq.s	.done
+
+Aus der Länge berechnen wir nun den Teil der nicht mehr ganz in ein word
+passte und falls es einen solchen nicht gibt (länge/16 teilbar) gehts
+gleich raus..
+Um die rest-bits zu setzten verwenden wir nun wieder eine Tabelle..
+
+	add.w	d1,d1
+	move.w	bits2(pc,d1.w),d0
+	or.w	d0,(a0)
+.done:
+	rts
+
+Nicht besonders kompliziert ,was ? Die Tabelle muß hier allerding genau
+invertiert sein im vergleich zu ersten Shift-Tabelle :
+
+Bits2:	dc.w	%0000000000000000
+	dc.w	%1000000000000000
+	dc.w	%1100000000000000
+	dc.w	%1110000000000000
+	dc.w	%1111000000000000
+	dc.w	%1111100000000000
+	dc.w	%1111110000000000
+	dc.w	%1111111000000000
+	dc.w	%1111111100000000
+	dc.w	%1111111110000000
+	dc.w	%1111111111000000
+	dc.w	%1111111111100000
+	dc.w	%1111111111110000
+	dc.w	%1111111111111000
+	dc.w	%1111111111111100
+	dc.w	%1111111111111110
+
+Vergiß bitte nicht (zur 68020 beschleunigung) nach jeder Tabelle ein 
+	CNOP  0,4
+zu setzten damit der danachfolgende Code wieder an einer durch 4 Teilbaren
+Addresse liegt ! Die Tabellen müssen mitten im Code stehen weil sie nicht
+weiter als 256 vom (pc,xx) entfernd stehen dürfen ! Und über PC müssen
+sie angesprochen werden weil wir sonst nicht genügend Addressregister
+frei haben um den Turbofill auch mit 3/4/5 Bitplanes durchzuziehen !
+
+Aber es fehlt noch ein Teil ! Der ShortLine-Algorithmus ! Ich habe zwar
+weiter oben schon einen Vorgestellt aber hier kommt ein besserer und zu
+dieser (getesteten) Routiene passender :
+
+ShortLine:				;do-firstpix d1-length
+	moveq	#1,d2
+	ror.l	d2,d2
+	asr.l	d1,d2
+
+Na ? Hast du verstanden wie hier das BitMuster erstellt wurde ?? Das Ziel
+war kalr : Es sollten D1 bits am oberen rand des Highword von d2 gesetzt
+werden.
+	moveq	#1,d2		->   d2=%0000000000000000 0000000000000001
+	ror.l	d2,d2		->   d2=%1000000000000000 0000000000000000
+					Diese zahl ist NEGATIV ! weil bit 31
+	{=ror.l #1,d2}			gesetzt ! (erinner dich : Sign-bit ist immer das höchste...)
+
+	asr.l	d1,d2		
+
+Schiebt nun links 1bits nach weil die Zahl ja negativ ist ! Ob dieses Prinzip
+schneller ist als das weiter oben vorgestellte weiß ich nicht, ich wollte
+nur deine Bit-Friemel Kentnisse noch einmal erproben.
+Also weiter im Text...
+
+	move.w	d0,d1		;xpos retten
+	and.w	#$f,d0		;pos im word
+	lsr.l	d0,d2		;bitmuster auf diese Pos shiften
+
+	lsr.w	#4,d1		;word offset berechnen
+	add.w	d1,d1
+	
+	or.l	d2,(a6,d1.w)	;Muster schreiben
+	rts
+
+Tja das wars auch schon um alles vom Punkt zur 15pix langen Linie an jeder
+Xposition zu zeichnen. Und zusammen mit der Turbo-Fill routiene kann jede
+waagerechte Linie von 1-320 pixel länge an jeder Xposition mit high-speed 
+gefüllt werden.
+Um dies auch in vielen bunten Farben zu ermöglichen sollte man einfach
+neben A0 auch noch A1/A2/A3/A4... als Plane pointer verwenden und dann
+FÜR JEDE FARBE EINE ROUTIENE ! schreiben. Nur so kann die hohe Geschwindigkeit
+auch bei 16Farben beibehalten werden...
+
+68020 User haben es etwas einfacher beim ShortLine :
+(Und das sogar bei 32bitFillLine)
+
+Shortline:
+	bfset	(a6){d0:d1}
+	rts
+
+Also geh und hol dir einen ordentlichen processor....
+
+
+So - damit wär das Kapitel ProcessorVector fast durch ! Und dein Stil und
+dein Wissen hat sich hoffentlich schon etwas verbessert/erweitert..
+Sprachlich jedenfalls können wir schon ziemlich auftrumpfen :
+
+	Damals : Ich mach BlitterLines und Füll die dann...
+	Heute  : Wir verwenden einen Integer-Bresenham und eine 16bit
+		 Turbo-Fill routiene um Polygone zu zeichnen.
+
+	Damals : Das geht ziemlich schnell..
+	Heute  : Wir erreichen eine maximale Effizienz von 4pixel pro 
+		 Taktzyklus (ohne Cache...)
+
+	Damals : Ich Bearbeite immer ein Rechteck um die Fläche und das
+		 bei 16farben inconvex 12 mal...
+	Heute  : kein Punkt außerhalb der Fläche wird angesprochen und
+		 jeder Punkt innerhalb wird auch bei inconvexen Flächen
+		 nur 1mal pro Fläche bearbeitet.
+
+Also Du hast jetzt das KNOW HOW und das KNOW WHY ! Einige dich jetzt noch
+mit dir selbst über das KNOW WHEN und ab gehts...
+
+
+
+SHADING
+----------
+
+Ja langsam haben wir genug Rüstzeug zusammen um tiefer einzusteigen ...
+Es gibt viele Arten von Shading mit tollen Namen wie :
+PHONG-SHADE,GOURAUD-SHADE,FLAT-SHADE,METAL-SHADE,ENVIRONMENT-SHADE...
+All diese Namen stehen für Beleuchtungmodelle. Jedes davon stellt einen
+anderen Kompromiß zwischen Geschwindigkeit,Realismus und Aufwand dar.
+Ihnen allen liegt ein Algorithmus zugrunde der für einen Punkt im Raum
+(x,y,z) dessen Helligkeit berechnet wenn sich an einer anderen Stelle des
+Raumes eine Lichtquelle (lx,ly,lz) befindet.
+Diesen Grundalgorithmus kann man auf mehrere Lichtquellen ausdehnen (helligkeit
+durch L1 PLUS helligkeit von L2 ... =gesamt helligkeit des Punktes) und
+man kann auch Farbige Lichtquellen unterstützen wenn man anstelle von einer
+mit drei Helligkeiten (rot,grün,blau) arbeitet (dies macht nur bei mehreren
+Lichquellen sinn).
+
+Dieser Algorithmus ist eigentlich der Winkel des Lichtstrahls zur Fläche.
+Um diesen jedoch zu berechnen benötigen wir zunächst einen Vector der
+die Lage der Fläche im Raum beschreibt ! Dafür werden wir einen Normal-
+Vector (Steht senkrecht auf der fläche) verwenden der beim rotieren der
+Fläche entsprechend mitrotiert wird.
+
+Zur erstellung des Normalvectors :
+
+ xa=px2-px1   (differenzvector zwischen Punkt1 und 2 der Fläche)
+ ya=py2-py1
+ za=pz2-pz1
+
+ xb=px3-px1   (differenzvector zwischen Punkt1 und 3 der Fläche)
+ yb=py3-py1
+ zb=pz3-pz1
+
+ xn=ya*zb-za*yb
+ yn=za*xb-xa*zb
+ zn=xa*yb-ya*xb
+
+Die Bildung der Differenz-vectoren dürfte dir von der Hidden-Line-Berechnung
+her bekannt sein und die eigentliche Normalvector berechnung ist auch keine
+große Hürde,da sie ja nur einmal am Anfang gemacht wird und dann immer
+mitrotiert wird...
+
+Dann wird der Winkel noch durch das Skalarprodukt ermittelt :
+
+	S=| xn*lx+yn*ly+zn*lz |
+
+Aber Du merkst sicher schon langsam das dieser Weg nicht der schnellste ist
+vorallem benötigt man noch eine Wurzel um die Länge des Vectors zu ermitteln
+weil man das SkalarProdukt nämlich durch diese Teilen muß um einen Wert
+zwischen 0-1 zu erhalten egal wie groß die Fläche ist...
+
+Also kommen wir zu vereinfachungen die das ganze auch für nicht FPU-besitzer
+erreichbar machen ...
+
+Die verbreitste und vermutlich auch beste faked-lightsource berechnung ist
+die die einfach den Durchschnitt aller Z-Koordinaten einer Fläche durch
+einen Wert Teilt und diesen dann als Helligkeit interpretiert...
+Das Problem hierbei ist das der Wert durch den Dividiert wird so gewählt
+werden muß das auch ganz nahe und ganz weit entfernte Flächen noch richtig
+behandelt werden.
+Aber das ist uns egal ! Z-koords=Lightsource ! solche Formeln lieben Coder...
+(Bei der Verwendung von Zkoords liegt die Lichtquelle übrigens immer auf
+der Nase des Betrachters...)
+
+Ok du kannst nun die Helligkeit eines Punktes ermitteln also weiter mit den
+Shading-prinzipien...
+
+FLAT-SHADING
+------------
+Ist lediglich ein cooler Name für das was der Volksmund Light-Sourcing
+nennt und bezeichnet das Verfahren bei dem eine gesamte Fläche mit ihrer
+Durchschnittlichen helligkeit gefüllt wird...
+
+GOURAUD-SHADING
+---------------
+Ist die schnellste Shading Variante ! Hier wird für jeden Eckpunkt einer
+Fläche die helligkeit ermittelt und alle dazischen liegenden Punkte werden
+endsprechend Interpoliert.
+Wie dieses Verfahren zu realisieren ist wird später noch genauer besprochen...
+
+METAL-SHADING
+-------------
+Ist ein erweitertes Gouraud-shading das auch einen Glanzpunkt auf der Fläche
+ermöglicht. Es wird berechnet ob der Lichtstrahl die Fläche schneidet (steil
+darauftrift) und wenn ja wird dieser Schnittpunkt berechnet.
+Daraufhin wird die Fläche zerlegt x-----x       x-x---x
+				  |     |  __\  | |   |
+				  | ·   |    /  x-X---x
+				  |     |       | |   |
+				  x-----x       x-x---x
+                                   
+                                 x=Eckpunkte ·=Lichtstrahlzentrum 
+Die sich ergebenen 4 Flächen werden nun Gouraud-geshadet. Wobei der neu
+eingefügte Eckpunkt (X) eine extrem helle Farbe hat die die normale Fläche
+sonst nicht erreichen kann. (z.B: Lichpunkt=weiß  Fläche max=hell blau)
+Dieses Shading sieht schon sehr echt aus und kann auf den ersten Blick wie
+Raytracing wirken.
+Ist aber auch ziemlich langsam weil bei mehreren Lichtquellen die Fläche
+rekrusiv mehrmals zerteilt werden muß.
+
+PHONG-SHADING
+-------------
+Ist vermutlich von jemandem entwickelt worden,der sich um die Zeit keine 
+Gedanken zu machen brauchte. Denn hier wird wirklich für jeden Punkt der
+Fläche die helligkeit einzeln berechnet.
+Ein aufwendiges Verfahren das allerdings auch Rauhe Oberflächen und
+Bump-Mapping ermöglicht obwohl es immernoch schneller ist als eine ScanLine-
+Berechnung.
+
+ENVIRONMENT-SHADING
+-------------------
+Wurde bisher nur in CALIGARI verwendet und bezeichnet ein Verfahren um aus
+Phong-shading fast echtes Raytracing zu machen indem auch Spiegelungen
+ermöglicht werden. Hierzu wird, wenn die Spiegelung eines Schachfeldes in
+einem Würfel erzeugt werden soll, zunächst das Schachfeld 'aus sicht der
+spiegelnden Fläche' gezeichnet und dieses Bild wird dann als TextureMap
+auf die Spiegelnde Fläche gelegt...
+Interissanter aber bei vielen Spiegelungen sehr komplizierter und rekrusiver
+Algorithmus. Das verfahren ist fast immer wesentlich schneller als wirkliches
+Ray-tracing aber fast nie schneller als Scan-Line-berechnung.
+
+
+
+WIR SHADEN SELBST...
+---------------------
+Es hat einige Zeit gedauert bis ich mir klar war darüber wie Gouraud-shading
+zu Programmieren ist aber denk erst mal selbst nach...
+
+Aufgabe:  Man hat ein Viereck (z.B Saloförmig) und man hat die Helligkeit
+	  jedes Eckpunktes (die sind alle verschieden weil das viereck
+	  völlig quer im Raum liegt) und nun soll daraus eine Fläche werden
+	  deren Helligkeit für jeden Punkt genau so festgelegt wird das ein
+	  sauberer Übergang zwischen den 4 festen Werten entsteht.
+
+ 
+                     { NA KANNST DU's OHNE TIP ?? }
+   
+
+
+Tips:	  Man kann die Fläche trotzdem aus waagerechten Linien aufbauen.
+	  Was barucht man nun außer den xstart und xstop werten ?
+	  Wie kann man das bekommen ?
+
+
+Lösung:
+
+Während wir das 'Outline'-der Fläche berechnen (xstart&xstop für jede zeile)
+speichern wir auch die Helligkeit am anfang und ende der Zeile mit.
+(Oder besser gesagt speichern wir die Z-Koordinate mit weil die genauer ist
+als die Helligkeit.)
+Diese können wir leicht berechnen weil wir die Helligkeit am anfang und
+am ende einer Flächen-Kante kennen.
+Also wenn wir die Linie von Punkt1 nach Punkt2 berechnen legen wir nicht
+nur für jede Zeile die X-Koordinate dieser Linie ab sondern auch die 
+Z-Koordinate. Beide Werte kommen je nachdem ob es sich bei der Linie um
+Xstart oder Xstop linie handelt in eine andere Spalte in unserem Buffer.
+
+Wir brauchen also 4 einträge pro Zeile :
+
+   Xstart | Zstart | Xstop | Zstop
+
+Wenn wir diese Daten für jede Zeile der Fläche haben können wir mit einer
+leicht veränderten FillLine routiene blitzartig eine Gouraud geshadete Fläche
+zeichnen.
+
+Um nun neben den X-koordinaten auch noch für jeden Punkt der Linie eine
+Z-koordinate zu erhalten gibt es wieder zwei Möglichkeiten :
+
+	1)  Wir schreiben einen 3D-bresenham 
+	2)  Wir erzeugen die Z-koordinate durch Festkomma-addition
+
+Ich hab mich schon an Möglichkeit 1 versucht - bin aber gescheitert und so
+wie es aussah wäre diese Lösung nicht einmal besonders schnell geworden...
+Also bleibt uns nur weg nummer 2:
+
+Wir kennen die Z-Koordinate am Anfang - Wir kennen die z-Koordinate am Ende
+und wir wissen wieviele Punkte unsere Linie lang sein wird...
+Falls das nicht ganz klar sein sollte :
+Die Länge einer Linie definiert sich in den Augen eines Mathematikers
+(spätestens seit Pythagoras) so :
+
+	l=sqr((x2-x1)²+(y2-y1)²)
+
+dank Wurzel keine besonders anziehende Formel... aber sie kann auch für
+Computersysteme nicht gelten sagt uns unsere Logik (ja tut sie das??)..
+Denn So würde für eine Linie von 0/0 nach 2/2 eine länge von 2.8284271...
+rauskommen - das kann auf dem Papier auch stimmen aber in Pixeln ist es
+völlig unmöglich einen nicht Ganzzahligen Wert als Länge zu erhalten denn
+schließlich kann die Linie keine halben oder 0.82tel Pixel benutzen...
+In der Praxis zeigt sich jedenfalls das eine Linie immer soviele Pixel hat
+wie das größere Delta der Linie (+/- eins).
+Also für Coder gilt die Formel :
+
+	l=gd
+
+Toll wie wir das gekürzt haben... Also sosehr ich auch Pixeltreppen verab-
+scheue sie haben auch ihre Vorteile !
+
+Also wir kennen den Start Z-Wert und wir wissen das wir bei jedem Punkt
+ (zend-zstart)/länge
+addieren müssen um die nächste Z-koordinate zu erhalten.
+Das führt uns zu einem weiteren Randproblem : den Fließkomma-zahlen
+
+
+DIE WELT HINTER DEM KOMMA...
+------------------------------
+
+Zahlen mit Nachkommastellen ohne FPU zu verwalten und mit ihnen zu rechnen
+ist nicht ganz einfach - genaugenommen sogar Unmöglich.
+An diesem Punkt könnten wir nun sagen : Schade,dann geb' ich eben auf....
+
+Aber, ja richtig das tun wir nicht weil wir ja alle wissen das es sowas wie
+Fließkommazahlen gibt. Will man 124.78 in einer Computerverständlichen
+Form speichern so wird beim Fließkommaverfahren 12478*10^-2 abgelegt
+(Genauer es werden 12478 und -2 abgelegt).
+Die Zahl wird also so umgerechnet das alle Nachkommastellen wegfallen,
+die zahl aber Mathematisch noch die Selbe ist.
+Dieses Prinzip (WERT&EXPONENT) ist zwar sehr Flexibel und sehr genau aber
+es ist auch sehr Langsam (!) und damit für uns uninterissant...
+
+Viel besser ist für uns das Festkomma-system :
+Auf dieses System wird auch jeder Coder früher oder später selber kommen.
+Was würdest du tun um aus 124.78 eine Zahl ohne Komma zu machen ??
+Richtig du würdest sie mit 100 Multiplizieren. Das hätte nur den Nachteil
+das eben nur Zahlen mit maximal 2 Nachkommastellen ohne Verlust in ganzzahlen 
+umgewandelt werden könnten.
+Aber das Prinzip ist klar :
+Um eine Zahl zur Ganzzahl zu machen wird sie mit einem Faktor F multipliziert
+
+  integer=real*f
+
+Soweit Kinderleicht.. Um nun zwei Kommazahlen zu addieren könnte man so
+vorgehen :
+
+   1.34 + 3.66 = 5
+
+   f = 100
+   1.34*f = 134
+   3.66*f = 366
+
+   134+366 = 500
+
+   500/f = 5
+
+Also addition (und auch subtraktionen) sind auch mit den Selbstgemachten
+Ganzzahlen ohne Probleme möglich. Um später wieder den Vorkommateil des
+Ergebinsses zu erhalten genügt eine Division durch F.
+
+Doch ein Fakor von 100 oder 1000 wie wir Menschen ihn lieben ist für Computer
+geradezu Abscheulich ! Prbieren wir es deshalb mit einem Computer mäßigen
+Faktor von f=256.
+
+   1.34*f = 343 (gerundet)
+   3.66*f = 937 (gerundet)
+
+   343+937 = 1280
+
+   1280/f = 5
+
+Es Funktioniert also mit jedem beliebigen F - obwohl wir schon hier sehen :
+Um so kleiner der Faktor umso Ungenauer das Ergebnis (weniger Nachkomma-
+stellen). Bei einem Faktor von 256 hätten wir 8bit für die Nachkommastellen
+reserviert. Wenn man nur Zahlen zwischen 0..1 darstellen will könnte man
+sogar 15bit für die Nachkommastellen benutzen (f=32768) ohne der Word-
+bereich verlassen zu müssen.
+
+Doch nun zum ersten Haken :
+
+  1.34*3.66 = 4.9044
+
+  f=100
+
+  134*366 = 49044
+
+  49044/f = 490.44 ! (nicht = 4.9044)
+
+Überascht ? Nein ! Das konnte natürlich nicht klappen ! Wir sehen also :
+Bei einer Multiplikation im FestKomma-system darf entweder nur eine der
+beiden (zu multiplizierenden) Zahlen mit F erweitert sein ODER es muß
+danach durch F dividiert werden um nicht doppelt mit F erweitert zu haben.
+Ein Beispiel :
+
+  1.34*3.66 = 4.9044
+
+f=1024
+
+  1.34*f = 1372
+  3.66*f = 3748
+
+ 1372*3748/f = 5021
+
+  5021/f = 5 (gerundet)
+
+Es Funktioniert also ! Aber schon hier macht sich die Ungenauigkeit bemerkbar
+denn selbst mit F=1024 (10bit) kommt nur 4.91... anstelle von 5 raus !
+In der Praxis wird sich aber selten ein Problem stellen, daß es verlangt
+zwei Zahlen mit Nachkommastellen zu Multiplizieren. Meist hat nur eine
+von beiden Stellen hinter dem Komma und in diesem fall genügt folgender 
+Weg :
+
+     a=1.23   b=7
+
+     y=a*b
+
+     y*f=(a*f)*b
+
+Ok, ich glaube die Multiplikation hat auch jeder geschnallt - also weiter...
+Bei der Division verhält es sich ähnlich :
+
+    y=a/b
+
+    y*f=(a*f)/b
+
+Also auch hier : NUR eine der Zahlen mit F erweitern - haben beide 
+Nachkommastellen so muß eine doppelt erweitert werden y*f=(a*f*f)/(b*f)
+
+Ok, das rechnen in der Welt der Festkommazahlen ist also geklärt - auf zur
+Praxis...
+
+Sagen wir wir haben zwei INTEGER-Werte (a und b) die Dividiert werden sollen.
+Das Ergebnis soll aber MIT Nachkommastellen gerettet werden. Also :
+
+	a=a*f  (eine mit f erweitern)
+	c=a/b  (c ist nun Festkommazahl mit dem Ergebnis von a/b)
+
+Wenn dieses Ergebnis nun auf eine Andere Zahl addiert werden soll so muß dies
+auch eine Festkomma-Zahl sein, sie muß also auch mit F erweitert sein.
+
+Kommen wir nun zum interissanten Teil, nämlich der Implementation in 
+Assembler. Wir wollen eine möglichst hohe Genauigkeit also verwenden wir
+16bit für den Nachkommateil und 16bit für den Vorkommateil - genau ein
+Longword (so ein Zufall)...
+ACHTUNG : Dies geht nur auf >=68020 Processoren !!! Wegen DIVU.L !!!!
+
+
+Um eine 'normale' Zahl in eine 'erweiterte' Zahl umzuwandeln genügt nun
+ein :
+
+	SWAP	Dx   (*65536)
+	CLR.w	Dx   (Nachkommateil (lowword) löschen)
+
+Sofern das Highword der 'normalen' Zahl garantiert 0 war kann das CLR auch
+entfallen. Aus einer 'erweiterten' Zahl wird auch blitzartig wieder eine
+'normale' :
+
+	SWAP	Dx   (/65536)
+	EXT.l	Dx	
+
+Auch hier kann das EXT entfallen wen einem das High-word egal ist oder wenn
+man die zahl später wieder zurückwandeln will - die Nachkommastellen so zu 
+sagen im Highword zwischenspeichert und später wieder (durch ein SWAP)
+die alte Festkomma-zahl herzustellen.
+Wenn man sich also mühe gibt so muß man immer nur SWAPpen um vom einen in
+den Anderen Zustand zu wechseln ! Man sollte aber höllisch aufpassen wann
+wo was im High- und was im Low- word steht ! Durch das viele Swappen kann
+man leicht die Übersicht verlieren.
+
+Ein Beispiel :
+
+ (4/18)*16+0.5 = 4
+
+V=vorkomma N=nachkomma
+
+	moveq	#4,d0		;a=4    (high=$0000 Low=$0004)  0/V
+	moveq	#18,d1		;b=18   (high=$0000 Low=$0012)  0/V
+	
+	swap	d0		;a=4*f  (high=$0004 Low=$0000)  V/N 
+
+	divs.l	d1,d0		;a=a/b  (high=$0000 Low=$38e3)  V/N 
+			
+	lsl.l	#4,d0		;a=a*16 (high=$0003 Low=$8e30)  V/N
+				;    \-nur eine der zahlen war erweitert (a)
+
+	moveq	#1,d1		;b=1    (high=$0000 Low=$0001)  0/V
+	swap	d1		;b=b*f  (high=$0001 Low=$0000)  V/N
+	lsr.l	#1,d1		;b=b/2  (high=$0000 Low=$8000)  V/N
+
+	add.l	d1,d0		;a=a+b  (high=$0004 Low=$0e30)  V/N
+	swap	d0		;a=a/f  (high=$0e30 Low=$0004)  N/V
+	
+	add.w	d0,d7		;das Ergebnis auf andere Integer Zahl addieren
+				;d7+int(a)
+
+	swap	d0		;a=a*f  (high=$0004 Low=$0e30)  V/N
+	
+	;Weiterrechnen......
+
+	swap	d0		;a=a/f  N/V
+	ext.l	d0		;       0/V
+
+Alles Klaro ? Na Prima ! Ich erkläre dir das alles so genau weil ich später
+vorraussetzen werde das du ohne Probleme überall mit Integer und Real-zahlen
+jonglieren kannst ohne dabei über ein SWAP zu stolpern...
+
+Aber es kommt noch besser - denn bisher benötigte man 2 SWAP Befehle wenn
+man (wie es später oft vorkommen wird) nur mal kurz den Vorkommateil als
+Offset benötigt so zum Beispliel :
+
+	d0 - ist erweiterter Zähler
+	d1 - ist erweiterte Zahl
+
+Loop:
+	add.l	d1,d0		;raufzählen
+	swap	d0		;integer machen
+	move.w	(a0,d0.w),d7	;als offset benutzen (nur unteres word!!!)
+	swap	d0		;wieder die alte Real-zahl...
+
+
+Diese Art des Speicher-addressierens mit Real-Zahlen werden wir bei allen
+Möglichen Gelegenheiten wiederfinden ! Darum gleich hier eine weitere
+Optimierung, die allerdings noch mehr Gehirn-verknotung erfordert :
+
+Zunächst die Idee : 
+Es wäre viel nützlicher wenn anstelle der alten aufteilung :HIGHword=Vork.
+und LOWword=Nachk. man es schaffen könnte die Zahlen so im speicher zu
+halten : HIGHword=nachk. LOWword=Vork. ! (genau umgedreht also).
+Warum dies von Vorteil ist liegt nach dem obigen Beispiel auf der Hand :
+durch ein '(a0,d0.w)' kann direkt der Vorkommateil angesprochen werden 
+ohne erst swappen zu müssen.
+
+Doch diese Art von Zahlen läßt sich nicht so einfach Addieren, weil bei
+einem 'überlauf' des Nachkommateils (highwords) nicht automatisch der
+Vorkommateil (lowword) um 1ns erhöht wird,wie dies bei der alten Aufteilung
+der Fall war.
+Aber hier hilft ein Trick :
+
+	moveq	#0,d7		;dummy register das auf Null gesetzt werden
+				;muß !
+
+	in d0 steht ein Counter im neuen system (N/V)
+	in d1 steht eine Zahl im neuen system (N/V)
+
+	add.l	d1,d0		;Addition mit Festkommazahlen im N/V-system.
+	addx.w	d7,d0		
+
+Tja, das sieht cool aus nicht ? Ich war ziemlich stolz damals auf diesen
+Einfall - bis ich bemerkte das den schon viele vor mir hatten - aber egal.
+Also wir führen eine Normale Addition aus und wenn das Highword einen
+Überlauf hatte (nachkommateil) dann wird von ADD automatisch das X-FLAG
+gesetzt ! (siehe Bit-friemel Tricks).
+Der Nächste Befehl (ADDX.w) addiert nun D7 auf D0 - was ziemlich wirkungslos
+ist weil D7 immer auf 0 steht; sinnlos also ? Nein,denn AddX prüft außerdem
+das X-Flag und addiert wenn es gesetzt ist noch 1 zusätzlich auf D0 !
+Damit wird, wenn der Nachkommateil überläuft (0.9999+0.1), automatisch der
+Vorkommateil (im LowWord) um eins erhöht.
+Nach dem ADDX ist das X-flag wieder gelöscht und es kann von neuem die
+Schleife durchlaufen werden....
+
+Wir haben also mit nur zwei befehlen zwei Festkommazahlen mit Vorkommateil
+im LOWword addiert. Effektiv bedeutet das einen Befehl gespaart im vergleich
+zur swap/add/swap methode - nicht viel ? kann sein aber das ist der Stoff 
+aus dem Rekorde sind !
+
+Eine Subtraktion funktioniert endsprechend :
+
+	sub.l	d1,d0
+	subx.w	d7,d0
+
+Nur Multiplikationen und Divisionen sind NICHT in diesem System möglich !!
+Hierzu muß mittels eines SWAP wieder in das 'alte' V/N-system umgeschaltet
+werden. Nach der Rechenoperation gehts dann mittels SWAP wieder im N/V-
+system weiter...
+
+	Um d1 zu addieren und dann durch d2 zu teilen in einer schleife :
+
+	add.l	d1,d0		;N/V-addition
+	addx.w	d7,d0
+	swap	d0		;make V/N
+	divu.l	d2,d0		;V/N-division
+	swap	d0		;make N/V
+	.
+	.
+
+Ich glaube du ahnst schon langsam wie einen swap verwirren kann...
+
+Noch etwas wirrer wird es wenn man in dem N/V-system multiplikationen durch
+Shiften durchführen will - dies ist möglich wenn man anstelle von
+
+	lsl.w	#4,d0		;normales *16
+
+den
+	
+	rol.l	#4,d0		;n/v *16
+
+Befehl verwendet. Dies ist notwendig damit die bits aus dem Nachkommateil
+richtig in den Vorkommateil übertragen werden. ACHTUNG : Bei zu großen
+Werten findet ein Überlauf im Low-word statt und aus ganz großen Werten
+werden ganz kleine... (dieser Fehler tritt aber auch bei INTEGER-werten
+auf).
+Eine Division ist auch mit shiften möglich - ist aber schneller wenn man
+mit zwei kurzen Swap's auf V/N umschaltet. Im N/V-modus wäre nämlich noch
+ein AND nötig um vom HIGH ins LOW-word geschobene Bits wieder zu eliminieren.
+
+	ror.l	#x,d0				;n/v teilen
+	and.l	#$ffff0000+($ffff>>x),d0	;korrigieren
+
+Und da ist ein normales ...
+
+	swap	d0
+	lsr.l	#x,d0
+	swap	d0
+
+... doch viel angenehmer und auch schneller !
+
+SO ! Damit genug für Heute - Genug gelernt und genug gelabert ....
+Morgen ist auch noch ein Tag (hoffe ich?!) und dann gehts weiter in meinem
+ARTIGEN und EINZIGEN - WORKSHOP ... [03:27:07]
+Ich hoffe du Träumst nicht von Bits....
+
+		{ Träum , schnarch , grins ....}
+
+	
+
+
+
+
+
+SCIENTS FICTION
+---------------
+
+Wo geht die Entwicklung hin ? Ich glaube das bald ein Computer wie folgt
+aufgebaut sein wird...
+CONSUMER VERSION
+
+	2-4 RISC cpu's mit 100mhz die alle einen parallelen FPU-teil
+	besitzen und auch untereinander daten austauschen können ohne
+	dazu den Umweg über den Speicher machen zu müssen...
+	Jede der CPU's hat einen 8mb großen onchip-cache der das gesamte
+	momentan laufende Programm aufnimmt und mit einer Pipeline an den
+	Speicher angeschlossen ist.
+
+	Multitasking währe also 1)Programm in cache 2)nächstes Programm in
+	Pipeline 3)während P1 abgearbeitet wird 4)Taskswitch(pipeline->cache)
+	5)nachstes Programm in, Pipeline.....
+	und das auf 2-4 Processoren gleichzeitig !!
+
+	Der Hauptspeicher dürfte so um die 128 MB liegen und wie auch die
+	CPU's mit einer bandbreite von 64bit Arbeiten.
+	Alle CPU's können gleichzeitig die selbe Addresse lesen ! nur wenn
+	ein schreibzugriff auf eine Addresse erfolgt wird diese für kurze
+	Zeit gelockt. 
+
+	Ein VideoChip könnte das bild aus einem 32bit-Chunky Mode generieren
+	(Ein Longword pro pixel). Wobei die unteren 24-bit als Farbdaten
+	und die oberen 8-bit als Alpha-Channel benutz werden.
+	Der Video-Chip kann auflösungen bis 2048x2048 generieren ohne unter
+	70hz Frequenz zu sinken.
+	Der VideoChip ist natürlich in der Lage direkt den Systemspeicher
+	zu addressieren - man braucht also keinen BUS wie auf PC-Systemen.
+	
+	Für die Sound-ausgabe würden wohl 12 Stimmen mit 16bit qualität
+	ausreichen, wobei natürlich auf einen Asynchronen Sound-chip
+	(wie auch im Amiga) wert gelegt werden wird um nicht selbst die
+	Samples durch die Gegend schaufeln zu müssen.
+
+	Sehr sinnvoll wäre ein 64bit breiter Parallel-anschluß um die 
+	Datenmengen zu bewältigen die bei Datenhandschuhen/Videokameras
+	anfallen. Dieser müßte über einen kleinen Puffer von 1MB an
+	den Hauptspeicher angeschlossen sein.
+	
+	Als Medium wären eigentlich nur wiederbeschreibbare CD's oder
+	ähnliches denkbar...
+	Auch DAT-Rekorder (einige Giga-Byte pro Band) könnten erschwinglich
+	werden...
+
+		
+Aber ausreichen wird weder die Rechenleistung noch die Geschwindigkeit 
+niemals... Mit den 4RISC-CPU/FPU's wäre bei 100mhz zwar ca 50hz Realtime-
+Raytracing (bei 50.000 polygonen) in den 24bit Chunky möglich - aber 50hz
+ist dann eben schon nicht mehr 1frame...
+Und auch sonst das Coden wird auch hier nicht zum Kinderspiel denn 2048x2048
+Longwords wollen erstmal berechnet sein (1342200000000 bits im vergleich zu
+den 655360 bits die wir heute beackern..) also : Hardcore-Coder werden immer
+benötigt werden und Spiele in Basic werden NIE zum Renner werden....
+Auch wenn hier in Basic 1frame (70hz) Texturemapping Städte erkundet werden
+können - wer will das schon wenn er in Assembler durch Scanline Städte mit
+Schatten,Nebel,Reflexionen ect fliegen kann ...
