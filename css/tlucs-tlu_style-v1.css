@@ -17,24 +17,31 @@
 body {
     background-color: #201f22;
 }
+
 hr {
 	border: solid 1px #43597b;
 }
+
 a:link {
 	color: #43597b;
 }
+
 a:hover {
   opacity: 0.7;
 }
+
 a:active {
   border: none;
 }
+
 a:visited {
   border: none;
 }
+
 a:link.results {
 	color: #f7f7f7;
 }
+
 .content {
     text-align: center;
     width:300px;
@@ -45,6 +52,7 @@ a:link.results {
     transform: translate(-50%, -50%);
 
 }
+
 @media screen and (min-width: 576px) {
 	img.floppy {
 		width:23%;
@@ -65,28 +73,35 @@ a:link.results {
 	width:13%;
 	}
 }
+
 .container {
 	width: 980px;
 	padding: 20px;
 }
+
 .text-center {
 	text-align: center ;
 }
+
 .pixelart {
   -ms-interpolation-mode: nearest-neighbor;
   image-rendering: pixelated;
 }
+
 h2 {
 	color: #43597b;
 }
+
 h4 {
 	font-family: 'nutopaz8regular' !important;
 	color: #f7f7f7;
 }
+
 h5 {
 	font-family: 'nutopaz8regular' !important;
 	color: #fff;
 }
+
 h6 {
 	font-family: 'nutopaz8regular' !important;
 	color: #fff;
@@ -96,6 +111,7 @@ h6 {
   background-color: #43597b;
   border: none;
 }
+
 @media screen and (max-width: 575.98px) {
 	img.tlusocial {
 	display:block;
@@ -141,14 +157,17 @@ h6 {
 	opacity: 0.7;
 	}
 }
+
 .spacer {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
 .tlucsfooterlogo {
 	padding:15px 0 0 0;
 	width:15%;
 }
+
 @media only screen and (max-width: 1200px) {
 	.tlucsfooterlogo {
 		padding:15px 0 0 0;
@@ -173,16 +192,19 @@ h6 {
 		width:20%;
 	}
 }
+
 .respyt {
 	width:100%;
 	position:relative;
 	/* margin-bottom: 30px; */
 }
+
 .respyt::before {
 	content: '';
 	display:block;
 	padding-top: 56.25%;
 }
+
 .respyt iframe {
 	border:none;
 	width:100%;
@@ -191,9 +213,20 @@ h6 {
 	top:0;
 	left:0;
 }
+
 .card {
-	border: #fff solid 2px;
+	border: #e2e6ea solid 2px;
 }
+
+.card-title {
+    margin-bottom: 0;
+}
+
+h5.cardtitle {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .archivebenchstripes {
 	border: 0px;
 	border-bottom: #fff solid 2px;
@@ -209,6 +242,7 @@ h6 {
 	background-position: right 8px;
 	background-origin: border-box;
 }
+
 .archivebenchx {
 	color: #fff;
 }
@@ -218,6 +252,7 @@ h6 {
 	background-color: rgba(255,255,255,0.0);
 	color: #fff;
 }
+
 .close {
 	background: url('../images/gfx/archivebench_close-96x96.png');
 }
@@ -229,9 +264,11 @@ h6 {
 	font-family: 'nutopaz8regular' !important;
 	color: #3C56A5;
 }
+
 .modal-dialog {
 	border: 1px #fff;
 }
+
 .modal-header {
 	padding: 0px;
 	margin: 0px;
@@ -252,19 +289,26 @@ h6 {
 	font-family: 'nutopaz8regular' !important;
 	color: #f7f7f7;
 }
+
 .archivebenchxfont h5 {
 	font-family: 'nutopaz8regular' !important;
 	color: #f7f7f7;
 }
+
 .achivebenchxfont h6 {
 	font-family: 'nutopaz8regular' !important;
 	font-size: 15px;
 	color: #f7f7f7;
 }
 
-.nutopaztext {
+.nutopazlight {
 	font-family: 'nutopaz8regular' !important;
 	color: #f7f7f7;
+}
+
+.nutopazdark {
+	font-family: 'nutopaz8regular' !important;
+	color: #b3b3b3;
 }
 
 img.iconshadow {
@@ -273,3 +317,8 @@ img.iconshadow {
       -webkit-box-shadow: 0px 5px 9px rgb(0 0 0 / 0.6);
       -khtml-box-shadow: 0px 5px 9px rgb(0 0 0 / 0.6);
 }
+
+img.flag {
+    margin-left: 7px;
+}
+
