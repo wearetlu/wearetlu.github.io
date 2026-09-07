@@ -29,27 +29,29 @@
 
 <body>
 <div>
-        <img style="width:60vw" src="images/tlu-taon-Title-DRAFT05-64c.png"
-            ontouchstart="touched=true"
-            onclick="
-            vAmigaWeb_player.samesite_file={
-                url:'https://wearetlu.github.io/node/hdf/node-v003.hdf',name:'node-v003.hdf'
-            };
-            let touch=(typeof touched!='undefined')?touched:false;touched=false;
-            let config={
-                touch:touch,
-                AROS:true,
-                wait_for_kickstart_injection:true,
-                navbar:false,
-                wide:true,
-                border:false,
-                port2:true,
-            }; 
-            vAmigaWeb_player.load(this,encodeURIComponent(JSON.stringify(config)));
-            return false;"		
-        />
-
-
+		<img 
+style="width:60vw" src="images/tlu-taon-Title-DRAFT05-64c.png" 
+ontouchstart="touched=true"
+onclick="
+  let touch=(typeof touched!='undefined')?touched:false;
+  touched=false;
+  let config=
+  {
+    touch:touch,
+    AROS:true,
+    navbar:false,
+    wide:true,
+    port2:true
+  };
+  vAmigaWeb_player.samesite_file=
+  {
+    url:'https://wearetlu.github.io/node/hdf/node-v003.hdf',
+    name:'node-v003.hdf'
+  };
+  vAmigaWeb_player.load(this,encodeURIComponent(JSON.stringify(config)));
+  return false;
+"		
+/>
 <br>
 Node HDF Test!<br>
 
