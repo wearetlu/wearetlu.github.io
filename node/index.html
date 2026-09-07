@@ -30,48 +30,47 @@
 
 <body>
 <div style="max-width: fit-content; margin-inline: auto;">
-		<img id="node"
+		<img
 style="width:70vw" src="images/tlu-taon-Title-DRAFT05-64c.png" 
 ontouchstart="touched=true"
 onclick="
   let touch=(typeof touched!='undefined')?touched:false;
   touched=false;
   let config={
-										kickstart_rom_url: 'https://vamigaweb.github.io/roms/aros.bin',
-										kickstart_ext_url: 'https://vamigaweb.github.io/roms/aros_ext.bin',
-										navbar:false,
-										wide:false,
-										touch: touch,
-										port2: true,
-										gpu:true,
-										display:'narrow',
-										border: 0.1,
-										startup_script: `hd_mount_list=['Node-v003.hdf'];
-										on_ready_to_run=()=>{
-											wasm_configure('CPU_OVERCLOCKING','2');
-											wasm_configure('CPU_REVISION','2');
-											wasm_configure('AGNUS_REVISION','AGA');
-											wasm_configure('DENISE_REVISION','AGA');
-											wasm_configure('CHIP_RAM','2048');
-											wasm_configure('SLOW_RAM','0');
-											wasm_configure('FAST_RAM','8192');
-											wasm_configure('floppy_drive_count','1');
-											wasm_configure('WARP_MODE','WARP_ALWAYS');
-										}
-										on_hdr_step=(drive_number,cylinder)=>{
-											on_power_led_dim=()=>{
-												wasm_configure('WARP_MODE','WARP_NEVER'); 
-												on_power_led_dim=()=>{}; 
-											}
-											on_hdr_step=()=>{};
-										}
-										`,
-										url:'https://wearetlu.github.io/node/zip/Node-v003.hdf.zip'
-									}; 
-									vAmigaWeb_player.load(this,encodeURIComponent(JSON.stringify(config)));
+	  kickstart_rom_url: 'https://vamigaweb.github.io/roms/aros.bin',
+	  kickstart_ext_url: 'https://vamigaweb.github.io/roms/aros_ext.bin',
+	  navbar:false,
+	  wide:false,
+	  touch: touch,
+	  port2: true,
+	  gpu:true,
+	  display:'narrow',
+	  startup_script: `hd_mount_list=['Node-v003.hdf'];
+	  on_ready_to_run=()=>{
+		  wasm_configure('CPU_OVERCLOCKING','2');
+		  wasm_configure('CPU_REVISION','2');
+		  wasm_configure('AGNUS_REVISION','AGA');
+		  wasm_configure('DENISE_REVISION','AGA');
+		  wasm_configure('CHIP_RAM','2048');
+		  wasm_configure('SLOW_RAM','0');
+		  wasm_configure('FAST_RAM','8192');
+		  wasm_configure('floppy_drive_count','1');
+		  
+	  }
+	  on_hdr_step=(drive_number,cylinder)=>{
+		  on_power_led_dim=()=>{
+			  wasm_configure('WARP_MODE','WARP_NEVER'); 
+			  on_power_led_dim=()=>{}; 
+		  }
+		  on_hdr_step=()=>{};
+	  }
+	  `,
+	  url:'https://wearetlu.github.io/node/zip/Node-v003.hdf.zip'
+  };
+  
+  vAmigaWeb_player.load(this,encodeURIComponent(JSON.stringify(config)));
 									return false;
-				"
-									
+	"
 />
 <br>
 Node HDF Test!
