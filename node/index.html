@@ -24,13 +24,14 @@
             color: #2575ff;
             cursor: pointer;
         }
+		
 </style>
 </head>
 
 <body>
-<div>
+<div style="max-width: fit-content; margin-inline: auto;">
 		<img id="node"
-style="width:60vw" src="images/tlu-taon-Title-DRAFT05-64c.png" 
+style="width:70vw" src="images/tlu-taon-Title-DRAFT05-64c.png" 
 ontouchstart="touched=true"
 onclick="
   let touch=(typeof touched!='undefined')?touched:false;
@@ -44,7 +45,7 @@ onclick="
 										port2: true,
 										gpu:true,
 										display:'narrow',
-										fullscreen: true,
+										border: 0.1,
 										startup_script: `hd_mount_list=['Node-v003.hdf'];
 										on_ready_to_run=()=>{
 											wasm_configure('CPU_OVERCLOCKING','2');
